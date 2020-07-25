@@ -21,17 +21,17 @@ class AuthorRow extends React.Component {
     }
 }
 
-function percent(str1, str2) {
-    str1 = parseInt(str1);
-    str2 = parseInt(str2);
-    if (str2 == 0) {
+function percentOfProgress(fundedSumStr, neededSumStr) {
+    let neededInt = parseInt(neededSumStr);
+    let fundedInd = parseInt(fundedSumStr);
+    if (neededInt == 0) {
         return 0;
     }
-    if (str1 >= str2) {
+    if (fundedInd >= neededInt) {
         return 100;
     }
 
-    let per = 100 * str1 / str2;
+    let per = 100 * fundedInd / neededInt;
     return per.toFixed(0);
 }
 
@@ -45,7 +45,7 @@ class BookRow extends React.Component {
                 <td>{book.brief}</td>
                 <td>{book.page}</td>
                 <td>{book.lang}</td>
-                <td>{percent(book.fundedSum, book.neededSum)}</td>
+                <td>{percentOfProgress(book.fundedSum, book.neededSum)}</td>
                 <td><img src={book.cover} width="40"
                     height="40"></img></td>
                 <td><AuthorRow author={book.author}
