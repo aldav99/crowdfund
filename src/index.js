@@ -129,6 +129,8 @@ import SidorovAvatar from './photo.png';
 
 import Cover from './cat.jpeg';
 
+import Logo from './logo.jpg';
+
 const AUTHORS = [
     { id: 1, name: 'Petrov', email: 'petrov@yandex.ru', avatar: PetrovAvatar, brief: 'Good' },
     { id: 2, name: 'Ivanov', email: 'ivanov@yandex.ru', avatar: IvanovAvatar, brief: 'Very Good' },
@@ -140,9 +142,36 @@ const BOOKS = [
     { title: 'Pyton in dept', brief: 'all comprehensive', page: 300, lang: 'en', progress: 'todo', cover: Cover, author: AUTHORS[1], minCost: 10, neededCost: 20, fundedSum: 1000, neededSum: 2000 }
 ];
 
+const styles = {
+    header: {
+        paddingTop: '60px',
+        textAlign: 'center',
+        backgroundColor: '#1abc9c',
+        color: 'white',
+        fontSize: '30px'
+    }
+}
 
+class App extends React.Component {
+    render() {
+        return (
+            <React.Fragment>
+                <header style={styles.header}>
+                    <h2>Crowdfunding</h2>
+                    <img src={Logo} width="30"
+                        height="30" alt="logo" />
+                </header>
+                <main>
+                    <BookTable books={this.props.books} />
+                </main>
+                <footer>&copy; {new Date().getFullYear()}</footer>
+            </React.Fragment>
+        );
+    }
+}
 
 ReactDOM.render(
-    <BookTable books={BOOKS} />,
+    <App books={BOOKS} />,
     document.getElementById('root')
 );
+
