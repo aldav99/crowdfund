@@ -1,6 +1,20 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 
+const styles = {
+    header: {
+        paddingTop: '60px',
+        textAlign: 'center',
+        backgroundColor: '#1abc9c',
+        color: 'white',
+        fontSize: '30px'
+    },
+
+    letter: {
+        color: 'red'
+    }
+}
+
 class AuthorRow extends React.Component {
     render() {
         const author = this.props.author;
@@ -54,6 +68,9 @@ class BookRow extends React.Component {
                 <td>{book.neededCost}</td>
                 <td>{book.fundedSum}</td>
                 <td>{book.neededSum}</td>
+
+                {(book.subscriber > 10) ? <td style={styles.letter}>{book.subscriber}</td>
+                    : <td>{book.subscriber}</td>}
             </tr>
         );
     }
@@ -109,6 +126,7 @@ class BookTable extends React.Component {
                         <th>neededCost</th>
                         <th>fundedSum</th>
                         <th>neededSum</th>
+                        <th>subscriber</th>
                     </tr>
                 </thead>
                 <tbody>{rows}</tbody>
@@ -135,19 +153,11 @@ const AUTHORS = [
 ];
 
 const BOOKS = [
-    { title: 'Ruby in dept', brief: 'comprehensive', page: 132, lang: 'rus', progress: 'todo', cover: Cover, authors: AUTHORS, minCost: 10, neededCost: 20, fundedSum: 1000, neededSum: 2000 },
-    { title: 'Pyton in dept', brief: 'all comprehensive', page: 300, lang: 'en', progress: 'todo', cover: Cover, authors: AUTHORS.slice(1, 2), minCost: 10, neededCost: 20, fundedSum: 1000, neededSum: 2000 }
+    { title: 'Ruby in dept', brief: 'comprehensive', page: 132, lang: 'rus', progress: 'todo', cover: Cover, authors: AUTHORS, minCost: 10, neededCost: 20, fundedSum: 1000, neededSum: 2000, subscriber: 10 },
+    { title: 'Pyton in dept', brief: 'all comprehensive', page: 300, lang: 'en', progress: 'todo', cover: Cover, authors: AUTHORS.slice(1, 2), minCost: 10, neededCost: 20, fundedSum: 1000, neededSum: 2000, subscriber: 20 }
 ];
 
-const styles = {
-    header: {
-        paddingTop: '60px',
-        textAlign: 'center',
-        backgroundColor: '#1abc9c',
-        color: 'white',
-        fontSize: '30px'
-    }
-}
+
 
 class App extends React.Component {
     render() {
