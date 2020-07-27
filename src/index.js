@@ -48,8 +48,7 @@ class BookRow extends React.Component {
                 <td>{percentOfProgress(book.fundedSum, book.neededSum)}</td>
                 <td><img src={book.cover} width="40"
                     height="40"></img></td>
-                <td><AuthorRow author={book.author}
-                    key={book.author.name} /></td>
+                <td><AuthorTable authors={book.authors} /></td>
 
                 <td>{book.minCost}</td>
                 <td>{book.neededCost}</td>
@@ -62,15 +61,10 @@ class BookRow extends React.Component {
 
 class AuthorTable extends React.Component {
     render() {
-        const rows = [];
 
-        this.props.authors.forEach((author) => {
-            rows.push(
-                <AuthorRow
-                    author={author}
-                    key={author.name} />
-            );
-        });
+        const authors = Array.from(this.props.authors);
+        const rows = authors.map((author) =>
+            <AuthorRow author={author} key={author.name} />);
 
         return (
             <table>
@@ -89,15 +83,10 @@ class AuthorTable extends React.Component {
 
 class BookTable extends React.Component {
     render() {
-        const rows = [];
 
-        this.props.books.forEach((book) => {
-            rows.push(
-                <BookRow
-                    book={book}
-                    key={book.title} />
-            );
-        });
+        const books = this.props.books;
+        const rows = books.map((book) =>
+            <BookRow book={book} key={book.title} />);
 
         return (
             <table>
@@ -126,6 +115,7 @@ class BookTable extends React.Component {
 import PetrovAvatar from './photo.png';
 import IvanovAvatar from './photo.png';
 import SidorovAvatar from './photo.png';
+import SemenovAvatar from './photo.png';
 
 import Cover from './cat.jpeg';
 
@@ -134,12 +124,13 @@ import Logo from './logo.jpg';
 const AUTHORS = [
     { id: 1, name: 'Petrov', email: 'petrov@yandex.ru', avatar: PetrovAvatar, brief: 'Good' },
     { id: 2, name: 'Ivanov', email: 'ivanov@yandex.ru', avatar: IvanovAvatar, brief: 'Very Good' },
-    { id: 3, name: 'Sidorov', email: 'sidorov@yandex.ru', avatar: SidorovAvatar, brief: 'Greatest' }
+    { id: 3, name: 'Sidorov', email: 'sidorov@yandex.ru', avatar: SidorovAvatar, brief: 'Greatest' },
+    { id: 4, name: 'Semenov', email: 'semenov@yandex.ru', avatar: SemenovAvatar, brief: 'Greatest' }
 ];
 
 const BOOKS = [
-    { title: 'Ruby in dept', brief: 'comprehensive', page: 132, lang: 'rus', progress: 'todo', cover: Cover, author: AUTHORS[0], minCost: 10, neededCost: 20, fundedSum: 1000, neededSum: 2000 },
-    { title: 'Pyton in dept', brief: 'all comprehensive', page: 300, lang: 'en', progress: 'todo', cover: Cover, author: AUTHORS[1], minCost: 10, neededCost: 20, fundedSum: 1000, neededSum: 2000 }
+    { title: 'Ruby in dept', brief: 'comprehensive', page: 132, lang: 'rus', progress: 'todo', cover: Cover, authors: AUTHORS, minCost: 10, neededCost: 20, fundedSum: 1000, neededSum: 2000 },
+    { title: 'Pyton in dept', brief: 'all comprehensive', page: 300, lang: 'en', progress: 'todo', cover: Cover, authors: AUTHORS[1], minCost: 10, neededCost: 20, fundedSum: 1000, neededSum: 2000 }
 ];
 
 const styles = {
