@@ -62,9 +62,15 @@ class BookRow extends React.Component {
 class AuthorTable extends React.Component {
     render() {
 
-        const authors = Array.from(this.props.authors);
+        let authors = Array.from(this.props.authors);
+        if (authors.length > 3) {
+            let result = confirm(`Число авторов ${authors.length}. Вывести всех?`)
+            if (!result) {
+                authors = authors.slice(0, 3);
+            }
+        }
         const rows = authors.map((author) =>
-            <AuthorRow author={author} key={author.name} />);
+            <AuthorRow author={author} key={author.id} />);
 
         return (
             <table>
@@ -130,7 +136,7 @@ const AUTHORS = [
 
 const BOOKS = [
     { title: 'Ruby in dept', brief: 'comprehensive', page: 132, lang: 'rus', progress: 'todo', cover: Cover, authors: AUTHORS, minCost: 10, neededCost: 20, fundedSum: 1000, neededSum: 2000 },
-    { title: 'Pyton in dept', brief: 'all comprehensive', page: 300, lang: 'en', progress: 'todo', cover: Cover, authors: AUTHORS[1], minCost: 10, neededCost: 20, fundedSum: 1000, neededSum: 2000 }
+    { title: 'Pyton in dept', brief: 'all comprehensive', page: 300, lang: 'en', progress: 'todo', cover: Cover, authors: AUTHORS.slice(1, 2), minCost: 10, neededCost: 20, fundedSum: 1000, neededSum: 2000 }
 ];
 
 const styles = {
