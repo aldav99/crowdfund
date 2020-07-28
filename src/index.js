@@ -12,6 +12,54 @@ const styles = {
 
     letter: {
         color: 'red'
+    },
+
+    overlay: {
+        backgroundColor: 'rgba(0, 0, 0, 0.95)',
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+
+    body: {
+        backgroundColor: '#fff',
+        padding: "10px"
+    }
+}
+
+class SubscribeModal extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { isOpen: false }
+    }
+    toggle() {
+        this.setState({ isOpen: !this.state.isOpen });
+    }
+
+    render() {
+        return (
+            <React.Fragment>
+                <a onClick={() => this.toggle()}>Условия подписки</a>
+                {
+                    this.state.isOpen && ReactDOM.createPortal(
+                        <div style={styles.overlay}>
+                            <div style={styles.body} >
+                                В зависимости от суммы перевода, поощряем подписчиков личной подписью автора, мерчендайзом (футболками, кружками), упоминанием в благодарностях.
+                    <button onClick={() => this.toggle()}>Закрыть
+                                </button>
+                            </div>
+                        </div>,
+                        document.getElementById('modal-root')
+                    )
+
+                }
+            </React.Fragment>
+        );
     }
 }
 
@@ -54,24 +102,27 @@ class BookRow extends React.Component {
         const book = this.props.book;
 
         return (
-            <tr>
-                <td>{book.title}</td>
-                <td>{book.brief}</td>
-                <td>{book.page}</td>
-                <td>{book.lang}</td>
-                <td>{percentOfProgress(book.fundedSum, book.neededSum)}</td>
-                <td><img src={book.cover} width="40"
-                    height="40"></img></td>
-                <td><AuthorTable authors={book.authors} /></td>
+            <React.Fragment>
+                <tr>
+                    <td>{book.title}</td>
+                    <td>{book.brief}</td>
+                    <td>{book.page}</td>
+                    <td>{book.lang}</td>
+                    <td>{percentOfProgress(book.fundedSum, book.neededSum)}</td>
+                    <td><img src={book.cover} width="40"
+                        height="40"></img></td>
+                    <td><AuthorTable authors={book.authors} /></td>
 
-                <td>{book.minCost}</td>
-                <td>{book.neededCost}</td>
-                <td>{book.fundedSum}</td>
-                <td>{book.neededSum}</td>
+                    <td>{book.minCost}</td>
+                    <td>{book.neededCost}</td>
+                    <td>{book.fundedSum}</td>
+                    <td>{book.neededSum}</td>
 
-                {(book.subscriber > 10) ? <td style={styles.letter}>{book.subscriber}</td>
-                    : <td>{book.subscriber}</td>}
-            </tr>
+                    {(book.subscriber > 10) ? <td style={styles.letter}>{book.subscriber}</td>
+                        : <td>{book.subscriber}</td>}
+                </tr>
+                <SubscribeModal />
+            </React.Fragment>
         );
     }
 }
@@ -134,6 +185,9 @@ class BookTable extends React.Component {
         );
     }
 }
+
+
+
 
 
 import PetrovAvatar from './photo.png';
