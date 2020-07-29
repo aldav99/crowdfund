@@ -1,6 +1,15 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 
+import PetrovAvatar from './photo.png';
+import IvanovAvatar from './photo.png';
+import SidorovAvatar from './photo.png';
+import SemenovAvatar from './photo.png';
+
+import Cover from './cat.jpeg';
+
+import Logo from './logo.jpg';
+
 const styles = {
     header: {
         paddingTop: '60px',
@@ -160,7 +169,7 @@ class BookTable extends React.Component {
 
         const books = this.props.books;
         const rows = books.map((book) =>
-            <BookRow book={book} key={book.title} />);
+            <BookRow book={book} key={book.id} />);
 
         return (
             <table>
@@ -186,19 +195,6 @@ class BookTable extends React.Component {
     }
 }
 
-
-
-
-
-import PetrovAvatar from './photo.png';
-import IvanovAvatar from './photo.png';
-import SidorovAvatar from './photo.png';
-import SemenovAvatar from './photo.png';
-
-import Cover from './cat.jpeg';
-
-import Logo from './logo.jpg';
-
 const AUTHORS = [
     { id: 1, name: 'Petrov', email: 'petrov@yandex.ru', avatar: PetrovAvatar, brief: 'Good' },
     { id: 2, name: 'Ivanov', email: 'ivanov@yandex.ru', avatar: IvanovAvatar, brief: 'Very Good' },
@@ -207,8 +203,8 @@ const AUTHORS = [
 ];
 
 const BOOKS = [
-    { title: 'Ruby in dept', brief: 'comprehensive', page: 132, lang: 'rus', progress: 'todo', cover: Cover, authors: AUTHORS, minCost: 10, neededCost: 20, fundedSum: 1000, neededSum: 2000, subscriber: 10 },
-    { title: 'Pyton in dept', brief: 'all comprehensive', page: 300, lang: 'en', progress: 'todo', cover: Cover, authors: AUTHORS.slice(1, 2), minCost: 10, neededCost: 20, fundedSum: 1000, neededSum: 2000, subscriber: 20 }
+    { id: 1, title: 'Ruby in dept', brief: 'comprehensive', page: 132, lang: 'rus', progress: 'todo', cover: Cover, authors: AUTHORS, minCost: 10, neededCost: 20, fundedSum: 1000, neededSum: 2000, subscriber: 10 },
+    { id: 2, title: 'Pyton in dept', brief: 'all comprehensive', page: 300, lang: 'en', progress: 'todo', cover: Cover, authors: AUTHORS.slice(1, 2), minCost: 10, neededCost: 20, fundedSum: 1000, neededSum: 2000, subscriber: 20 }
 ];
 
 
