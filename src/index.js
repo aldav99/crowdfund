@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 
+
 import PetrovAvatar from './photo.png';
 import IvanovAvatar from './photo.png';
 import SidorovAvatar from './photo.png';
@@ -8,192 +9,9 @@ import SemenovAvatar from './photo.png';
 
 import Cover from './cat.jpeg';
 
-import Logo from './logo.jpg';
 
-const styles = {
-    header: {
-        paddingTop: '60px',
-        textAlign: 'center',
-        backgroundColor: '#1abc9c',
-        color: 'white',
-        fontSize: '30px'
-    },
 
-    letter: {
-        color: 'red'
-    },
-
-    overlay: {
-        backgroundColor: 'rgba(0, 0, 0, 0.95)',
-        position: 'absolute',
-        top: 0,
-        bottom: 0,
-        left: 0,
-        right: 0,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-
-    body: {
-        backgroundColor: '#fff',
-        padding: "10px"
-    }
-}
-
-class SubscribeModal extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { isOpen: false }
-    }
-    toggle() {
-        this.setState({ isOpen: !this.state.isOpen });
-    }
-
-    render() {
-        return (
-            <React.Fragment>
-                <a onClick={() => this.toggle()}>Условия подписки</a>
-                {
-                    this.state.isOpen && ReactDOM.createPortal(
-                        <div style={styles.overlay}>
-                            <div style={styles.body} >
-                                В зависимости от суммы перевода, поощряем подписчиков личной подписью автора, мерчендайзом (футболками, кружками), упоминанием в благодарностях.
-                    <button onClick={() => this.toggle()}>Закрыть
-                                </button>
-                            </div>
-                        </div>,
-                        document.getElementById('modal-root')
-                    )
-
-                }
-            </React.Fragment>
-        );
-    }
-}
-
-class AuthorRow extends React.Component {
-    render() {
-        const author = this.props.author;
-
-        return (
-            <table>
-                <tbody>
-                    <tr>
-                        <td>{author.name}</td>
-                        <td>{author.email}</td>
-                        <td><img src={author.avatar} width="40"
-                            height="50"></img></td>
-                        <td>{author.brief}</td>
-                    </tr>
-                </tbody>
-            </table >
-        );
-    }
-}
-
-function percentOfProgress(fundedSumStr, neededSumStr) {
-    let neededInt = parseInt(neededSumStr);
-    let fundedInd = parseInt(fundedSumStr);
-    if (neededInt == 0) {
-        return 0;
-    }
-    if (fundedInd >= neededInt) {
-        return 100;
-    }
-
-    let per = 100 * fundedInd / neededInt;
-    return per.toFixed(0);
-}
-
-class BookRow extends React.Component {
-    render() {
-        const book = this.props.book;
-
-        return (
-            <React.Fragment>
-                <tr>
-                    <td>{book.title}</td>
-                    <td>{book.brief}</td>
-                    <td>{book.page}</td>
-                    <td>{book.lang}</td>
-                    <td>{percentOfProgress(book.fundedSum, book.neededSum)}</td>
-                    <td><img src={book.cover} width="40"
-                        height="40"></img></td>
-                    <td><AuthorTable authors={book.authors} /></td>
-
-                    <td>{book.minCost}</td>
-                    <td>{book.neededCost}</td>
-                    <td>{book.fundedSum}</td>
-                    <td>{book.neededSum}</td>
-
-                    {(book.subscriber > 10) ? <td style={styles.letter}>{book.subscriber}</td>
-                        : <td>{book.subscriber}</td>}
-                </tr>
-                <SubscribeModal />
-            </React.Fragment>
-        );
-    }
-}
-
-class AuthorTable extends React.Component {
-    render() {
-
-        let authors = Array.from(this.props.authors);
-        if (authors.length > 3) {
-            let result = confirm(`Число авторов ${authors.length}. Вывести всех?`)
-            if (!result) {
-                authors = authors.slice(0, 3);
-            }
-        }
-        const rows = authors.map((author) =>
-            <AuthorRow author={author} key={author.id} />);
-
-        return (
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Avatar</th>
-                        <th>Brief</th>
-                    </tr>
-                </thead>
-                <tbody>{rows}</tbody>
-            </table>);
-    }
-}
-
-class BookTable extends React.Component {
-    render() {
-
-        const books = this.props.books;
-        const rows = books.map((book) =>
-            <BookRow book={book} key={book.id} />);
-
-        return (
-            <table>
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Brief</th>
-                        <th>Page</th>
-                        <th>Lang</th>
-                        <th>Progress</th>
-                        <th>Cover</th>
-                        <th>Author</th>
-                        <th>minCost</th>
-                        <th>neededCost</th>
-                        <th>fundedSum</th>
-                        <th>neededSum</th>
-                        <th>subscriber</th>
-                    </tr>
-                </thead>
-                <tbody>{rows}</tbody>
-            </table>
-        );
-    }
-}
+import { App } from './App';
 
 const AUTHORS = [
     { id: 1, name: 'Petrov', email: 'petrov@yandex.ru', avatar: PetrovAvatar, brief: 'Good' },
@@ -208,24 +26,6 @@ const BOOKS = [
 ];
 
 
-
-class App extends React.Component {
-    render() {
-        return (
-            <React.Fragment>
-                <header style={styles.header}>
-                    <h2>Crowdfunding</h2>
-                    <img src={Logo} width="30"
-                        height="30" alt="logo" />
-                </header>
-                <main>
-                    <BookTable books={this.props.books} />
-                </main>
-                <footer>&copy; {new Date().getFullYear()}</footer>
-            </React.Fragment>
-        );
-    }
-}
 
 ReactDOM.render(
     <App books={BOOKS} />,
