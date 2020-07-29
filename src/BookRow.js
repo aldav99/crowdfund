@@ -31,8 +31,8 @@ export class BookRow extends React.Component {
 
                     {(book.subscriber > 10) ? <td style={styles.letter}>{book.subscriber}</td>
                         : <td>{book.subscriber}</td>}
+                    <td><SubscribeModal /></td>
                 </tr>
-                <SubscribeModal />
             </React.Fragment>
         );
     }
