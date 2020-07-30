@@ -12,7 +12,6 @@ export class AuthorTable extends React.Component {
                 authors = authors.slice(0, 3);
             }
         }
-        const rows = authors.map((author) => <AuthorRow author={author} key={author.id} />);
 
         return (
             <table>
@@ -24,7 +23,19 @@ export class AuthorTable extends React.Component {
                         <th>Brief</th>
                     </tr>
                 </thead>
-                <tbody>{rows}</tbody>
+                <tbody>
+                    {authors.map(function (author, key) {
+                        return (
+                            <AuthorRow key={author.id}>
+                                <td>{author.name}</td>
+                                <td>{author.email}</td>
+                                <td><img src={author.avatar} width="40" height="50"></img></td>
+                                <td>{author.brief}</td>
+                            </AuthorRow>
+                        );
+                    })}
+                </tbody>
             </table>);
     }
 }
+
