@@ -1,11 +1,14 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 
+import authContext from './authContext';
+
 
 import PetrovAvatar from './photo.png';
 import IvanovAvatar from './photo.png';
 import SidorovAvatar from './photo.png';
 import SemenovAvatar from './photo.png';
+import UserAvatar from './user.png';
 
 import Cover from './cat.jpeg';
 
@@ -25,10 +28,18 @@ const BOOKS = [
     { id: 2, title: 'Pyton in dept', brief: 'all comprehensive', page: 300, lang: 'en', progress: 'todo', cover: Cover, authors: AUTHORS.slice(1, 2), minCost: 10, neededCost: 20, fundedSum: 1000, neededSum: 2000, subscriber: 20 }
 ];
 
+const user = {
+    email: 'vova@mail.com',
+    firstName: 'Vova',
+    lastName: 'Ivanov',
+    avatarUrl: UserAvatar
+};
 
 
 ReactDOM.render(
-    <App books={BOOKS} />,
+    <authContext.Provider value={user}>
+        <App books={BOOKS} />
+    </authContext.Provider>,
     document.getElementById('root')
 );
 

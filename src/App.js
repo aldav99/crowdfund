@@ -2,6 +2,8 @@ import React from 'react';
 import Logo from './logo.jpg';
 import { BookTable } from './BookTable';
 
+import { UserInfo } from './UserInfo';
+
 const styles = {
     header: {
         paddingTop: '60px',
@@ -20,7 +22,9 @@ export class App extends React.Component {
                     <h2>Crowdfunding</h2>
                     <img src={Logo} width="30"
                         height="30" alt="logo" />
+                    <UserInfo />
                 </header>
+
                 <main>
                     <BookTable books={this.props.books} />
                 </main>
@@ -29,3 +33,5 @@ export class App extends React.Component {
         );
     }
 }
+
+
