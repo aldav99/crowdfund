@@ -39,21 +39,23 @@ export class FeedbackForm extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <label>
-                    Name:
-            <input type="text" value={this.state.name} onChange={this.handleNameChange} placeholder='Name' />
-                </label>
-                <label>
-                    Email:
-            <input type="text" value={this.state.email} onChange={this.handleEmailChange} placeholder='Email' />
-                </label>
-                <label>
-                    Question:
-            <input type="text" value={this.state.question} onChange={this.handleQuestionChange} placeholder='Question' />
-                </label>
+                <Field label='Name' value={this.state.name} onChange={this.handleNameChange} />
+                <Field label='Email' value={this.state.email} onChange={this.handleEmailChange} />
+                <Field label='Question' value={this.state.question} onChange={this.handleQuestionChange} />
 
                 <input type="submit" value="Отправить" />
             </form>
+        );
+    }
+}
+
+class Field extends React.Component {
+    render() {
+        return (
+            <label>
+                {this.props.label}:
+                <input type="text" value={this.props.value} onChange={this.props.onChange} placeholder={this.props.label} />
+            </label>
         );
     }
 }
