@@ -14,24 +14,22 @@ const styles = {
     }
 }
 
-export class App extends React.Component {
-    render() {
-        return (
-            <React.Fragment>
-                <header style={styles.header}>
-                    <h2>Crowdfunding</h2>
-                    <img src={Logo} width="30"
-                        height="30" alt="logo" />
-                    <UserInfo />
-                </header>
+export const App = (props) => {
+    return (
+        <React.Fragment>
+            <header style={styles.header}>
+                <h2>Crowdfunding</h2>
+                <img src={Logo} width="30"
+                    height="30" alt="logo" />
+                <UserInfo />
+            </header>
 
-                <main>
-                    <BookTable books={this.props.books} />
-                </main>
-                <footer>&copy; {new Date().getFullYear()}</footer>
-            </React.Fragment>
-        );
-    }
+            <main>
+                <BookTable books={props.books} />
+            </main>
+            <footer>&copy; {new Date().getFullYear()}</footer>
+        </React.Fragment>
+    );
 }
 
 
