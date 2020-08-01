@@ -1,8 +1,8 @@
 import React from 'react';
-import authContext from './authContext';
+import AuthContext from './authContext';
 
 export const UserInfo = () => (
-    <authContext.Consumer>
+    <AuthContext.Consumer>
         {
             value => {
                 return (
@@ -15,5 +15,5 @@ export const UserInfo = () => (
                 );
             }
         }
-    </authContext.Consumer>
+    </AuthContext.Consumer>
 );
