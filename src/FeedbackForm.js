@@ -49,13 +49,11 @@ export class FeedbackForm extends React.Component {
     }
 }
 
-class Field extends React.Component {
-    render() {
-        return (
-            <label>
-                {this.props.label}:
-                <input type="text" value={this.props.value} onChange={this.props.onChange} placeholder={this.props.label} />
-            </label>
-        );
-    }
+const Field = (props) => {
+    return (
+        <label>
+            {props.label}:
+            <input type="text" value={props.value} onChange={props.onChange} placeholder={props.label} />
+        </label>
+    )
 }
