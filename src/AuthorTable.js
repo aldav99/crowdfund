@@ -1,15 +1,13 @@
 import React from 'react';
 
-class AuthorRow extends React.Component {
-    render() {
-
-        return (
-            <tr>
-                {this.props.children}
-            </tr>
-        );
-    }
+const AuthorRow = (props) => {
+    return (
+        <tr>
+            {props.children}
+        </tr>
+    );
 }
+
 
 export class AuthorTable extends React.Component {
     render() {
