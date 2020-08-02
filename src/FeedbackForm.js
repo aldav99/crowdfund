@@ -14,6 +14,11 @@ export class FeedbackForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    //  -------------------------Не работает-----------------
+    // handleChange(e) {
+    //     this.setState({ [e.target.name]: e.target.value });
+    //   }
+
     handleNameChange(event) {
         this.setState({ name: event.target.value });
     }
