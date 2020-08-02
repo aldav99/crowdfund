@@ -1,16 +1,12 @@
 import React from 'react';
 
 
-export class BookRow extends React.Component {
-    render() {
-
-        return (
-            <React.Fragment>
-                <tr>
-                    {this.props.children}
-                </tr>
-            </React.Fragment>
-        );
-    }
+export const BookRow = (props) => {
+    return (
+        <React.Fragment>
+            <tr>
+                {props.children}
+            </tr>
+        </React.Fragment>
+    );
 }
-
