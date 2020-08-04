@@ -1,12 +1,12 @@
 import React from 'react';
 
-const AuthorRow = (props) => {
+const AuthorRow = React.memo((props) => {
     return (
         <tr>
             {props.children}
         </tr>
     );
-}
+})
 
 
 export const AuthorTable = (props) => {
@@ -17,7 +17,7 @@ export const AuthorTable = (props) => {
             authors = authors.slice(0, 3);
         }
     }
-
+    console.log('render AuthorTable')
     return (
         <table>
             <thead>
