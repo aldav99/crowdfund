@@ -8,27 +8,12 @@ export class FeedbackForm extends React.Component {
             question: ''
         };
 
-        this.handleNameChange = this.handleNameChange.bind(this);
-        this.handleEmailChange = this.handleEmailChange.bind(this);
-        this.handleQuestionChange = this.handleQuestionChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    //  -------------------------Не работает-----------------
-    // handleChange(e) {
-    //     this.setState({ [e.target.name]: e.target.value });
-    //   }
-
-    handleNameChange(event) {
-        this.setState({ name: event.target.value });
-    }
-
-    handleEmailChange(event) {
-        this.setState({ email: event.target.value });
-    }
-
-    handleQuestionChange(event) {
-        this.setState({ question: event.target.value });
+    handleChange(event) {
+        this.setState({ [event.target.name]: event.target.value });
     }
 
     handleSubmit(event) {
@@ -44,9 +29,24 @@ export class FeedbackForm extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <Field label='Name' value={this.state.name} onChange={this.handleNameChange} />
-                <Field label='Email' value={this.state.email} onChange={this.handleEmailChange} />
-                <Field label='Question' value={this.state.question} onChange={this.handleQuestionChange} />
+                <Field
+                    name='name'
+                    label='Name'
+                    value={this.state.name}
+                    onChange={this.handleChange}
+                />
+                <Field
+                    name='email'
+                    label='Email'
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                />
+                <Field
+                    name='question'
+                    label='Question'
+                    value={this.state.question}
+                    onChange={this.handleChange}
+                />
 
                 <input type="submit" value="Отправить" />
             </form>
@@ -58,7 +58,7 @@ const Field = (props) => {
     return (
         <label>
             {props.label}:
-            <input type="text" value={props.value} onChange={props.onChange} placeholder={props.label} />
+            <input type="text" name={props.name} value={props.value} onChange={props.onChange} placeholder={props.label} />
         </label>
     )
 }
