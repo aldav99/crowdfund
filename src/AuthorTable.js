@@ -1,6 +1,7 @@
 import React from 'react';
 
 const AuthorRow = React.memo((props) => {
+    console.log('render AuthorRow')
     return (
         <tr>
             {props.children}
@@ -8,10 +9,7 @@ const AuthorRow = React.memo((props) => {
     );
 })
 
-
-
-
-export class AuthorTable extends React.Component {
+export class AuthorTable extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = { onlyThree: true };
@@ -22,7 +20,7 @@ export class AuthorTable extends React.Component {
     }
 
     render() {
-        console.log('render BookRow')
+        console.log('render AuthorTable')
         let authors;
         (this.props.authors.length > 3 && this.state.onlyThree) ? authors = this.props.authors.slice(0, 3) : authors = this.props.authors;
 
