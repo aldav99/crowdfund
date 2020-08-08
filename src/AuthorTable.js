@@ -41,7 +41,7 @@ export class AuthorTable extends React.PureComponent {
                 <tbody>
                     {
                         (this.props.authors.length > 3) ? <tr><td><button onClick={() =>
-                            this.toggleViev()}>More...</button></td></tr> : <tr></tr>
+                            this.toggleViev()}>More...</button></td></tr> : null
                     }
 
                     {authors.map(function (author, key) {
