@@ -2,9 +2,13 @@ import React from 'react';
 
 const AuthorRow = React.memo((props) => {
     console.log('render AuthorRow')
+    let author = props.author
     return (
         <tr>
-            {props.children}
+            <td>{author.name}</td>
+            <td>{author.email}</td>
+            <td><img src={author.avatar} width="40" height="50"></img></td>
+            <td>{author.brief}</td>
         </tr>
     );
 })
@@ -42,13 +46,7 @@ export class AuthorTable extends React.PureComponent {
 
                     {authors.map(function (author, key) {
                         return (
-                            <AuthorRow key={author.id}>
-                                <td>{author.name}</td>
-                                <td>{author.email}</td>
-                                <td><img src={author.avatar} width="40" height="50"></img></td>
-                                <td>{author.brief}</td>
-                            </AuthorRow>
-
+                            <AuthorRow key={author.id} author={author} />
                         );
                     })}
                 </tbody>
