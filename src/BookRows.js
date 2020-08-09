@@ -27,6 +27,7 @@ export const BookRows = React.memo(({ books, removeFromTable }) => {
                     <th>Cover</th>
                     <th>Author</th>
                     <th>minCost</th>
+                    <th>royalty</th>
                     <th>neededCost</th>
                     <th>fundedSum</th>
                     <th>neededSum</th>
@@ -49,6 +50,7 @@ export const BookRows = React.memo(({ books, removeFromTable }) => {
                             <td><AuthorTable authors={book.authors} /></td>
 
                             <td>{book.minCost}</td>
+                            <td><Royalty minCost={book.minCost} /></td>
                             <td>{book.neededCost}</td>
                             <td>{book.fundedSum}</td>
                             <td>{book.neededSum}</td>
@@ -66,3 +68,39 @@ export const BookRows = React.memo(({ books, removeFromTable }) => {
             </tbody>
         </table>)
 })
+
+
+export class Royalty extends React.PureComponent {
+    constructor(props) {
+        super(props);
+        this.state = { royalty: '' };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.keyPress = this.keyPress.bind(this);
+    }
+
+
+    handleChange(event) {
+        this.setState({ royalty: event.target.value });
+    }
+
+    keyPress(event) {
+        if (event.keyCode == 13) {
+            let authorsInterest = Math.floor(parseInt(event.target.value) * 0.9)
+
+            let minCost = parseInt(this.props.minCost)
+
+            if (authorsInterest < minCost) {
+                alert(`Less minCost: ${minCost}`)
+                return this.setState({ royalty: '' });
+            }
+            this.setState({ royalty: authorsInterest });
+        }
+    }
+    render() {
+        return (
+            <input value={this.state.royalty} onKeyDown={this.keyPress} onChange={this.handleChange} />
+        )
+    }
+}
+
