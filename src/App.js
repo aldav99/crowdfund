@@ -1,6 +1,6 @@
 import React from 'react';
 import Logo from './logo.jpg';
-import { BookTable } from './BookTable';
+import { BookContainer } from './BookContainer';
 
 import { UserInfo } from './UserInfo';
 
@@ -25,7 +25,7 @@ export const App = (props) => {
             </header>
 
             <main>
-                <BookTable books={props.books} />
+                <BookContainer books={props.books} />
             </main>
             <footer>&copy; {new Date().getFullYear()}</footer>
         </React.Fragment>
