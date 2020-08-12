@@ -41,7 +41,7 @@ const user = {
 
 ReactDOM.render(
     <authContext.Provider value={user}>
-        <App books={BOOKS} />
+        <App />
     </authContext.Provider>,
     document.getElementById('root')
 );

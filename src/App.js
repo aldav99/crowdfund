@@ -25,7 +25,7 @@ export const App = (props) => {
             </header>
 
             <main>
-                <BookContainer books={props.books} />
+                <BookContainer  />
             </main>
             <footer>&copy; {new Date().getFullYear()}</footer>
         </React.Fragment>

@@ -7,15 +7,11 @@ const API_TOKEN = 'keyEbYaaHT6MgQv8t'
 
 const httpClient = axios.create({
     baseURL: 'https://api.airtable.com/v0/appe9eRK1BsGtd1dt',
-    timeout: 2000,
+    timeout: 3000,
     headers: {
         'Authorization': 'Bearer keyEbYaaHT6MgQv8t'
     }
 });
-// appe9eRK1BsGtd1dt
-
-// "https://api.airtable.com/v0/appe9eRK1BsGtd1dt/Books?maxRecords=3&view=Grid%20view" \
-//   -H "Authorization: Bearer keyEbYaaHT6MgQv8t"
 
 export class BookContainer extends React.Component {
     constructor(props) {
@@ -32,7 +28,7 @@ export class BookContainer extends React.Component {
     }
 
     render() {
-        const { books } = this.state
+        const { books, authors } = this.state
         return (
             books ?
                 <BookTable books={books} />
