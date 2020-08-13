@@ -11,7 +11,6 @@ const styles = {
     }
 }
 
-// authors: record.fields['Id (from Authors)'],
 export const BookRows = React.memo(({ books, removeFromTable, authors }) => {
     console.log('render BookRow')
     return (

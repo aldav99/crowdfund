@@ -79,6 +79,7 @@ export class BookContainer extends React.Component {
         return data.records.map(
             record => (
                 {
+                    id: record.fields.Id,
                     title: record.fields.Title,
                     brief: record.fields.Brief,
                     page: record.fields.Page,
@@ -95,4 +96,3 @@ export class BookContainer extends React.Component {
         )
     }
 }
-// { id: 5, title: 'Go in dept', brief: 'all comprehensive', page: 300, lang: 'en', progress: 'todo', cover: Cover, authors: AUTHORS.slice(1, 2), minCost: 10, neededCost: 20, fundedSum: 1000, neededSum: 2000, subscriber: 20 }
