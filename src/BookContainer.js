@@ -31,7 +31,7 @@ export class BookContainer extends React.Component {
         const { books, authors } = this.state
         return (
             books ?
-                <BookTable books={books} />
+                <BookTable books={books} authors={authors} />
                 : <div>Loading...</div>
         );
     }

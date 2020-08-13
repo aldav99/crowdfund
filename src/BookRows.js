@@ -11,8 +11,8 @@ const styles = {
     }
 }
 
-
-export const BookRows = React.memo(({ books, removeFromTable }) => {
+// authors: record.fields['Id (from Authors)'],
+export const BookRows = React.memo(({ books, removeFromTable, authors }) => {
     console.log('render BookRow')
     return (
         <table>
@@ -47,7 +47,9 @@ export const BookRows = React.memo(({ books, removeFromTable }) => {
                             <td>{percentOfProgress(book.fundedSum, book.neededSum)}</td>
                             <td><img src={book.cover} width="40"
                                 height="40"></img></td>
-                            <td><AuthorTable authors={book.authors} /></td>
+                            <td><AuthorTable
+                                authors={authors.filter(author => author.id in book.authors)} />
+                            </td>
 
                             <td>{book.minCost}</td>
                             <td><Royalty minCost={book.minCost} /></td>
