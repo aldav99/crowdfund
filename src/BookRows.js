@@ -75,6 +75,7 @@ export const BookRows = React.memo(({ books, removeFromTable, authors }) => {
 export class Royalty extends React.PureComponent {
     constructor(props) {
         super(props);
+        this.searchInputRef = React.createRef();
         this.state = { royalty: '' };
 
         this.handleChange = this.handleChange.bind(this);
@@ -99,9 +100,14 @@ export class Royalty extends React.PureComponent {
             this.setState({ royalty: authorsInterest });
         }
     }
+
+    componentDidMount() {
+        this.searchInputRef.current.focus();
+    }
+
     render() {
         return (
-            <input value={this.state.royalty} onKeyDown={this.keyPress} onChange={this.handleChange} />
+            <input ref={this.searchInputRef} value={this.state.royalty} onKeyDown={this.keyPress} onChange={this.handleChange} />
         )
     }
 }

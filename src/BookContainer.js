@@ -7,7 +7,7 @@ const API_TOKEN = 'keyEbYaaHT6MgQv8t'
 
 const httpClient = axios.create({
     baseURL: 'https://api.airtable.com/v0/appe9eRK1BsGtd1dt',
-    timeout: 3000,
+    timeout: 5000,
     headers: {
         'Authorization': 'Bearer keyEbYaaHT6MgQv8t'
     }
@@ -23,8 +23,8 @@ export class BookContainer extends React.Component {
     }
 
     componentDidMount() {
-        this._fetchData();
         this._fetchAuthors();
+        this._fetchData();
     }
 
     render() {
