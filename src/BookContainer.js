@@ -30,7 +30,7 @@ export class BookContainer extends React.Component {
     render() {
         const { books, authors } = this.state
         return (
-            books ?
+            books && authors ?
                 <BookTable books={books} authors={authors} />
                 : <div>Loading...</div>
         );
