@@ -47,7 +47,7 @@ export const BookRows = React.memo(({ books, removeFromTable, authors }) => {
                             <td><img src={book.cover} width="40"
                                 height="40"></img></td>
                             <td><AuthorTable
-                                authors={authors.filter(author => author.id in book.authors)} />
+                                authors={authors.filter(author => book.authors.includes(author.id))} />
                             </td>
 
                             <td>{book.minCost}</td>
