@@ -30,7 +30,7 @@ export class BookTable extends React.PureComponent {
         const { books, authors } = this.state;
         return (
             <React.Fragment>
-                <BookRows removeFromTable={this.removeFromTable} books={books} authors={authors}/>
+                <BookRows removeFromTable={this.removeFromTable} books={books} authors={authors} />
                 <FeedbackForm></FeedbackForm>
             </React.Fragment>
         );

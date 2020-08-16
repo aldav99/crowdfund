@@ -1,7 +1,10 @@
 import React from 'react';
 import { BookTable } from './BookTable';
+const BookTableEnhanced = withLoading(BookTable);
+
 
 import axios from 'axios'
+import { withLoading } from './HOC/withLoading';
 
 const API_TOKEN = 'keyEbYaaHT6MgQv8t'
 
@@ -30,9 +33,7 @@ export class BookContainer extends React.Component {
     render() {
         const { books, authors } = this.state
         return (
-            books && authors ?
-                <BookTable books={books} authors={authors} />
-                : <div>Loading...</div>
+            <BookTableEnhanced isLoading={!(books && authors)} books={books} authors={authors} />
         );
     }
 
