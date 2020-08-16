@@ -1,10 +1,6 @@
 import React from 'react';
-import { BookTable } from './BookTable';
-const BookTableEnhanced = withLoading(BookTable);
-
 
 import axios from 'axios'
-import { withLoading } from './HOC/withLoading';
 
 const API_TOKEN = 'keyEbYaaHT6MgQv8t'
 
@@ -16,7 +12,7 @@ const httpClient = axios.create({
     }
 });
 
-export class BookContainer extends React.Component {
+export const withBooks = EnhancedComponent => class extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -33,7 +29,7 @@ export class BookContainer extends React.Component {
     render() {
         const { books, authors } = this.state
         return (
-            <BookTableEnhanced isLoading={!(books && authors)} books={books} authors={authors} />
+            <EnhancedComponent isLoading={!(books && authors)} books={books} authors={authors} />
         );
     }
 
@@ -96,4 +92,6 @@ export class BookContainer extends React.Component {
             )
         )
     }
-}
+};
+
+// export default withBooks

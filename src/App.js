@@ -1,8 +1,18 @@
 import React from 'react';
 import Logo from './logo.jpg';
-import { BookContainer } from './BookContainer';
 
 import { UserInfo } from './UserInfo';
+
+import { BookTable } from './BookTable';
+import { withLoading } from './HOC/withLoading';
+
+import { withBooks } from './HOC/withBooks';
+
+const BookTableEnhanced = withLoading(BookTable);
+
+const BookTableEnhancedwithBooks = withBooks(BookTableEnhanced);
+
+
 
 const styles = {
     header: {
@@ -25,7 +35,7 @@ export const App = (props) => {
             </header>
 
             <main>
-                <BookContainer  />
+                <BookTableEnhancedwithBooks  />
             </main>
             <footer>&copy; {new Date().getFullYear()}</footer>
         </React.Fragment>
