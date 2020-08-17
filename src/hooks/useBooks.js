@@ -16,7 +16,7 @@ function _fetchAuthors() {
     return (
         httpClient.get('/Authors', {
             params: {
-                maxRecords: 3,
+                maxRecords: 4,
                 view: 'Grid view'
             }
         }).then(result => result.data)

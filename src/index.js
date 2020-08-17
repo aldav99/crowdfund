@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
-import React from 'react';
+import React, {useContext} from 'react';
 
 import authContext from './authContext';
 

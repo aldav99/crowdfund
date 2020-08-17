@@ -28,6 +28,7 @@ const styles = {
 
 export const App = (props) => {
     let [books, authors] = useBooks()
+    console.log(authors)
     return (
         <React.Fragment>
             <header style={styles.header}>
