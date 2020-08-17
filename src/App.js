@@ -8,9 +8,11 @@ import { withLoading } from './HOC/withLoading';
 
 import { withBooks } from './HOC/withBooks';
 
+import { useBooks } from './hooks/useBooks';
+
 const BookTableEnhanced = withLoading(BookTable);
 
-const BookTableEnhancedwithBooks = withBooks(BookTableEnhanced);
+// const BookTableEnhancedwithBooks = withBooks(BookTableEnhanced);
 
 
 
@@ -25,6 +27,7 @@ const styles = {
 }
 
 export const App = (props) => {
+    let [books, authors] = useBooks()
     return (
         <React.Fragment>
             <header style={styles.header}>
@@ -35,7 +38,7 @@ export const App = (props) => {
             </header>
 
             <main>
-                <BookTableEnhancedwithBooks  />
+                <BookTableEnhanced isLoading={!(books && authors)} books={books} authors={authors} />
             </main>
             <footer>&copy; {new Date().getFullYear()}</footer>
         </React.Fragment>
