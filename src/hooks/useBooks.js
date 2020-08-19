@@ -76,8 +76,8 @@ const useBooks = () => {
     const [authors, setAuthors] = useState(null);
 
     useEffect(() => {
-        _fetchAuthors().then(records => { setAuthors(records) });
-        _fetchData().then(records => { setBooks(records) });
+        _fetchAuthors().then(records => { setAuthors(records) }).catch(function (e) { console.log(e) });
+        _fetchData().then(records => { setBooks(records) }).catch(function (e) { console.log(e) });;
     }, []);
 
     return [books, authors];

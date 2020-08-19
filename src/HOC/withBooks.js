@@ -43,7 +43,7 @@ const withBooks = EnhancedComponent => class extends React.Component {
                 this.setState({
                     authors: records
                 });
-            });
+            }).catch(function (e) { console.log(e) });
     }
 
     _fetchData() {
@@ -56,7 +56,7 @@ const withBooks = EnhancedComponent => class extends React.Component {
                 this.setState({
                     books: records
                 });
-            });
+            }).catch(function (e) { console.log(e) });
     }
 
     _mapFromAirtableAuthors(data) {
