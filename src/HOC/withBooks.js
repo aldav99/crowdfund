@@ -12,7 +12,7 @@ const httpClient = axios.create({
     }
 });
 
-export const withBooks = EnhancedComponent => class extends React.Component {
+const withBooks = EnhancedComponent => class extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -94,4 +94,4 @@ export const withBooks = EnhancedComponent => class extends React.Component {
     }
 };
 
-// export default withBooks
+export default withBooks;

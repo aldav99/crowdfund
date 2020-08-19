@@ -4,11 +4,11 @@ import Logo from './logo.jpg';
 import { UserInfo } from './UserInfo';
 
 import { BookTable } from './BookTable';
-import { withLoading } from './HOC/withLoading';
+import withLoading from './HOC/withLoading';
 
-import { withBooks } from './HOC/withBooks';
+import withBooks from './HOC/withBooks';
 
-import { useBooks } from './hooks/useBooks';
+import useBooks from './hooks/useBooks';
 
 const BookTableEnhanced = withLoading(BookTable);
 

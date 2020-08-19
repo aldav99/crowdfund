@@ -71,7 +71,7 @@ function _mapFromAirtable(data) {
 }
 
 
-export const useBooks = () => {
+const useBooks = () => {
     const [books, setBooks] = useState(null);
     const [authors, setAuthors] = useState(null);
 
@@ -82,3 +82,5 @@ export const useBooks = () => {
 
     return [books, authors];
 };
+
+export default useBooks;
