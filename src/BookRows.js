@@ -5,11 +5,7 @@ import { SubscribeModal } from './SubscribeModal';
 
 import { percentOfProgress } from './percentOfProgress';
 
-const styles = {
-    letter: {
-        color: 'red'
-    }
-}
+import styles from "./style.module.css";
 
 export const BookRows = React.memo(({ books, removeFromTable, authors }) => {
     console.log('render BookRow')
@@ -39,7 +35,7 @@ export const BookRows = React.memo(({ books, removeFromTable, authors }) => {
                         return (<tr key={book.id}>
                             <td>{book.title}</td>
                             <td><button onClick={() =>
-                                removeFromTable(book.id)} style={styles.letter}>*</button></td>
+                                removeFromTable(book.id)} className={styles.letter}>*</button></td>
                             <td>{book.brief}</td>
                             <td>{book.page}</td>
                             <td>{book.lang}</td>
@@ -58,7 +54,7 @@ export const BookRows = React.memo(({ books, removeFromTable, authors }) => {
 
 
                             {
-                                (book.subscriber > 10) ? <td style={styles.letter}>{book.subscriber}</td>
+                                (book.subscriber > 10) ? <td className={styles.letter}>{book.subscriber}</td>
                                     : <td>{book.subscriber}</td>
                             }
 

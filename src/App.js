@@ -10,28 +10,16 @@ import withBooks from './HOC/withBooks';
 
 import useBooks from './hooks/useBooks';
 
+import styles from "./style.module.css";
+
 const BookTableEnhanced = withLoading(BookTable);
-
-// const BookTableEnhancedwithBooks = withBooks(BookTableEnhanced);
-
-
-
-const styles = {
-    header: {
-        paddingTop: '60px',
-        textAlign: 'center',
-        backgroundColor: '#1abc9c',
-        color: 'white',
-        fontSize: '30px'
-    }
-}
 
 export const App = (props) => {
     let [books, authors] = useBooks()
     console.log(authors)
     return (
         <React.Fragment>
-            <header style={styles.header}>
+            <header className={styles.header}>
                 <h2>Crowdfunding</h2>
                 <img src={Logo} width="30"
                     height="30" alt="logo" />
