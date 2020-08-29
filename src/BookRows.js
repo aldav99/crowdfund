@@ -3,6 +3,8 @@ import React from 'react';
 import { AuthorTable } from './AuthorTable';
 import { SubscribeModal } from './SubscribeModal';
 
+import { Table, TheadBooks, Tr, Td, Tbody } from './Table';
+
 import { percentOfProgress } from './percentOfProgress';
 
 import styles from "./style.module.css";
@@ -10,60 +12,43 @@ import styles from "./style.module.css";
 export const BookRows = React.memo(({ books, removeFromTable, authors }) => {
     console.log('render BookRow')
     return (
-        <table>
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Close</th>
-                    <th>Brief</th>
-                    <th>Page</th>
-                    <th>Lang</th>
-                    <th>Progress</th>
-                    <th>Cover</th>
-                    <th>Author</th>
-                    <th>minCost</th>
-                    <th>royalty</th>
-                    <th>neededCost</th>
-                    <th>fundedSum</th>
-                    <th>neededSum</th>
-                    <th>subscriber</th>
-                </tr>
-            </thead>
-            <tbody>
+        <Table>
+            <TheadBooks />
+            <Tbody>
                 {
                     books.slice(0, 3).map(book => {
-                        return (<tr key={book.id}>
-                            <td>{book.title}</td>
-                            <td><button onClick={() =>
-                                removeFromTable(book.id)} className={styles.letter}>*</button></td>
-                            <td>{book.brief}</td>
-                            <td>{book.page}</td>
-                            <td>{book.lang}</td>
-                            <td>{percentOfProgress(book.fundedSum, book.neededSum)}</td>
-                            <td><img src={book.cover} width="40"
-                                height="40"></img></td>
-                            <td><AuthorTable
+                        return (<Tr key={book.id}>
+                            <Td>{book.title}</Td>
+                            <Td><button onClick={() =>
+                                removeFromTable(book.id)} className={styles.letter}>*</button></Td>
+                            <Td>{book.brief}</Td>
+                            <Td>{book.page}</Td>
+                            <Td>{book.lang}</Td>
+                            <Td>{percentOfProgress(book.fundedSum, book.neededSum)}</Td>
+                            <Td><img src={book.cover} width="40"
+                                height="40"></img></Td>
+                            <Td><AuthorTable
                                 authors={authors.filter(author => book.authors.includes(author.id))} />
-                            </td>
+                            </Td>
 
-                            <td>{book.minCost}</td>
-                            <td><Royalty minCost={book.minCost} /></td>
-                            <td>{book.neededCost}</td>
-                            <td>{book.fundedSum}</td>
-                            <td>{book.neededSum}</td>
+                            <Td>{book.minCost}</Td>
+                            <Td><Royalty minCost={book.minCost} /></Td>
+                            <Td>{book.neededCost}</Td>
+                            <Td>{book.fundedSum}</Td>
+                            <Td>{book.neededSum}</Td>
 
 
                             {
-                                (book.subscriber > 10) ? <td className={styles.letter}>{book.subscriber}</td>
-                                    : <td>{book.subscriber}</td>
+                                (book.subscriber > 10) ? <Td className={styles.letter}>{book.subscriber}</Td>
+                                    : <Td>{book.subscriber}</Td>
                             }
 
-                            <td><SubscribeModal /></td>
-                        </tr>)
+                            <Td><SubscribeModal /></Td>
+                        </Tr>)
                     })
                 }
-            </tbody>
-        </table>)
+            </Tbody>
+        </Table>)
 })
 
 

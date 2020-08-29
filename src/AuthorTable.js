@@ -1,15 +1,19 @@
 import React from 'react';
 
+import styles from "./style.module.css";
+
+import { Table, TheadAuthors, Tr, Td, Tbody } from './Table';
+
 const AuthorRow = React.memo((props) => {
     console.log('render AuthorRow')
     let author = props.author
     return (
-        <tr>
-            <td>{author.name}</td>
-            <td>{author.email}</td>
-            <td><img src={author.avatar} width="40" height="50"></img></td>
-            <td>{author.brief}</td>
-        </tr>
+        <Tr>
+            <Td>{author.name}</Td>
+            <Td>{author.email}</Td>
+            <Td><img src={author.avatar} width="40" height="50"></img></Td>
+            <Td>{author.brief}</Td>
+        </Tr>
     );
 })
 
@@ -29,19 +33,12 @@ export class AuthorTable extends React.PureComponent {
         (this.props.authors.length > 3 && this.state.onlyThree) ? authors = this.props.authors.slice(0, 3) : authors = this.props.authors;
 
         return (
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Avatar</th>
-                        <th>Brief</th>
-                    </tr>
-                </thead>
-                <tbody>
+            <Table>
+                <TheadAuthors className={styles.theadTable} />
+                <Tbody>
                     {
-                        (this.props.authors.length > 3) ? <tr><td><button onClick={() =>
-                            this.toggleViev()}>More...</button></td></tr> : null
+                        (this.props.authors.length > 3) ? <Tr><Td><button onClick={() =>
+                            this.toggleViev()}>More...</button></Td></Tr> : null
                     }
 
                     {authors.map(function (author, key) {
@@ -49,7 +46,7 @@ export class AuthorTable extends React.PureComponent {
                             <AuthorRow key={author.id} author={author} />
                         );
                     })}
-                </tbody>
-            </table >);
+                </Tbody>
+            </Table >);
     }
 }
