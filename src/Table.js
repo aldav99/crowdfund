@@ -1,9 +1,16 @@
 import React from 'react';
 import styles from "./style.module.css";
 
-export function Table(props) {
+export function TableBooks(props) {
     return (
-        <table className={styles.tableTable}>
+        <table className={styles.tableTableBooks}>
+            {props.children}
+        </table>)
+};
+
+export function TableAuthors(props) {
+    return (
+        <table className={styles.tableTableAuthors}>
             {props.children}
         </table>)
 };

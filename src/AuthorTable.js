@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from "./style.module.css";
 
-import { Table, TheadAuthors, Tr, Td, Tbody } from './Table';
+import { TableAuthors, TheadAuthors, Tr, Td, Tbody } from './Table';
 
 const AuthorRow = React.memo((props) => {
     console.log('render AuthorRow')
@@ -33,12 +33,12 @@ export class AuthorTable extends React.PureComponent {
         (this.props.authors.length > 3 && this.state.onlyThree) ? authors = this.props.authors.slice(0, 3) : authors = this.props.authors;
 
         return (
-            <Table>
+            <TableAuthors>
                 <TheadAuthors className={styles.theadTable} />
                 <Tbody>
                     {
-                        (this.props.authors.length > 3) ? <Tr><Td><button onClick={() =>
-                            this.toggleViev()}>More...</button></Td></Tr> : null
+                        (this.props.authors.length > 3) ? <Tr><td><button onClick={() =>
+                            this.toggleViev()}>More...</button></td></Tr> : null
                     }
 
                     {authors.map(function (author, key) {
@@ -47,6 +47,6 @@ export class AuthorTable extends React.PureComponent {
                         );
                     })}
                 </Tbody>
-            </Table >);
+            </TableAuthors >);
     }
 }

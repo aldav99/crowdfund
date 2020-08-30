@@ -27,13 +27,48 @@
         left: -9999px;
     }
 
-    .tableTable {
+    .tableTableBooks {
+        display: block; 
+    }
+
+    .tableTableAuthors {
         display: block; 
     }
 
     .theadTable {
         display: block; 
     }
+
+    .Td:before { 
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 45%; 
+        padding-right: 10px; 
+        white-space: nowrap;
+    }
+
+    .tableTableBooks .Td:nth-of-type(1):before { content: "Title"; } 
+    .tableTableBooks .Td:nth-of-type(2):before { content: "Close"; } 
+    .tableTableBooks .Td:nth-of-type(3):before { content: "Brief"; } 
+    .tableTableBooks .Td:nth-of-type(4):before { content: "Page"; } 
+    .tableTableBooks .Td:nth-of-type(5):before { content: "Lang"; } 
+    .tableTableBooks .Td:nth-of-type(6):before { content: "Progress"; } 
+    .tableTableBooks .Td:nth-of-type(7):before { content: "Cover"; } 
+    .tableTableBooks .Td:nth-of-type(8):before { content: "Author"; } 
+    .tableTableBooks .Td:nth-of-type(9):before { content: "minCost"; } 
+    .tableTableBooks .Td:nth-of-type(10):before { content: "royalty"; } 
+    .tableTableBooks .Td:nth-of-type(11):before { content: "neededCost"; } 
+    .tableTableBooks .Td:nth-of-type(12):before { content: "fundedSum"; } 
+    .tableTableBooks .Td:nth-of-type(13):before { content: "neededSum"; } 
+    .tableTableBooks .Td:nth-of-type(14):before { content: "subscriber"; }
+
+    .tableTableAuthors .Td:nth-of-type(1):before { content: "Name"; } 
+    .tableTableAuthors .Td:nth-of-type(2):before { content: "Email"; } 
+    .tableTableAuthors .Td:nth-of-type(3):before { content: "Avatar"; } 
+    .tableTableAuthors .Td:nth-of-type(4):before { content: "Brief"; }
 }
 
 .header {

@@ -3,7 +3,7 @@ import React from 'react';
 import { AuthorTable } from './AuthorTable';
 import { SubscribeModal } from './SubscribeModal';
 
-import { Table, TheadBooks, Tr, Td, Tbody } from './Table';
+import { TableBooks, TheadBooks, Tr, Td, Tbody } from './Table';
 
 import { percentOfProgress } from './percentOfProgress';
 
@@ -12,7 +12,7 @@ import styles from "./style.module.css";
 export const BookRows = React.memo(({ books, removeFromTable, authors }) => {
     console.log('render BookRow')
     return (
-        <Table>
+        <TableBooks>
             <TheadBooks />
             <Tbody>
                 {
@@ -48,7 +48,7 @@ export const BookRows = React.memo(({ books, removeFromTable, authors }) => {
                     })
                 }
             </Tbody>
-        </Table>)
+        </TableBooks>)
 })
 
 
