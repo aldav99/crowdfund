@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 
 import authContext from './authContext';
 
@@ -37,7 +37,6 @@ const user = {
     lastName: 'Ivanov',
     avatarUrl: UserAvatar
 };
-
 
 ReactDOM.render(
     <authContext.Provider value={user}>
