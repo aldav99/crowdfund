@@ -12,9 +12,17 @@ import useBooks from './hooks/useBooks';
 
 import styles from "./style.module.css";
 
+// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 const BookTableEnhanced = withLoading(BookTable);
 
 export const App = (props) => {
+    return (
+        <Main />
+    );
+}
+
+const Main = (props) => {
     let [books, authors] = useBooks()
     console.log(authors)
     return (
