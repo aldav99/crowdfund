@@ -9,6 +9,8 @@ import { percentOfProgress } from './percentOfProgress';
 
 import styles from "./style.module.css";
 
+import { Link } from 'react-router-dom';
+
 export const BookRows = React.memo(({ books, removeFromTable, authors }) => {
     console.log('render BookRow')
     return (
@@ -18,7 +20,7 @@ export const BookRows = React.memo(({ books, removeFromTable, authors }) => {
                 {
                     books.slice(0, 3).map(book => {
                         return (<Tr key={book.id}>
-                            <Td>{book.title}</Td>
+                            <Td><Link to={`/book/${book.Id}`}>{book.title}</Link></Td>
                             <Td><button onClick={() =>
                                 removeFromTable(book.id)} className={styles.letter}>*</button></Td>
                             <Td>{book.brief}</Td>

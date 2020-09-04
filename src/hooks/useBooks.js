@@ -53,6 +53,7 @@ function _mapFromAirtable(data) {
     return data.records.map(
         record => (
             {
+                Id: record.id,
                 id: record.fields.Id,
                 title: record.fields.Title,
                 brief: record.fields.Brief,
@@ -84,3 +85,16 @@ const useBooks = () => {
 };
 
 export default useBooks;
+
+export const useBook = (bookId) => {
+    const [record, setRecord] = useState(null);
+
+    useEffect(() => {
+        setRecord(null);
+        _fetchData().then(records => {
+            setRecord(records.filter(r => r.Id === bookId));
+        })
+    }, [bookId]);
+
+    return record;
+};

@@ -12,6 +12,7 @@ import NotFound from './pages/NotFound/index.js'
 
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Book from './pages/Book';
 
 const BookTableEnhanced = withLoading(BookTable);
 
@@ -20,7 +21,7 @@ export const App = (props) => {
         <Router>
             <Switch>
                 <Route component={Main} path='/' exact />
-                <Route render={() => <div>Inner boook page</div>} path='/book/:id' strict exact />
+                <Route render={Book} path='/book/:Id' strict exact />
                 <Route component={NotFound} />
             </Switch>
         </Router>
@@ -30,6 +31,7 @@ export const App = (props) => {
 const Main = (props) => {
     let [books, authors] = useBooks()
     console.log(authors)
+    console.log(books)
     return (
         <Layout>
             <BookTableEnhanced isLoading={!(books && authors)} books={books} authors={authors} />
