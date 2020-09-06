@@ -27,7 +27,7 @@ function Book({ match: { params } }) {
                 <Tbody>
                     {(books && authors) ?
                         <TrOfTable book={books.filter(book => book.Id == params.Id)[0]} authors={authors} />
-                        : null}
+                        : <tr><td>Loading...</td></tr>}
                 </Tbody>
             </TableBooks>
         </Layout>
