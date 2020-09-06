@@ -5,6 +5,8 @@ import withLoading from './HOC/withLoading';
 
 import withBooks from './HOC/withBooks';
 
+import { Helmet } from 'react-helmet';
+
 
 import NotFound from './pages/NotFound/index.js'
 
@@ -18,13 +20,19 @@ export const BookTableEnhanced = withLoading(BookTable);
 
 export const App = (props) => {
     return (
-        <Router>
-            <Switch>
-                <Route component={Main} path='/' exact />
-                <Route component={Book} path='/book/:Id' strict exact />
-                <Route component={NotFound} />
-            </Switch>
-        </Router>
+        <React.Fragment>
+            <Helmet>
+                <title>Crowdfunding App With Helmet</title>
+            </Helmet>
+
+            <Router>
+                <Switch>
+                    <Route component={Main} path='/' exact />
+                    <Route component={Book} path='/book/:Id' strict exact />
+                    <Route component={NotFound} />
+                </Switch>
+            </Router>
+        </React.Fragment>
     );
 }
 

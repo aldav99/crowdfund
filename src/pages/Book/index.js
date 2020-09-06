@@ -6,6 +6,8 @@ import useBooks from '../../hooks/useBooks.js'
 
 import { TrOfTable } from '../../TrOfTable'
 
+import { Helmet } from 'react-helmet';
+
 import { TableBooks, TheadBooks, Tbody } from '../../Table';
 
 import { useHistory } from "react-router";
@@ -21,7 +23,7 @@ function Book({ match: { params } }) {
                 history.goBack();
             }}>
                 Go home
-        </button>
+            </button>
             <TableBooks>
                 <TheadBooks />
                 <Tbody>
@@ -30,6 +32,12 @@ function Book({ match: { params } }) {
                         : <tr><td>Loading...</td></tr>}
                 </Tbody>
             </TableBooks>
+
+            {(books) ?
+                <Helmet>
+                    <title>{books.filter(book => book.Id == params.Id)[0].title}</title>
+                </Helmet> : null
+            }
         </Layout>
     )
 }

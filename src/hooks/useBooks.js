@@ -86,16 +86,3 @@ const useBooks = () => {
 
 export default useBooks;
 
-export const useBook = (bookId) => {
-    console.log(bookId)
-    const [record, setRecord] = useState(null);
-
-    useEffect(() => {
-        setRecord(null);
-        _fetchData().then(records => {
-            setRecord(records.filter(r => r.Id === bookId));
-        })
-    }, [bookId]);
-
-    return record;
-};
