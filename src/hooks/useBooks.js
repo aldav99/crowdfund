@@ -6,7 +6,7 @@ const API_TOKEN = 'keyEbYaaHT6MgQv8t'
 
 const httpClient = axios.create({
     baseURL: 'https://api.airtable.com/v0/appe9eRK1BsGtd1dt',
-    timeout: 10000,
+    timeout: 15000,
     headers: {
         'Authorization': 'Bearer keyEbYaaHT6MgQv8t'
     }
@@ -87,6 +87,7 @@ const useBooks = () => {
 export default useBooks;
 
 export const useBook = (bookId) => {
+    console.log(bookId)
     const [record, setRecord] = useState(null);
 
     useEffect(() => {

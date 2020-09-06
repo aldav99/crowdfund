@@ -21,7 +21,7 @@ export const App = (props) => {
         <Router>
             <Switch>
                 <Route component={Main} path='/' exact />
-                <Route render={Book} path='/book/:Id' strict exact />
+                <Route component={Book} path='/book/:Id' strict exact />
                 <Route component={NotFound} />
             </Switch>
         </Router>

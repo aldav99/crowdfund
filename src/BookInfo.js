@@ -41,13 +41,10 @@ export const BookInfo = React.memo(({ book, authors }) => {
                     <td><AuthorTable
                         authors={authors.filter(author => book.authors.includes(author.id))} />
                     </td>
-
                     <td>{book.minCost}</td>
                     <td>{book.neededCost}</td>
                     <td>{book.fundedSum}</td>
                     <td>{book.neededSum}</td>
-
-
                     {
                         (book.subscriber > 10) ? <td style={styles.letter}>{book.subscriber}</td>
                             : <td>{book.subscriber}</td>
