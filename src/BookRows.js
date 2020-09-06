@@ -17,7 +17,7 @@ export const BookRows = React.memo(({ books, removeFromTable, authors }) => {
                 {
                     books.slice(0, 3).map(book => {
                         return (
-                            TrOfTable(book, authors, removeFromTable)
+                            <TrOfTable removeFromTable={removeFromTable} book={book} authors={authors} key={book.id}/>
                         )
                     })
                 }

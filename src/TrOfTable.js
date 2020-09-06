@@ -6,11 +6,14 @@ import { percentOfProgress } from './percentOfProgress';
 import styles from "./style.module.css";
 import { Link } from 'react-router-dom';
 import { Royalty } from './BookRows';
-export function TrOfTable(book, authors, removeFromTable) {
+
+export const TrOfTable = ({ book, authors, removeFromTable }) => {
     return (
         <Tr key={book.id}>
             <Td><Link to={`/book/${book.Id}`}>{book.title}</Link></Td>
-            <Td><button onClick={() => removeFromTable(book.id)} className={styles.letter}>*</button></Td>
+            {
+                (removeFromTable) ? <Td><button onClick={() => removeFromTable(book.id)} className={styles.letter}>*</button></Td> : <Td>Unaccessible </Td>
+            }
             <Td>{book.brief}</Td>
             <Td>{book.page}</Td>
             <Td>{book.lang}</Td>
@@ -34,5 +37,4 @@ export function TrOfTable(book, authors, removeFromTable) {
 
             <Td><SubscribeModal /></Td>
         </Tr>);
-}
-;
+};

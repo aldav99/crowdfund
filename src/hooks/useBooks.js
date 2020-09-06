@@ -28,7 +28,7 @@ function _fetchData() {
     return (
         httpClient.get('/Books', {
             params: {
-                maxRecords: 3,
+                maxRecords: 5,
                 view: 'Grid view'
             }
         }).then(result => result.data)

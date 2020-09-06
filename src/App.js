@@ -14,6 +14,7 @@ import NotFound from './pages/NotFound/index.js'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Book from './pages/Book';
 
+
 const BookTableEnhanced = withLoading(BookTable);
 
 export const App = (props) => {
