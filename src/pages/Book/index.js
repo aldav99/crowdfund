@@ -20,7 +20,10 @@ function Book({ match: { params } }) {
     return (
         <Layout>
             <button onClick={() => {
-                history.goBack();
+                if (history.action === 'PUSH')
+                    history.goBack();
+                else
+                    history.push('/');
             }}>
                 Go home
             </button>
