@@ -12,7 +12,7 @@ export const TrOfTable = ({ book, authors, removeFromTable }) => {
         <Tr key={book.id}>
             <Td><Link to={`/book/${book.Id}`}>{book.title}</Link></Td>
             {
-                (removeFromTable) ? <Td><button onClick={() => removeFromTable(book.id)} className={styles.letter}>*</button></Td> : <Td>Unaccessible </Td>
+                (removeFromTable) ? <Td><button onClick={() => removeFromTable(book.id)} className={styles.letter}>*</button></Td> : <Td>Unaccessible</Td>
             }
             <Td>{book.brief}</Td>
             <Td>{book.page}</Td>
