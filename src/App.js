@@ -5,17 +5,16 @@ import withLoading from './HOC/withLoading';
 
 import withBooks from './HOC/withBooks';
 
-import useBooks from './hooks/useBooks';
 
-import Layout from './shared/Layout.js'
 import NotFound from './pages/NotFound/index.js'
 
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Book from './pages/Book';
+import { Main } from './Main';
 
 
-const BookTableEnhanced = withLoading(BookTable);
+export const BookTableEnhanced = withLoading(BookTable);
 
 export const App = (props) => {
     return (
@@ -28,16 +27,4 @@ export const App = (props) => {
         </Router>
     );
 }
-
-const Main = (props) => {
-    let [books, authors] = useBooks()
-    console.log(authors)
-    console.log(books)
-    return (
-        <Layout>
-            <BookTableEnhanced isLoading={!(books && authors)} books={books} authors={authors} />
-        </Layout>
-    );
-}
-
 
