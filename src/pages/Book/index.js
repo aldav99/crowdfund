@@ -8,12 +8,20 @@ import { TrOfTable } from '../../TrOfTable'
 
 import { TableBooks, TheadBooks, Tbody } from '../../Table';
 
+import { useHistory } from "react-router";
+
 function Book({ match: { params } }) {
 
-    let [books, authors] = useBooks()
+    let [books, authors] = useBooks();
+    const history = useHistory();
 
     return (
         <Layout>
+            <button onClick={() => {
+                history.goBack();
+            }}>
+                Go home
+        </button>
             <TableBooks>
                 <TheadBooks />
                 <Tbody>
