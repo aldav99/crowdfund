@@ -29,6 +29,13 @@ export function Td(props) {
         </td>)
 };
 
+export function Span(props) {
+    return (
+        <span className={styles.Span}>
+            {props.children}
+        </span>)
+};
+
 export function Th(props) {
     return (
         <th className={styles.Th}>
