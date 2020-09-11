@@ -1,0 +1,89 @@
+@media(--phone){
+    .Tbody{ 
+		display: block; 
+	}
+    
+    .Td{ 
+        display: block;
+        border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%;  
+    }
+    
+    .Th{ 
+		display: block; 
+	}
+
+
+    .Tr { 
+        display: block;
+        border: 1px solid #ccc; 
+    }
+
+    .theadTr { 
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    .tableTableBooks {
+        display: block; 
+    }
+
+    .tableTableAuthors {
+        display: block; 
+    }
+
+    .theadTable {
+        display: block; 
+    }
+
+    .Td:before { 
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 45%; 
+        padding-right: 10px; 
+        white-space: nowrap;
+    }
+
+    
+}
+
+.header {
+    padding-top: 60px;
+    text-align: center;
+    background-color: #1abc9c;
+    color: white;
+    font-size: 30px;
+}
+
+.letter {
+    color: red
+}
+
+.Span {
+    position: absolute;
+    left: 0
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.95);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.body {
+    background-color: #fff;
+    padding: 10px;
+}
+
