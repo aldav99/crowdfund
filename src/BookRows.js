@@ -3,12 +3,52 @@ import React from 'react';
 
 import { TableBooks, TheadBooks, Tbody } from './Table';
 
+import { useMediaQuery } from 'react-responsive'
+
 
 
 import { TrOfTable } from './TrOfTable';
 
 export const BookRows = React.memo(({ books, removeFromTable, authors }) => {
     console.log('render BookRow')
+
+    const isDesktopOrLaptop = useMediaQuery({
+        query: '(min-device-width: 541px)'
+    })
+
+    let withHeader = {
+        title: 'Title: ',
+        close: 'Close: ',
+        brief: 'Brief: ',
+        page: 'Page: ',
+        lang: 'Lang: ',
+        progress: 'Progress: ',
+        cover: 'Cover: ',
+        authors: 'Authors: ',
+        minCost: 'minCost: ',
+        royalty: 'royalty: ',
+        neededCost: 'neededCost: ',
+        fundedSum: 'fundedSum: ',
+        neededSum: 'neededSum: ',
+        subscriber: 'subscriber: '
+    }
+
+    let withOutHeader = {
+        title: '',
+        close: '',
+        brief: '',
+        page: '',
+        lang: '',
+        progress: '',
+        cover: '',
+        author: '',
+        minCost: '',
+        royalty: '',
+        neededCost: '',
+        fundedSum: '',
+        neededSum: '',
+        subscriber: ''
+    }
 
     return (
         <TableBooks>
@@ -17,7 +57,9 @@ export const BookRows = React.memo(({ books, removeFromTable, authors }) => {
                 {
                     books.slice(0, 3).map(book => {
                         return (
-                            <TrOfTable removeFromTable={removeFromTable} book={book} authors={authors} key={book.id}/>
+                            <React.Fragment key={book.id}>
+                                {isDesktopOrLaptop ? <TrOfTable removeFromTable={removeFromTable} book={book} authors={authors} columns={withOutHeader} key={book.id} /> : <TrOfTable removeFromTable={removeFromTable} book={book} authors={authors} columns={withHeader} key={book.id} />}
+                            </React.Fragment>
                         )
                     })
                 }

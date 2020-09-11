@@ -31,7 +31,7 @@ const AuthorRow = React.memo((props) => {
 
     return (
         <Tr>
-            {isDesktopOrLaptop ? <AuthorStr author={author} column={withOutHeader} /> : <AuthorStr author={author} column={withHeader} />}
+            {isDesktopOrLaptop ? <AuthorStr author={author} columns={withOutHeader} /> : <AuthorStr author={author} columns={withHeader} />}
         </Tr>
     );
 })
@@ -73,13 +73,13 @@ export class AuthorTable extends React.PureComponent {
 
 const AuthorStr = (props) => {
     let author = props.author
-    let column = props.column
+    let columns = props.columns
     return (
         <React.Fragment>
-            <Td><Span>{column.name}</Span>{author.name}</Td>
-            <Td><Span>{column.email}</Span>{author.email}</Td>
-            <Td><Span>{column.avatar}</Span><img src={author.avatar} width="40" height="50"></img></Td>
-            <Td><Span>{column.brief}</Span>{author.brief}</Td>
+            <Td><Span>{columns.name}</Span>{author.name}</Td>
+            <Td><Span>{columns.email}</Span>{author.email}</Td>
+            <Td><Span>{columns.avatar}</Span><img src={author.avatar} width="40" height="50"></img></Td>
+            <Td><Span>{columns.brief}</Span>{author.brief}</Td>
         </React.Fragment>
     );
 }
