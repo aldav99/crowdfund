@@ -14,6 +14,7 @@ import NotFound from './pages/NotFound/index.js'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Book from './pages/Book';
 import { Main } from './Main';
+// import NewBook from './pages/NewBook';
 
 
 export const BookTableEnhanced = withLoading(BookTable);
@@ -35,4 +36,5 @@ export const App = (props) => {
         </React.Fragment>
     );
 }
+
 

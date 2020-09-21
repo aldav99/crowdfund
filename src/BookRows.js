@@ -33,23 +33,6 @@ export const BookRows = React.memo(({ books, removeFromTable, authors }) => {
         subscriber: 'subscriber: '
     }
 
-    let withOutHeader = {
-        title: '',
-        close: '',
-        brief: '',
-        page: '',
-        lang: '',
-        progress: '',
-        cover: '',
-        author: '',
-        minCost: '',
-        royalty: '',
-        neededCost: '',
-        fundedSum: '',
-        neededSum: '',
-        subscriber: ''
-    }
-
     return (
         <TableBooks>
             <TheadBooks />
@@ -58,7 +41,7 @@ export const BookRows = React.memo(({ books, removeFromTable, authors }) => {
                     books.slice(0, 3).map(book => {
                         return (
                             <React.Fragment key={book.id}>
-                                {isDesktopOrLaptop ? <TrOfTable removeFromTable={removeFromTable} book={book} authors={authors} columns={withOutHeader} key={book.id} /> : <TrOfTable removeFromTable={removeFromTable} book={book} authors={authors} columns={withHeader} key={book.id} />}
+                                {isDesktopOrLaptop ? <TrOfTable removeFromTable={removeFromTable} book={book} authors={authors} key={book.id} /> : <TrOfTable removeFromTable={removeFromTable} book={book} authors={authors} columns={withHeader} key={book.id} />}
                             </React.Fragment>
                         )
                     })

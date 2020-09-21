@@ -7,7 +7,24 @@ import styles from "./style.module.css";
 import { Link } from 'react-router-dom';
 import { Royalty } from './BookRows';
 
-export const TrOfTable = ({ book, authors, removeFromTable, columns }) => {
+let withOutHeader = {
+    title: '',
+    close: '',
+    brief: '',
+    page: '',
+    lang: '',
+    progress: '',
+    cover: '',
+    author: '',
+    minCost: '',
+    royalty: '',
+    neededCost: '',
+    fundedSum: '',
+    neededSum: '',
+    subscriber: ''
+}
+
+export const TrOfTable = ({ book, authors, removeFromTable, columns = withOutHeader }) => {
     return (
         <Tr key={book.id}>
             <Td><Span>{columns.title}</Span><Link to={`/book/${book.Id}`}>{book.title}</Link></Td>
