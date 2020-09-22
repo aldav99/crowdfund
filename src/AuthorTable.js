@@ -49,10 +49,10 @@ export class AuthorTable extends React.PureComponent {
     render() {
         console.log('render AuthorTable')
         let authors;
-        (this.props.authors.length > 3 && this.state.onlyThree) ? authors = this.props.authors.slice(0, 3) : authors = this.props.authors;
+        (this.props.authors && this.props.authors.length > 3 && this.state.onlyThree) ? authors = this.props.authors.slice(0, 3) : authors = this.props.authors;
 
         return (
-            <TableAuthors>
+            (authors) ? <TableAuthors>
                 <TheadAuthors className={styles.theadTable} />
                 <Tbody>
                     {
@@ -66,7 +66,7 @@ export class AuthorTable extends React.PureComponent {
                         );
                     })}
                 </Tbody>
-            </TableAuthors >);
+            </TableAuthors > : null);
     }
 }
 

@@ -39,7 +39,7 @@ export const TrOfTable = ({ book, authors, removeFromTable, columns = withOutHea
                 height="40"></img></Td>
             <Td><Span>{columns.authors}</Span>
                 {(authors) ? <AuthorTable
-                    authors={authors.filter(author => book.authors.includes(author.id))} /> : null}
+                    authors={findAuthors(book, authors)} /> : null}
             </Td>
 
             <Td><Span>{columns.minCost}</Span>{book.minCost}</Td>
@@ -55,3 +55,10 @@ export const TrOfTable = ({ book, authors, removeFromTable, columns = withOutHea
             <Td><SubscribeModal /></Td>
         </Tr>);
 };
+
+function findAuthors(book, authors) {
+    if (!book.authors) return null;
+    authors = authors.filter(author => book.authors.includes(author.id))
+
+    return authors
+}

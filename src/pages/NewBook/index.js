@@ -10,7 +10,9 @@ import { Helmet } from 'react-helmet';
 
 import { TableBooks, TheadBooks, Tbody } from '../../Table';
 
-import { useHistory } from "react-router";
+// import { useHistory } from "react-router";
+
+import { useHistory } from "react-router-dom";
 
 import { useForm } from "react-hook-form";
 
@@ -18,9 +20,12 @@ import { createBook } from '../../lib/client.js'
 
 import cx from "classnames";
 
+import { bookPath, newBookPath } from '../../helpers/routes';
 
 const NewBook = () => {
     const { register, handleSubmit } = useForm();
+
+    const history = useHistory();
 
     const onSubmit = (fields) => {
         return createBook({
@@ -32,8 +37,10 @@ const NewBook = () => {
             NeededSum: parseFloat(fields.NeededSum),
             Subscriber: parseFloat(fields.Subscriber),
         }).then((res) => {
-            console.log(res);
-            return res;
+            const bookId = res.records[0].id;
+            const redirectUri = bookPath(bookId);
+
+            history.push(redirectUri);
         })
     };
 
