@@ -23,10 +23,25 @@ import { bookPath } from '../../helpers/routes';
 import { yupResolver } from '@hookform/resolvers';
 import * as yup from "yup";
 
+const schema = yup.object().shape({
+    Title: yup.string().required(),
+    Brief: yup.string().required(),
+    Page: yup.number().positive().integer().required(),
+    Lang: yup.string().min(2).max(5).required(),
+    MinCost: yup.number().positive().integer().required(),
+    NeededCost: yup.number().positive().integer().required(),
+    FundedSum: yup.number().positive().integer().required(),
+    NeededSum: yup.number().positive().integer().required(),
+    Subscriber: yup.number().positive().integer().required(),
+    'Cover[0].url': yup.string().required()
+});
+
 
 
 const NewBook = () => {
-    const { errors, register, handleSubmit } = useForm();
+    const { errors, register, handleSubmit } = useForm({
+        resolver: yupResolver(schema)
+    })
 
     const history = useHistory();
 
@@ -50,7 +65,7 @@ const NewBook = () => {
     return (<Layout>
         <h1 className='text-3xl font-bold'>New Book</h1>
         <form onSubmit={handleSubmit(onSubmit)} className='nt-3'>
-            <Field errors={errors} name='Title' label='Title' register={register({ required: 'This is required.' })} />
+            <Field errors={errors} name='Title' label='Title' register={register} />
             <Field errors={errors} type='textarea' name='Brief' className='w-full' label='Brief' register={register} />
             <Field errors={errors} type='number' name='Page' label='Page' register={register} />
             <Field errors={errors} name='Lang' label='Lang' register={register} />
