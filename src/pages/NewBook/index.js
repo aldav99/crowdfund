@@ -10,8 +10,6 @@ import { Helmet } from 'react-helmet';
 
 import { TableBooks, TheadBooks, Tbody } from '../../Table';
 
-// import { useHistory } from "react-router";
-
 import { useHistory } from "react-router-dom";
 
 import { useForm } from "react-hook-form";
@@ -23,7 +21,7 @@ import cx from "classnames";
 import { bookPath, newBookPath } from '../../helpers/routes';
 
 const NewBook = () => {
-    const { register, handleSubmit } = useForm();
+    const { errors, register, handleSubmit } = useForm();
 
     const history = useHistory();
 
@@ -47,27 +45,28 @@ const NewBook = () => {
     return (<Layout>
         <h1 className='text-3xl font-bold'>New Book</h1>
         <form onSubmit={handleSubmit(onSubmit)} className='nt-3'>
-            <Field name='Title' label='Title' register={register} />
-            <Field type='textarea' name='Brief' className='w-full' label='Brief' register={register} />
-            <Field type='number' name='Page' label='Page' register={register} />
-            <Field name='Lang' label='Lang' register={register} />
-            <Field type='number' name='MinCost' label='MinCost' register={register} />
-            <Field type='number' name='NeededCost' label='NeededCost' register={register} />
-            <Field type='number' name='FundedSum' label='FundedSum' register={register} />
-            <Field type='number' name='NeededSum' label='NeededSum' register={register} />
-            <Field type='number' name='Subscriber' label='Subscriber' register={register} />
-            <Field name='Cover[0].url' label='Cover' register={register} />
+            <Field errors={errors} name='Title' label='Title' register={register({ required: 'This is required.' })} />
+            <Field errors={errors} type='textarea' name='Brief' className='w-full' label='Brief' register={register} />
+            <Field errors={errors} type='number' name='Page' label='Page' register={register} />
+            <Field errors={errors} name='Lang' label='Lang' register={register} />
+            <Field errors={errors} type='number' name='MinCost' label='MinCost' register={register} />
+            <Field errors={errors} type='number' name='NeededCost' label='NeededCost' register={register} />
+            <Field errors={errors} type='number' name='FundedSum' label='FundedSum' register={register} />
+            <Field errors={errors} type='number' name='NeededSum' label='NeededSum' register={register} />
+            <Field errors={errors} type='number' name='Subscriber' label='Subscriber' register={register} />
+            <Field errors={errors} name='Cover[0].url' label='Cover' register={register} />
             <button className='nt-3 bg-gray-900 px-3 py-2'>Add Book</button>
         </form>
     </Layout>)
 }
 
-const Field = ({ register, label, type, className, ...inputProps }) => {
+const Field = ({ errors, register, label, type, className, ...inputProps }) => {
     const Component = type === 'textarea' ? 'textarea' : 'input';
     return (
         <div>
             <label className='block' htmlFor={inputProps.name}>{label}</label>
             <Component className={cx('border border-gray-500 rounded px-2 py-3 w-full', className)} ref={register} {...inputProps} />
+            {errors && errors[inputProps.name] && <span>{errors[inputProps.name].message}</span>}
         </div>
     )
 }
