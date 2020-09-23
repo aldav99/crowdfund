@@ -1,5 +1,3 @@
-// import React, { useState, useEffect } from 'react';
-
 import axios from 'axios'
 
 const API_TOKEN = 'keyEbYaaHT6MgQv8t'
@@ -21,6 +19,6 @@ export function createBook(fields) {
                 }
             ]
         })
-        .then(result => result.data)
+            .then(result => result.data)
     );
 }

@@ -18,7 +18,12 @@ import { createBook } from '../../lib/client.js'
 
 import cx from "classnames";
 
-import { bookPath, newBookPath } from '../../helpers/routes';
+import { bookPath } from '../../helpers/routes';
+
+import { yupResolver } from '@hookform/resolvers';
+import * as yup from "yup";
+
+
 
 const NewBook = () => {
     const { errors, register, handleSubmit } = useForm();
