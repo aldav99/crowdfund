@@ -2,14 +2,14 @@ import axios from 'axios'
 
 const httpClient = axios.create({
     baseURL: 'https://www.filestackapi.com/api',
-    timeout: 10000
+    timeout: 15000
 });
 
 export function uploadFile(file) {
     return (
-        httpClient.post('/store/53', file, {
+        httpClient.post('/store/S3', file, {
             params: {
-                key: '00557caf7f7e73c0872b'
+                key: 'ABUGkkqrDRTO5iPbtrZfcz'
             }
         })
             .then(result => { console.log(result); return result.data })

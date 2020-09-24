@@ -15,6 +15,7 @@ import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import { createBook } from '../../lib/client.js'
+import { uploadFile } from '../../lib/filestack.js'
 
 import cx from "classnames";
 
@@ -23,43 +24,50 @@ import { bookPath } from '../../helpers/routes';
 import { yupResolver } from '@hookform/resolvers';
 import * as yup from "yup";
 
-const schema = yup.object().shape({
-    Title: yup.string().required(),
-    Brief: yup.string().required(),
-    Page: yup.number().positive().integer().required(),
-    Lang: yup.string().min(2).max(5).required(),
-    MinCost: yup.number().positive().integer().required(),
-    NeededCost: yup.number().positive().integer().required(),
-    FundedSum: yup.number().positive().integer().required(),
-    NeededSum: yup.number().positive().integer().required(),
-    Subscriber: yup.number().positive().integer().required(),
-    'Cover[0].url': yup.string().required()
-});
+// const schema = yup.object().shape({
+//     Title: yup.string().required(),
+//     Brief: yup.string().required(),
+//     Page: yup.number().positive().integer().required(),
+//     Lang: yup.string().min(2).max(5).required(),
+//     MinCost: yup.number().positive().integer().required(),
+//     NeededCost: yup.number().positive().integer().required(),
+//     FundedSum: yup.number().positive().integer().required(),
+//     NeededSum: yup.number().positive().integer().required(),
+//     Subscriber: yup.number().positive().integer().required()
+// });
 
 
 
 const NewBook = () => {
-    const { errors, register, handleSubmit } = useForm({
-        resolver: yupResolver(schema)
-    })
+    // const { errors, register, handleSubmit } = useForm({
+    //     resolver: yupResolver(schema)
+    // })
+
+    const { errors, register, handleSubmit } = useForm()
 
     const history = useHistory();
 
-    const onSubmit = (fields) => {
-        return createBook({
-            ...fields,
-            Page: parseFloat(fields.Page),
-            MinCost: parseFloat(fields.MinCost),
-            NeededCost: parseFloat(fields.NeededCost),
-            FundedSum: parseFloat(fields.FundedSum),
-            NeededSum: parseFloat(fields.NeededSum),
-            Subscriber: parseFloat(fields.Subscriber),
-        }).then((res) => {
-            const bookId = res.records[0].id;
-            const redirectUri = bookPath(bookId);
+    const onSubmit = async (fields) => {
+        console.log(fields.Cover)
+        const formData = new FormData()
+        formData.append('fileUpload',fields.Cover[0]);
+        const uploadResult = await uploadFile(formData);
+        console.log(uploadResult)
 
-            history.push(redirectUri);
-        })
+        // return createBook({
+        //     ...fields,
+        //     Page: parseFloat(fields.Page),
+        //     MinCost: parseFloat(fields.MinCost),
+        //     NeededCost: parseFloat(fields.NeededCost),
+        //     FundedSum: parseFloat(fields.FundedSum),
+        //     NeededSum: parseFloat(fields.NeededSum),
+        //     Subscriber: parseFloat(fields.Subscriber),
+        // }).then((res) => {
+        //     const bookId = res.records[0].id;
+        //     const redirectUri = bookPath(bookId);
+
+        //     history.push(redirectUri);
+        // })
     };
 
     return (<Layout>
@@ -74,7 +82,7 @@ const NewBook = () => {
             <Field errors={errors} type='number' name='FundedSum' label='FundedSum' register={register} />
             <Field errors={errors} type='number' name='NeededSum' label='NeededSum' register={register} />
             <Field errors={errors} type='number' name='Subscriber' label='Subscriber' register={register} />
-            <Field errors={errors} name='Cover[0].url' label='Cover' register={register} />
+            <Field type='file' name='Cover' label='Upload Cover' register={register} />
             <button className='nt-3 bg-gray-900 px-3 py-2'>Add Book</button>
         </form>
     </Layout>)
@@ -85,7 +93,7 @@ const Field = ({ errors, register, label, type, className, ...inputProps }) => {
     return (
         <div>
             <label className='block' htmlFor={inputProps.name}>{label}</label>
-            <Component className={cx('border border-gray-500 rounded px-2 py-3 w-full', className)} ref={register} {...inputProps} />
+            <Component className={cx('border border-gray-500 rounded px-2 py-3 w-full', className)} ref={register} type={type} {...inputProps} />
             {errors && errors[inputProps.name] && <span>{errors[inputProps.name].message}</span>}
         </div>
     )
