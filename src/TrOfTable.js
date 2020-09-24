@@ -35,8 +35,8 @@ export const TrOfTable = ({ book, authors, removeFromTable, columns = withOutHea
             <Td><Span>{columns.page}</Span>{book.page}</Td>
             <Td><Span>{columns.lang}</Span>{book.lang}</Td>
             <Td><Span>{columns.progress}</Span>{percentOfProgress(book.fundedSum, book.neededSum)}</Td>
-            <Td><Span>{columns.cover}</Span><img src={book.cover} width="40"
-                height="40"></img></Td>
+            <Td><Span>{columns.cover}</Span>{book.cover && <img src={book.cover} width="40"
+                height="40"></img>}</Td>
             <Td><Span>{columns.authors}</Span>
                 {(authors) ? <AuthorTable
                     authors={findAuthors(book, authors)} /> : null}

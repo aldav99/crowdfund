@@ -43,31 +43,32 @@ const NewBook = () => {
     //     resolver: yupResolver(schema)
     // })
 
-    const { errors, register, handleSubmit } = useForm()
+    const { errors, register, handleSubmit, formState:{isSubmitting}} = useForm()
 
     const history = useHistory();
 
-    const onSubmit = async (fields) => {
-        console.log(fields.Cover)
+    const onSubmit = async ({ Cover, ...fields }) => {
         const formData = new FormData()
-        formData.append('fileUpload',fields.Cover[0]);
+        formData.append('fileUpload', Cover[0]);
         const uploadResult = await uploadFile(formData);
-        console.log(uploadResult)
 
-        // return createBook({
-        //     ...fields,
-        //     Page: parseFloat(fields.Page),
-        //     MinCost: parseFloat(fields.MinCost),
-        //     NeededCost: parseFloat(fields.NeededCost),
-        //     FundedSum: parseFloat(fields.FundedSum),
-        //     NeededSum: parseFloat(fields.NeededSum),
-        //     Subscriber: parseFloat(fields.Subscriber),
-        // }).then((res) => {
-        //     const bookId = res.records[0].id;
-        //     const redirectUri = bookPath(bookId);
+        const res = await createBook({
+            ...fields,
+            Cover: [
+                { url: uploadResult.url }
+            ],
+            Page: parseFloat(fields.Page),
+            MinCost: parseFloat(fields.MinCost),
+            NeededCost: parseFloat(fields.NeededCost),
+            FundedSum: parseFloat(fields.FundedSum),
+            NeededSum: parseFloat(fields.NeededSum),
+            Subscriber: parseFloat(fields.Subscriber)
+        })
 
-        //     history.push(redirectUri);
-        // })
+        const newBook = res.records[0]
+        const redirectUri = bookPath(newBook.id);
+
+        history.push(redirectUri);
     };
 
     return (<Layout>
@@ -83,7 +84,7 @@ const NewBook = () => {
             <Field errors={errors} type='number' name='NeededSum' label='NeededSum' register={register} />
             <Field errors={errors} type='number' name='Subscriber' label='Subscriber' register={register} />
             <Field type='file' name='Cover' label='Upload Cover' register={register} />
-            <button className='nt-3 bg-gray-900 px-3 py-2'>Add Book</button>
+            <button disabled={isSubmitting} className='nt-3 bg-gray-900 px-3 py-2'>{isSubmitting ? 'Submitting' : 'Add Book'}</button>
         </form>
     </Layout>)
 }
