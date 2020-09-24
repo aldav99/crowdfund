@@ -24,26 +24,24 @@ import { bookPath } from '../../helpers/routes';
 import { yupResolver } from '@hookform/resolvers';
 import * as yup from "yup";
 
-// const schema = yup.object().shape({
-//     Title: yup.string().required(),
-//     Brief: yup.string().required(),
-//     Page: yup.number().positive().integer().required(),
-//     Lang: yup.string().min(2).max(5).required(),
-//     MinCost: yup.number().positive().integer().required(),
-//     NeededCost: yup.number().positive().integer().required(),
-//     FundedSum: yup.number().positive().integer().required(),
-//     NeededSum: yup.number().positive().integer().required(),
-//     Subscriber: yup.number().positive().integer().required()
-// });
+const schema = yup.object().shape({
+    Title: yup.string().required(),
+    Brief: yup.string().required(),
+    Page: yup.number().positive().integer().required(),
+    Lang: yup.string().min(2).max(5).required(),
+    MinCost: yup.number().positive().integer().required(),
+    NeededCost: yup.number().positive().integer().required(),
+    FundedSum: yup.number().positive().integer().required(),
+    NeededSum: yup.number().positive().integer().required(),
+    Subscriber: yup.number().positive().integer().required()
+});
 
 
 
 const NewBook = () => {
-    // const { errors, register, handleSubmit } = useForm({
-    //     resolver: yupResolver(schema)
-    // })
-
-    const { errors, register, handleSubmit, formState:{isSubmitting}} = useForm()
+    const { errors, register, handleSubmit, formState: { isSubmitting } } = useForm({
+        resolver: yupResolver(schema)
+    });
 
     const history = useHistory();
 
