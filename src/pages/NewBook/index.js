@@ -39,6 +39,9 @@ const schema = yup.object().shape({
 
 
 const NewBook = () => {
+    const authors = useBooks()[1];
+    console.log(authors)
+
     const { errors, register, handleSubmit, formState: { isSubmitting } } = useForm({
         resolver: yupResolver(schema)
     });

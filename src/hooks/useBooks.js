@@ -44,6 +44,7 @@ function _mapFromAirtableAuthors(data) {
                 email: record.fields.Email,
                 brief: record.fields.Brief,
                 id: record.fields.Id,
+                idNative: record.id,
                 avatar: record.fields.Avatar[0].thumbnails.large.url
             }
         ))
