@@ -40,7 +40,7 @@ const schema = yup.object().shape({
 
 const NewBook = () => {
     const authors = useBooks()[1];
-    console.log(authors)
+    console.log("AUTHORS:   ", authors)
 
     const { errors, register, handleSubmit, formState: { isSubmitting } } = useForm({
         resolver: yupResolver(schema)
@@ -85,6 +85,7 @@ const NewBook = () => {
             <Field errors={errors} type='number' name='NeededSum' label='NeededSum' register={register} />
             <Field errors={errors} type='number' name='Subscriber' label='Subscriber' register={register} />
             <Field type='file' name='Cover' label='Upload Cover' register={register} />
+            <Select authors={authors} register={register} />
             <button disabled={isSubmitting} className='nt-3 bg-gray-900 px-3 py-2'>{isSubmitting ? 'Submitting' : 'Add Book'}</button>
         </form>
     </Layout>)
@@ -101,4 +102,31 @@ const Field = ({ errors, register, label, type, className, ...inputProps }) => {
     )
 }
 
+const Select = ({ authors, register }) => {
+    console.log('---------------------------------')
+    console.log(authors)
+    return (
+        <div>
+            <select name="authors" ref={register}>
+                {authors ? authors.map(function (author, key) {
+                    return (
+                        <option key={author.id} value={author.idNative}>{author.name}</option>
+                    );
+                }) : null}
+
+            </select>
+        </div>
+    )
+}
+
 export default NewBook;
+
+// {authors.map(function (author, key) {
+//     return (
+//         <AuthorRow key={author.id} author={author} />
+//     );
+// })}
+
+// <option value="female">female</option>
+//                 <option value="male">male</option>
+//                 <option value="other">other</option>
