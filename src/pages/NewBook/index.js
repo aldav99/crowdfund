@@ -63,7 +63,8 @@ const NewBook = () => {
             NeededCost: parseFloat(fields.NeededCost),
             FundedSum: parseFloat(fields.FundedSum),
             NeededSum: parseFloat(fields.NeededSum),
-            Subscriber: parseFloat(fields.Subscriber)
+            Subscriber: parseFloat(fields.Subscriber),
+            Authors: [fields.Authors]
         })
 
         const newBook = res.records[0]
@@ -85,7 +86,7 @@ const NewBook = () => {
             <Field errors={errors} type='number' name='NeededSum' label='NeededSum' register={register} />
             <Field errors={errors} type='number' name='Subscriber' label='Subscriber' register={register} />
             <Field type='file' name='Cover' label='Upload Cover' register={register} />
-            <Select authors={authors} register={register} />
+            <Select authors={authors} register={register} name='Author' />
             <button disabled={isSubmitting} className='nt-3 bg-gray-900 px-3 py-2'>{isSubmitting ? 'Submitting' : 'Add Book'}</button>
         </form>
     </Layout>)
@@ -107,7 +108,7 @@ const Select = ({ authors, register }) => {
     console.log(authors)
     return (
         <div>
-            <select name="authors" ref={register}>
+            <select name="Authors" ref={register}>
                 {authors ? authors.map(function (author, key) {
                     return (
                         <option key={author.id} value={author.idNative}>{author.name}</option>

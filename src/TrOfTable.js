@@ -25,6 +25,7 @@ let withOutHeader = {
 }
 
 export const TrOfTable = ({ book, authors, removeFromTable, columns = withOutHeader }) => {
+    if (!book) return null;
     return (
         <Tr key={book.id}>
             <Td><Span>{columns.title}</Span><Link to={`/book/${book.Id}`}>{book.title}</Link></Td>
