@@ -40,7 +40,6 @@ const schema = yup.object().shape({
 
 const NewBook = () => {
     const authors = useBooks()[1];
-    console.log("AUTHORS:   ", authors)
 
     const { errors, register, handleSubmit, formState: { isSubmitting } } = useForm({
         resolver: yupResolver(schema)
@@ -104,8 +103,6 @@ const Field = ({ errors, register, label, type, className, ...inputProps }) => {
 }
 
 const Select = ({ authors, register }) => {
-    console.log('---------------------------------')
-    console.log(authors)
     return (
         <div>
             <select name="Authors" ref={register}>
@@ -121,13 +118,3 @@ const Select = ({ authors, register }) => {
 }
 
 export default NewBook;
-
-// {authors.map(function (author, key) {
-//     return (
-//         <AuthorRow key={author.id} author={author} />
-//     );
-// })}
-
-// <option value="female">female</option>
-//                 <option value="male">male</option>
-//                 <option value="other">other</option>
