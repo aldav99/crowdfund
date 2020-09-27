@@ -90,23 +90,23 @@ const SubscriberCell = ({ column, row }) => {
             <Span>{column.Header}</Span>{row.subscriber}
         </React.Fragment>)
 }
+// <Table columns={columns} rows={books}/>
 
-// -----------------------------------------------------------------------
-//-----------------------------------------------------------------------
+export const Table = ({ rows, columns, authors, removeFromTable }) => {
+    columns.map(column => {
+        const CellComponent = column.cell;
+
+        return (
+            <td>
+                {
+                    CellComponent ? <CellComponent row={row} column={column} /> : row[column.accessor]
+                }
+            </td>
+          )
+        })
+}
 
 
-// {
-//     columns.map(column => {
-//       const CellComponent = column.cell;
-
-//       return (
-//         <td>
-//           {
-//             CellComponent ? <CellComponent row={row} column={column}  /> : row[column.accessor]
-//           }
-//         </td>
-//       })
-//   }
 
 //-----------------------------------------------------------------------
 
