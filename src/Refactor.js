@@ -46,7 +46,7 @@ const LinkCell = ({ column, row }) => {
     )
 }
 
-const CloseCell = ({ column, row }) => {
+const CloseCell = ({ column, row, removeFromTable }) => {
     return (
         <React.Fragment>
             <Span>{column.Header}</Span><button onClick={() => removeFromTable(row.id)} className={styles.letter}>*</button>
@@ -62,7 +62,7 @@ const ProgressCell = ({ column, row }) => {
     )
 }
 
-const AuthorsCell = ({ column, row }) => {
+const AuthorsCell = ({ column, row, authors }) => {
     return (
         <React.Fragment>
             <Span>{column.Header}</Span>{(authors) ? <AuthorTable
@@ -99,11 +99,11 @@ export const Table = ({ rows, columns, authors, removeFromTable }) => {
         return (
             <td>
                 {
-                    CellComponent ? <CellComponent row={row} column={column} /> : row[column.accessor]
+                    CellComponent ? <CellComponent row={row} column={column} removeFromTable={removeFromTable} authors={authors} /> : row[column.accessor]
                 }
             </td>
-          )
-        })
+        )
+    })
 }
 
 
