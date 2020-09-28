@@ -11,22 +11,22 @@ import { Link } from 'react-router-dom';
 import { Royalty } from './BookRows';
 //-------------------------------------------------------------------------
 
-const columns = [
-    { Header: 'Title', accessor: 'title', cell={ LinkCell } },
-    { Header: 'Close', accessor: 'close', cell={ CloseCell } },
-    { Header: 'Brief', accessor: 'brief' },
-    { Header: 'Page', accessor: 'page' },
-    { Header: 'Lang', accessor: 'lang' },
-    { Header: 'Progress', accessor: 'progress', cell={ ProgressCell } },
-    { Header: 'Cover', accessor: 'cover', cell={ CoverCell } },
-    { Header: 'Authors', accessor: 'authors', cell={ AuthorsCell } },
-    { Header: 'minCost', accessor: 'minCost' },
-    { Header: 'royalty', accessor: 'royalty', cell={ RoyaltyCell } },
-    { Header: 'neededCost', accessor: 'neededCost' },
-    { Header: 'fundedSum', accessor: 'fundedSum' },
-    { Header: 'neededSum', accessor: 'neededSum' },
-    { Header: 'subscriber', accessor: 'subscriber', cell={ SubscriberCell } }
-]
+// const columns = [
+//     { Header: 'Title', accessor: 'title', cell={ LinkCell } },
+//     { Header: 'Close', accessor: 'close', cell={ CloseCell } },
+//     { Header: 'Brief', accessor: 'brief' },
+//     { Header: 'Page', accessor: 'page' },
+//     { Header: 'Lang', accessor: 'lang' },
+//     { Header: 'Progress', accessor: 'progress', cell={ ProgressCell } },
+//     { Header: 'Cover', accessor: 'cover', cell={ CoverCell } },
+//     { Header: 'Authors', accessor: 'authors', cell={ AuthorsCell } },
+//     { Header: 'minCost', accessor: 'minCost' },
+//     { Header: 'royalty', accessor: 'royalty', cell={ RoyaltyCell } },
+//     { Header: 'neededCost', accessor: 'neededCost' },
+//     { Header: 'fundedSum', accessor: 'fundedSum' },
+//     { Header: 'neededSum', accessor: 'neededSum' },
+//     { Header: 'subscriber', accessor: 'subscriber', cell={ SubscriberCell } }
+// ]
 
 //-----------------------------------------------------------------------
 
@@ -90,9 +90,8 @@ const SubscriberCell = ({ column, row }) => {
             <Span>{column.Header}</Span>{row.subscriber}
         </React.Fragment>)
 }
-// <Table columns={columns} rows={books}/>
 
-export const Table = ({ rows, columns, authors, removeFromTable }) => {
+export const TableRow = ({ row, columns, authors, removeFromTable }) => {
     columns.map(column => {
         const CellComponent = column.cell;
 
@@ -105,6 +104,26 @@ export const Table = ({ rows, columns, authors, removeFromTable }) => {
         )
     })
 }
+
+export const Table = React.memo(({ columns, rows, removeFromTable, authors }) => {
+    console.log('render Table')
+
+    return (
+        <TableBooks>
+            <TheadBooks />
+            <Tbody>
+                {
+                    books.slice(0, 3).map(row => {
+                        return (
+                            <React.Fragment key={row.id}>
+                                <TableRow removeFromTable={removeFromTable} row={row} authors={authors} columns={columns} key={row.id} />
+                            </React.Fragment>
+                        )
+                    })
+                }
+            </Tbody>
+        </TableBooks>)
+})
 
 
 

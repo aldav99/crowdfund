@@ -1,6 +1,25 @@
 import React from 'react';
 import { BookRows } from './BookRows';
 import { FeedbackForm } from './FeedbackForm';
+import { Table } from './Refactor';
+
+const columns = [
+    { Header: 'Title', accessor: 'title', cell={ LinkCell } },
+    { Header: 'Close', accessor: 'close', cell={ CloseCell } },
+    { Header: 'Brief', accessor: 'brief' },
+    { Header: 'Page', accessor: 'page' },
+    { Header: 'Lang', accessor: 'lang' },
+    { Header: 'Progress', accessor: 'progress', cell={ ProgressCell } },
+    { Header: 'Cover', accessor: 'cover', cell={ CoverCell } },
+    { Header: 'Authors', accessor: 'authors', cell={ AuthorsCell } },
+    { Header: 'minCost', accessor: 'minCost' },
+    { Header: 'royalty', accessor: 'royalty', cell={ RoyaltyCell } },
+    { Header: 'neededCost', accessor: 'neededCost' },
+    { Header: 'fundedSum', accessor: 'fundedSum' },
+    { Header: 'neededSum', accessor: 'neededSum' },
+    { Header: 'subscriber', accessor: 'subscriber', cell={ SubscriberCell } }
+]
+
 
 
 export class BookTable extends React.PureComponent {
@@ -30,7 +49,7 @@ export class BookTable extends React.PureComponent {
         const { books, authors } = this.state;
         return (
             <React.Fragment>
-                <BookRows removeFromTable={this.removeFromTable} books={books} authors={authors} />
+                <Table removeFromTable={this.removeFromTable} rows={books} authors={authors} columns={columns} />
                 <FeedbackForm></FeedbackForm>
             </React.Fragment>
         );
