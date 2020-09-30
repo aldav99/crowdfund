@@ -6,6 +6,8 @@ import useBooks from '../../hooks/useBooks.js'
 
 import { TrOfTable } from '../../TrOfTable'
 
+import { TableRow, columns } from '../../Refactor'
+
 import { Helmet } from 'react-helmet';
 
 import { TableBooks, TheadBooks, Tbody } from '../../Table';
@@ -31,7 +33,7 @@ function Book({ match: { params } }) {
                 <TheadBooks />
                 <Tbody>
                     {(books && authors) ?
-                        <TrOfTable book={books.filter(book => book.Id == params.Id)[0]} authors={authors} />
+                        <TableRow row={books.filter(book => book.Id == params.Id)[0]} authors={authors} columns={columns} />
                         : <tr><td>Loading...</td></tr>}
                 </Tbody>
             </TableBooks>

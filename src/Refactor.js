@@ -11,22 +11,25 @@ import { Link } from 'react-router-dom';
 import { Royalty } from './BookRows';
 //-------------------------------------------------------------------------
 
-// const columns = [
-//     { Header: 'Title', accessor: 'title', cell={ LinkCell } },
-//     { Header: 'Close', accessor: 'close', cell={ CloseCell } },
-//     { Header: 'Brief', accessor: 'brief' },
-//     { Header: 'Page', accessor: 'page' },
-//     { Header: 'Lang', accessor: 'lang' },
-//     { Header: 'Progress', accessor: 'progress', cell={ ProgressCell } },
-//     { Header: 'Cover', accessor: 'cover', cell={ CoverCell } },
-//     { Header: 'Authors', accessor: 'authors', cell={ AuthorsCell } },
-//     { Header: 'minCost', accessor: 'minCost' },
-//     { Header: 'royalty', accessor: 'royalty', cell={ RoyaltyCell } },
-//     { Header: 'neededCost', accessor: 'neededCost' },
-//     { Header: 'fundedSum', accessor: 'fundedSum' },
-//     { Header: 'neededSum', accessor: 'neededSum' },
-//     { Header: 'subscriber', accessor: 'subscriber', cell={ SubscriberCell } }
-// ]
+export const columns = [
+    { Header: '', accessor: 'title', cell: 'LinkCell' },
+    { Header: '', accessor: 'close', cell: 'CloseCell' },
+    { Header: '', accessor: 'brief' },
+    { Header: '', accessor: 'page' },
+    { Header: '', accessor: 'lang' },
+    { Header: '', accessor: 'progress', cell: 'ProgressCell' },
+    { Header: '', accessor: 'cover', cell: 'CoverCell' },
+    { Header: '', accessor: 'authors', cell: 'AuthorsCell' },
+    { Header: '', accessor: 'minCost' },
+    { Header: '', accessor: 'royalty', cell: 'RoyaltyCell' },
+    { Header: '', accessor: 'neededCost' },
+    { Header: '', accessor: 'fundedSum' },
+    { Header: '', accessor: 'neededSum' },
+    {
+        Header: '', accessor: 'subscriber',
+        cell: 'SubscriberCell'
+    }
+]
 
 //-----------------------------------------------------------------------
 
@@ -47,9 +50,14 @@ const LinkCell = ({ column, row }) => {
 }
 
 const CloseCell = ({ column, row, removeFromTable }) => {
+    if (removeFromTable) return (
+        <React.Fragment>
+             <Span>{column.Header}</Span><button onClick={() => removeFromTable(row.id)} className={styles.letter}>*</button>
+        </React.Fragment>
+    )
     return (
         <React.Fragment>
-            <Span>{column.Header}</Span><button onClick={() => removeFromTable(row.id)} className={styles.letter}>*</button>
+            <Span>{column.Header}</Span>Unaccessible
         </React.Fragment>
     )
 }
@@ -82,7 +90,7 @@ const RoyaltyCell = ({ column, row }) => {
 const SubscriberCell = ({ column, row }) => {
     if (row.subscriber > 10) return (
         <React.Fragment>
-            <Span>{column.Header}</Span><Span className={styles.letter}>{row.subscriber}</Span>
+            <Span>{column.Header}</Span><b className={styles.letter}>{row.subscriber}</b>
         </React.Fragment>
     )
     return (
@@ -91,16 +99,19 @@ const SubscriberCell = ({ column, row }) => {
         </React.Fragment>)
 }
 
-export const TableRow = ({ row, columns, authors, removeFromTable }) => {
-    columns.map(column => {
-        const CellComponent = column.cell;
+const componentsMap = { LinkCell, CloseCell, ProgressCell, CoverCell, AuthorsCell, RoyaltyCell, SubscriberCell };
 
+export const TableRow = ({ row, columns, authors, removeFromTable }) => {
+    if (!row) return null;
+    return columns.map(column => {
+        const componentName = column.cell;
+        const CellComponent = componentsMap[componentName];
         return (
-            <td>
+            <Td key={Math.random()}>
                 {
                     CellComponent ? <CellComponent row={row} column={column} removeFromTable={removeFromTable} authors={authors} /> : row[column.accessor]
                 }
-            </td>
+            </Td>
         )
     })
 }
@@ -113,11 +124,12 @@ export const Table = React.memo(({ columns, rows, removeFromTable, authors }) =>
             <TheadBooks />
             <Tbody>
                 {
-                    books.slice(0, 3).map(row => {
+                    rows.slice(0, 3).map(row => {
                         return (
-                            <React.Fragment key={row.id}>
+                            <Tr key={row.id} >
                                 <TableRow removeFromTable={removeFromTable} row={row} authors={authors} columns={columns} key={row.id} />
-                            </React.Fragment>
+                                <Td><SubscribeModal /></Td>
+                            </Tr>
                         )
                     })
                 }
