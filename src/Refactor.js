@@ -31,6 +31,26 @@ export const columns = [
     }
 ]
 
+export const mobileColumns = [
+    { Header: 'Title', accessor: 'title', cell: 'LinkCell' },
+    { Header: 'Close', accessor: 'close', cell: 'CloseCell' },
+    { Header: 'Brief', accessor: 'brief' },
+    { Header: 'Page', accessor: 'page' },
+    { Header: 'Lang', accessor: 'lang' },
+    { Header: 'Progress', accessor: 'progress', cell: 'ProgressCell' },
+    { Header: 'Cover', accessor: 'cover', cell: 'CoverCell' },
+    { Header: 'Authors', accessor: 'authors', cell: 'AuthorsCell' },
+    { Header: 'minCost', accessor: 'minCost' },
+    { Header: 'royalty', accessor: 'royalty', cell: 'RoyaltyCell' },
+    { Header: 'neededCost', accessor: 'neededCost' },
+    { Header: 'fundedSum', accessor: 'fundedSum' },
+    { Header: 'neededSum', accessor: 'neededSum' },
+    {
+        Header: 'subscriber', accessor: 'subscriber',
+        cell: 'SubscriberCell'
+    }
+]
+
 //-----------------------------------------------------------------------
 
 const CoverCell = ({ column, row }) => {
@@ -52,7 +72,7 @@ const LinkCell = ({ column, row }) => {
 const CloseCell = ({ column, row, removeFromTable }) => {
     if (removeFromTable) return (
         <React.Fragment>
-             <Span>{column.Header}</Span><button onClick={() => removeFromTable(row.id)} className={styles.letter}>*</button>
+            <Span>{column.Header}</Span><button onClick={() => removeFromTable(row.id)} className={styles.letter}>*</button>
         </React.Fragment>
     )
     return (
@@ -137,6 +157,28 @@ export const Table = React.memo(({ columns, rows, removeFromTable, authors }) =>
         </TableBooks>)
 })
 
+//-----------------------------------------------------------------------
+
+export const MobileTable = React.memo(({ columns, rows, removeFromTable, authors }) => {
+    console.log('render MobileTable')
+
+    return (
+        <TableBooks>
+            <TheadBooks />
+            <Tbody>
+                {
+                    rows.slice(0, 3).map(row => {
+                        return (
+                            <Tr key={row.id} >
+                                <TableRow removeFromTable={removeFromTable} row={row} authors={authors} columns={mobileColumns} key={row.id} />
+                                <Td><SubscribeModal /></Td>
+                            </Tr>
+                        )
+                    })
+                }
+            </Tbody>
+        </TableBooks>)
+})
 
 
 //-----------------------------------------------------------------------
