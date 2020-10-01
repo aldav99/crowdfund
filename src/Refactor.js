@@ -8,7 +8,7 @@ import { SubscribeModal } from './SubscribeModal';
 import { percentOfProgress } from './percentOfProgress';
 import styles from "./style.module.css";
 import { Link } from 'react-router-dom';
-import { Royalty } from './BookRows';
+import { Royalty } from "./Royalty";
 //-------------------------------------------------------------------------
 
 export const columns = [
@@ -136,7 +136,7 @@ export const TableRow = ({ row, columns, authors, removeFromTable }) => {
     })
 }
 
-export const Table = React.memo(({ columns, rows, removeFromTable, authors }) => {
+export const Table = React.memo(({ rows, removeFromTable, authors }) => {
     console.log('render Table')
 
     return (
@@ -159,7 +159,7 @@ export const Table = React.memo(({ columns, rows, removeFromTable, authors }) =>
 
 //-----------------------------------------------------------------------
 
-export const MobileTable = React.memo(({ columns, rows, removeFromTable, authors }) => {
+export const MobileTable = React.memo(({ rows, removeFromTable, authors }) => {
     console.log('render MobileTable')
 
     return (
@@ -179,6 +179,14 @@ export const MobileTable = React.memo(({ columns, rows, removeFromTable, authors
             </Tbody>
         </TableBooks>)
 })
+
+export const GenerateTable = ({ rows, removeFromTable, authors }) => {
+    const isDesktopOrLaptop = useMediaQuery({
+        query: '(min-device-width: 541px)'
+    })
+    return (
+        isDesktopOrLaptop ? <Table removeFromTable={removeFromTable} rows={rows} authors={authors} /> : <MobileTable removeFromTable={removeFromTable} rows={rows} authors={authors} />)
+}
 
 
 //-----------------------------------------------------------------------

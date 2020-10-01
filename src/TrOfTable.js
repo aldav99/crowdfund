@@ -5,7 +5,7 @@ import { Tr, Td, Span } from './Table';
 import { percentOfProgress } from './percentOfProgress';
 import styles from "./style.module.css";
 import { Link } from 'react-router-dom';
-import { Royalty } from './BookRows';
+import { Royalty } from "./Royalty";
 
 let withOutHeader = {
     title: '',
