@@ -127,7 +127,7 @@ export const TableRow = ({ row, columns, authors, removeFromTable }) => {
         const componentName = column.cell;
         const CellComponent = componentsMap[componentName];
         return (
-            <Td key={Math.random()}>
+            <Td key={column.accessor}>
                 {
                     CellComponent ? <CellComponent row={row} column={column} removeFromTable={removeFromTable} authors={authors} /> : row[column.accessor]
                 }
