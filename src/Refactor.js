@@ -90,11 +90,12 @@ const ProgressCell = ({ column, row }) => {
     )
 }
 
-const AuthorsCell = ({ column, row, authors }) => {
+const AuthorsCell = ({ column, row }) => {
+    let authors = row.authorsList;
     return (
         <React.Fragment>
             <Span>{column.Header}</Span>{(authors) ? <AuthorTable
-                authors={findAuthors(row, authors)} /> : null}
+                authors={authors} /> : null}
         </React.Fragment>
     )
 }
@@ -121,7 +122,7 @@ const SubscriberCell = ({ column, row }) => {
 
 const componentsMap = { LinkCell, CloseCell, ProgressCell, CoverCell, AuthorsCell, RoyaltyCell, SubscriberCell };
 
-export const TableRow = ({ row, columns, authors, removeFromTable }) => {
+export const TableRow = ({ row, columns, removeFromTable }) => {
     if (!row) return null;
     return columns.map(column => {
         const componentName = column.cell;
@@ -129,14 +130,14 @@ export const TableRow = ({ row, columns, authors, removeFromTable }) => {
         return (
             <Td key={column.accessor}>
                 {
-                    CellComponent ? <CellComponent row={row} column={column} removeFromTable={removeFromTable} authors={authors} /> : row[column.accessor]
+                    CellComponent ? <CellComponent row={row} column={column} removeFromTable={removeFromTable} authors={row.authorsList} /> : row[column.accessor]
                 }
             </Td>
         )
     })
 }
 
-export const Table = React.memo(({ rows, removeFromTable, authors }) => {
+export const Table = React.memo(({ rows, removeFromTable }) => {
     console.log('render Table')
 
     return (
@@ -147,7 +148,7 @@ export const Table = React.memo(({ rows, removeFromTable, authors }) => {
                     rows.slice(0, 3).map(row => {
                         return (
                             <Tr key={row.id} >
-                                <TableRow removeFromTable={removeFromTable} row={row} authors={authors} columns={columns} key={row.id} />
+                                <TableRow removeFromTable={removeFromTable} row={row} columns={columns} key={row.id} />
                                 <Td><SubscribeModal /></Td>
                             </Tr>
                         )
@@ -159,7 +160,7 @@ export const Table = React.memo(({ rows, removeFromTable, authors }) => {
 
 //-----------------------------------------------------------------------
 
-export const MobileTable = React.memo(({ rows, removeFromTable, authors }) => {
+export const MobileTable = React.memo(({ rows, removeFromTable}) => {
     console.log('render MobileTable')
 
     return (
@@ -170,7 +171,7 @@ export const MobileTable = React.memo(({ rows, removeFromTable, authors }) => {
                     rows.slice(0, 3).map(row => {
                         return (
                             <Tr key={row.id} >
-                                <TableRow removeFromTable={removeFromTable} row={row} authors={authors} columns={mobileColumns} key={row.id} />
+                                <TableRow removeFromTable={removeFromTable} row={row} columns={mobileColumns} key={row.id} />
                                 <Td><SubscribeModal /></Td>
                             </Tr>
                         )
@@ -180,20 +181,10 @@ export const MobileTable = React.memo(({ rows, removeFromTable, authors }) => {
         </TableBooks>)
 })
 
-export const GenerateTable = ({ rows, removeFromTable, authors }) => {
+export const GenerateTable = ({ rows, removeFromTable }) => {
     const isDesktopOrLaptop = useMediaQuery({
         query: '(min-device-width: 541px)'
     })
     return (
-        isDesktopOrLaptop ? <Table removeFromTable={removeFromTable} rows={rows} authors={authors} /> : <MobileTable removeFromTable={removeFromTable} rows={rows} authors={authors} />)
-}
-
-
-//-----------------------------------------------------------------------
-
-function findAuthors(book, authors) {
-    if (!book.authors) return null;
-    authors = authors.filter(author => book.authors.includes(author.idNative))
-
-    return authors
+        isDesktopOrLaptop ? <Table removeFromTable={removeFromTable} rows={rows} /> : <MobileTable removeFromTable={removeFromTable} rows={rows} />)
 }
