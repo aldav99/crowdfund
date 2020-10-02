@@ -3,7 +3,6 @@ import React from 'react';
 import { BookTable } from './BookTable';
 import withLoading from './HOC/withLoading';
 
-import withBooks from './HOC/withBooks';
 
 import { Helmet } from 'react-helmet';
 
