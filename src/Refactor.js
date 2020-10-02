@@ -145,7 +145,7 @@ export const Table = React.memo(({ rows, removeFromTable }) => {
             <TheadBooks />
             <Tbody>
                 {
-                    rows.slice(0, 3).map(row => {
+                    rows.map(row => {
                         return (
                             <Tr key={row.id} >
                                 <TableRow removeFromTable={removeFromTable} row={row} columns={columns} key={row.id} />
@@ -160,7 +160,7 @@ export const Table = React.memo(({ rows, removeFromTable }) => {
 
 //-----------------------------------------------------------------------
 
-export const MobileTable = React.memo(({ rows, removeFromTable}) => {
+export const MobileTable = React.memo(({ rows, removeFromTable }) => {
     console.log('render MobileTable')
 
     return (
@@ -168,7 +168,7 @@ export const MobileTable = React.memo(({ rows, removeFromTable}) => {
             <TheadBooks />
             <Tbody>
                 {
-                    rows.slice(0, 3).map(row => {
+                    rows.map(row => {
                         return (
                             <Tr key={row.id} >
                                 <TableRow removeFromTable={removeFromTable} row={row} columns={mobileColumns} key={row.id} />
@@ -185,6 +185,7 @@ export const GenerateTable = ({ rows, removeFromTable }) => {
     const isDesktopOrLaptop = useMediaQuery({
         query: '(min-device-width: 541px)'
     })
+    rows = rows.slice(0, 3)
     return (
         isDesktopOrLaptop ? <Table removeFromTable={removeFromTable} rows={rows} /> : <MobileTable removeFromTable={removeFromTable} rows={rows} />)
 }
