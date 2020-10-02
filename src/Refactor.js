@@ -193,7 +193,7 @@ export const GenerateTable = ({ rows, removeFromTable, authors }) => {
 
 function findAuthors(book, authors) {
     if (!book.authors) return null;
-    authors = authors.filter(author => book.authors.includes(author.id))
+    authors = authors.filter(author => book.authors.includes(author.idNative))
 
     return authors
 }

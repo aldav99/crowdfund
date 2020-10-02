@@ -61,7 +61,7 @@ function _mapFromAirtable(data) {
                 page: record.fields.Page,
                 lang: record.fields.Lang,
                 cover: record.fields.Cover[0].thumbnails && record.fields.Cover[0].thumbnails.large.url,
-                authors: record.fields['Id (from Authors)'],
+                authors: record.fields.Authors,
                 minCost: record.fields.MinCost,
                 neededCost: record.fields.NeededCost,
                 fundedSum: record.fields.FundedSum,

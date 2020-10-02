@@ -4,6 +4,7 @@ import Layout from './shared/Layout.js';
 import { BookTableEnhanced } from './App';
 export const Main = (props) => {
     let [books, authors] = useBooks();
+    console.log("Render Main");
     console.log(authors);
     console.log(books);
     return (
