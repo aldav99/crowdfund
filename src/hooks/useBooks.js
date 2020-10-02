@@ -82,8 +82,21 @@ const useBooks = () => {
         _fetchData().then(records => { setBooks(records) }).catch(function (e) { console.log(e) });;
     }, []);
 
+    books && authors && books.map(book => addAuthorsToBook(book, authors))
+
     return [books, authors];
 };
 
 export default useBooks;
 
+function addAuthorsToBook(book, authors) {
+    book.authorsList = findAuthors(book, authors);
+    return book
+}
+
+function findAuthors(book, authors) {
+    if (!book.authors) return null;
+    authors = authors.filter(author => book.authors.includes(author.idNative))
+
+    return authors
+}
