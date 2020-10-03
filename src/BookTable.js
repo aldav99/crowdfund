@@ -2,7 +2,7 @@ import React from 'react';
 import { FeedbackForm } from './FeedbackForm';
 import { GenerateTable } from './Refactor';
 
-import { columns, mobileColumns } from './TableRow';
+import { columns, mobileColumns } from './pages/Book/components/TableRow';
 
 export class BookTable extends React.PureComponent {
     constructor(props) {
