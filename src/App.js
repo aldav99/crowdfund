@@ -12,7 +12,7 @@ import NotFound from './pages/NotFound/index.js'
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Book from './pages/Book';
-import { Main } from './Main';
+import { Main } from './pages/Main/Main';
 import NewBook from './pages/NewBook';
 
 import { bookPath, newBookPath } from './helpers/routes';
