@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BookTable } from './BookTable';
+import { BookTable } from './pages/Books/BookTable';
 import withLoading from './shared/HOC/withLoading';
 
 
