@@ -9,49 +9,6 @@ import { percentOfProgress } from './percentOfProgress';
 import styles from "./style.module.css";
 import { Link } from 'react-router-dom';
 import { Royalty } from "./Royalty";
-//-------------------------------------------------------------------------
-
-export const columns = [
-    { Header: '', accessor: 'title', cell: 'LinkCell' },
-    { Header: '', accessor: 'close', cell: 'CloseCell' },
-    { Header: '', accessor: 'brief' },
-    { Header: '', accessor: 'page' },
-    { Header: '', accessor: 'lang' },
-    { Header: '', accessor: 'progress', cell: 'ProgressCell' },
-    { Header: '', accessor: 'cover', cell: 'CoverCell' },
-    { Header: '', accessor: 'authors', cell: 'AuthorsCell' },
-    { Header: '', accessor: 'minCost' },
-    { Header: '', accessor: 'royalty', cell: 'RoyaltyCell' },
-    { Header: '', accessor: 'neededCost' },
-    { Header: '', accessor: 'fundedSum' },
-    { Header: '', accessor: 'neededSum' },
-    {
-        Header: '', accessor: 'subscriber',
-        cell: 'SubscriberCell'
-    }
-]
-
-export const mobileColumns = [
-    { Header: 'Title', accessor: 'title', cell: 'LinkCell' },
-    { Header: 'Close', accessor: 'close', cell: 'CloseCell' },
-    { Header: 'Brief', accessor: 'brief' },
-    { Header: 'Page', accessor: 'page' },
-    { Header: 'Lang', accessor: 'lang' },
-    { Header: 'Progress', accessor: 'progress', cell: 'ProgressCell' },
-    { Header: 'Cover', accessor: 'cover', cell: 'CoverCell' },
-    { Header: 'Authors', accessor: 'authors', cell: 'AuthorsCell' },
-    { Header: 'minCost', accessor: 'minCost' },
-    { Header: 'royalty', accessor: 'royalty', cell: 'RoyaltyCell' },
-    { Header: 'neededCost', accessor: 'neededCost' },
-    { Header: 'fundedSum', accessor: 'fundedSum' },
-    { Header: 'neededSum', accessor: 'neededSum' },
-    {
-        Header: 'subscriber', accessor: 'subscriber',
-        cell: 'SubscriberCell'
-    }
-]
-
-//-----------------------------------------------------------------------
 
 const CoverCell = ({ column, row }) => {
     return (
@@ -137,7 +94,7 @@ export const TableRow = ({ row, columns, removeFromTable }) => {
     })
 }
 
-export const Table = React.memo(({ rows, removeFromTable }) => {
+export const Table = React.memo(({ rows, removeFromTable, columns }) => {
     console.log('render Table')
 
     return (
@@ -160,7 +117,7 @@ export const Table = React.memo(({ rows, removeFromTable }) => {
 
 //-----------------------------------------------------------------------
 
-export const MobileTable = React.memo(({ rows, removeFromTable }) => {
+export const MobileTable = React.memo(({ rows, removeFromTable, columns }) => {
     console.log('render MobileTable')
 
     return (
@@ -171,7 +128,7 @@ export const MobileTable = React.memo(({ rows, removeFromTable }) => {
                     rows.map(row => {
                         return (
                             <Tr key={row.id} >
-                                <TableRow removeFromTable={removeFromTable} row={row} columns={mobileColumns} key={row.id} />
+                                <TableRow removeFromTable={removeFromTable} row={row} columns={columns} key={row.id} />
                                 <Td><SubscribeModal /></Td>
                             </Tr>
                         )
@@ -181,11 +138,11 @@ export const MobileTable = React.memo(({ rows, removeFromTable }) => {
         </TableBooks>)
 })
 
-export const GenerateTable = ({ rows, removeFromTable }) => {
+export const GenerateTable = ({ rows, removeFromTable, mobileColumns, columns }) => {
     const isDesktopOrLaptop = useMediaQuery({
         query: '(min-device-width: 541px)'
     })
     rows = rows.slice(0, 3)
     return (
-        isDesktopOrLaptop ? <Table removeFromTable={removeFromTable} rows={rows} /> : <MobileTable removeFromTable={removeFromTable} rows={rows} />)
+        isDesktopOrLaptop ? <Table removeFromTable={removeFromTable} rows={rows} columns={columns} /> : <MobileTable removeFromTable={removeFromTable} rows={rows} columns={mobileColumns} />)
 }

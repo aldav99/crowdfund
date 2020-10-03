@@ -6,7 +6,8 @@ import useBooks from '../../hooks/useBooks.js'
 
 import { TrOfTable } from '../../TrOfTable'
 
-import { TableRow, columns, mobileColumns } from '../../Refactor'
+import { TableRow } from '../../Refactor'
+import { columns, mobileColumns } from '../../BookTable'
 
 import { Helmet } from 'react-helmet';
 
