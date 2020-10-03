@@ -77,14 +77,13 @@ const SubscriberCell = ({ column, row }) => {
         </React.Fragment>)
 }
 
-// const componentsMap = { LinkCell, CloseCell, ProgressCell, CoverCell, AuthorsCell, RoyaltyCell, SubscriberCell };
+const componentsMap = { LinkCell, CloseCell, ProgressCell, CoverCell, AuthorsCell, RoyaltyCell, SubscriberCell };
 
 export const TableRow = ({ row, columns, removeFromTable }) => {
     if (!row) return null;
     return columns.map(column => {
-        // const componentName = column.cell;
-        // const CellComponent = componentsMap[componentName];
-        const CellComponent = column.cell
+        const componentName = column.cell;
+        const CellComponent = componentsMap[componentName];
         return (
             <Td key={column.accessor}>
                 {
