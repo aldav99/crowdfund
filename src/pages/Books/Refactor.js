@@ -1,5 +1,5 @@
 import React from 'react';
-import { TableBooks, TheadBooks, Tbody, Tr, Td, Span } from './../../Table';
+import { TableBooks, TheadBooks, Tbody, Tr, Td, Span } from "./../styles/Table"
 import { useMediaQuery } from 'react-responsive'
 import { SubscribeModal } from './SubscribeModal';
 

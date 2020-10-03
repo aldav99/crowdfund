@@ -4,7 +4,7 @@ import { useMediaQuery } from 'react-responsive'
 
 import styles from "./../../styles/style.module.css";;
 
-import { TableAuthors, TheadAuthors, Tr, Td, Tbody, Span } from './../../../Table';
+import { TableAuthors, TheadAuthors, Tr, Td, Tbody, Span } from "./../../styles/Table";
 
 const AuthorRow = React.memo((props) => {
     console.log('render AuthorRow')

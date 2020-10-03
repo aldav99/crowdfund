@@ -1,5 +1,5 @@
 import React from 'react';
-import { Td, Span } from './../../../Table';
+import { Td, Span } from "./../../styles/Table"
 import { AuthorTable } from './AuthorTable';
 import { percentOfProgress } from './percentOfProgress';
 import styles from "./../../styles/style.module.css";
