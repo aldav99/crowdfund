@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom';
 import React, { useContext } from 'react';
 
-import authContext from './authContext';
+import authContext from './shared/Providers/authContext';
 
 
 import PetrovAvatar from './photo.png';
