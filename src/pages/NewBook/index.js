@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Layout from '../../shared/Layout.js'
+import Layout from '../../shared/Layout/Layout.js'
 
 import useBooks from '../../shared/hooks/useBooks'
 

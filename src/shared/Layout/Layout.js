@@ -1,13 +1,13 @@
 import React from 'react';
 
 
-import Logo from './../logo.jpg';
+import Logo from './../../logo.jpg';
 
-import { UserInfo } from './../UserInfo';
+import { UserInfo } from './../../UserInfo';
 
 import { Link } from 'react-router-dom';
 
-import styles from "./../style.module.css";
+import styles from "./../../style.module.css";
 
 const Layout = (props) => {
     return (

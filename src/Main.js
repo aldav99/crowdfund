@@ -1,6 +1,6 @@
 import React from 'react';
 import useBooks from './shared/hooks/useBooks';
-import Layout from './shared/Layout.js';
+import Layout from './shared/Layout/Layout.js';
 import { BookTableEnhanced } from './App';
 export const Main = (props) => {
     let [books, authors] = useBooks();
