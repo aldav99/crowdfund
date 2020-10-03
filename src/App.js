@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { BookTable } from './BookTable';
-import withLoading from './HOC/withLoading';
+import withLoading from './shared/HOC/withLoading';
 
 
 import { Helmet } from 'react-helmet';
