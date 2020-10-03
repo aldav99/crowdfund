@@ -2,7 +2,7 @@ import React from 'react';
 
 import Layout from '../../shared/Layout.js'
 
-import useBooks from '../../hooks/useBooks.js'
+import useBooks from '../../shared/hooks/useBooks'
 
 import { columns, mobileColumns, TableRow } from '../../BookTable'
 

@@ -2,9 +2,7 @@ import React from 'react';
 
 import Layout from '../../shared/Layout.js'
 
-import useBooks from '../../hooks/useBooks.js'
-
-import { TrOfTable } from '../../TrOfTable'
+import useBooks from '../../shared/hooks/useBooks'
 
 import { Helmet } from 'react-helmet';
 
