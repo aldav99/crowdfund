@@ -4,7 +4,7 @@ import Layout from '../../shared/Layout/Layout.js'
 
 import useBooks from '../../shared/hooks/useBooks'
 
-import { columns, mobileColumns, TableRow } from '../../BookTable'
+import { columns, mobileColumns, TableRow } from "../../TableRow";
 
 import { Helmet } from 'react-helmet';
 

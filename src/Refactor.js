@@ -3,7 +3,7 @@ import { TableBooks, TheadBooks, Tbody, Tr, Td, Span } from './Table';
 import { useMediaQuery } from 'react-responsive'
 import { SubscribeModal } from './SubscribeModal';
 
-import { TableRow } from "./BookTable";
+import { TableRow } from "./TableRow";
 
 export const Table = React.memo(({ rows, removeFromTable, columns }) => {
     console.log('render Table')
