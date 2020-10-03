@@ -2,9 +2,9 @@ import React, { Fragment } from 'react';
 
 import { useMediaQuery } from 'react-responsive'
 
-import styles from "./style.module.css";
+import styles from "./../../../style.module.css";
 
-import { TableAuthors, TheadAuthors, Tr, Td, Tbody, Span } from './Table';
+import { TableAuthors, TheadAuthors, Tr, Td, Tbody, Span } from './../../../Table';
 
 const AuthorRow = React.memo((props) => {
     console.log('render AuthorRow')
