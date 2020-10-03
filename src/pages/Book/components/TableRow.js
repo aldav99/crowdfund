@@ -1,7 +1,7 @@
 import React from 'react';
 import { Td, Span } from './../../../Table';
 import { AuthorTable } from './../../../AuthorTable';
-import { percentOfProgress } from './../../../percentOfProgress';
+import { percentOfProgress } from './percentOfProgress';
 import styles from "./../../../style.module.css";
 import { Link } from 'react-router-dom';
 import { Royalty } from "./Royalty";
