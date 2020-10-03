@@ -4,10 +4,6 @@ import React, { useContext } from 'react';
 import authContext from './shared/Providers/authContext';
 
 
-import PetrovAvatar from './photo.png';
-import IvanovAvatar from './photo.png';
-import SidorovAvatar from './photo.png';
-import SemenovAvatar from './photo.png';
 import UserAvatar from './user.png';
 
 import { App } from './App';
