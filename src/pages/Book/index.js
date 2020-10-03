@@ -4,10 +4,7 @@ import Layout from '../../shared/Layout.js'
 
 import useBooks from '../../hooks/useBooks.js'
 
-import { TrOfTable } from '../../TrOfTable'
-
-import { TableRow } from '../../Refactor'
-import { columns, mobileColumns } from '../../BookTable'
+import { columns, mobileColumns, TableRow } from '../../BookTable'
 
 import { Helmet } from 'react-helmet';
 
@@ -34,7 +31,7 @@ function Book({ match: { params } }) {
                 <TheadBooks />
                 <Tbody>
                     {(books && authors) ?
-                        <tr><TableRow row={books.filter(book => book.Id == params.Id)[0]} authors={authors} columns={columns} /></tr>
+                        <tr><TableRow row={books.filter(book => book.Id == params.Id)[0]} columns={columns} /></tr>
                         : <tr><td>Loading...</td></tr>}
                 </Tbody>
             </TableBooks>
