@@ -8,6 +8,8 @@ import { SubscribeModal } from './SubscribeModal';
 import { percentOfProgress } from './percentOfProgress';
 import styles from "./style.module.css";
 import { Link } from 'react-router-dom';
+
+// import { LinkCell, CloseCell, ProgressCell, CoverCell, AuthorsCell, RoyaltyCell, SubscriberCell } from "./BookTable";
 import { Royalty } from "./Royalty";
 
 const CoverCell = ({ column, row }) => {
