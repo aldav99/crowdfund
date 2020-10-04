@@ -6,7 +6,7 @@ import useBooks from '../../shared/hooks/useBooks'
 
 import { Helmet } from 'react-helmet';
 
-import { TableBooks, TheadBooks, Tbody } from "./../styles/Table"
+import { TableBooks, TheadBooks, Tbody } from "./../../shared/elements/Table"
 
 import { useHistory } from "react-router-dom";
 
