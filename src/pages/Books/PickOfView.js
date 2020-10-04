@@ -1,9 +1,9 @@
 import React from 'react';
-import { TableBooks, TheadBooks, Tbody, Tr, Td, Span } from "./../../shared/elements/Table"
+import { TableBooks, TheadBooks, Tbody, Tr, Td, Span } from "../../shared/elements/Table"
 import { useMediaQuery } from 'react-responsive'
 import { SubscribeModal } from './SubscribeModal';
 
-import { TableRow } from './../Book/components/TableRow';
+import { TableRow } from '../Book/components/TableRow';
 
 export const Table = React.memo(({ rows, removeFromTable, columns }) => {
     console.log('render Table')

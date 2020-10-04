@@ -1,6 +1,6 @@
 import React from 'react';
 import { FeedbackForm } from './FeedbackForm';
-import { GenerateTable } from './Refactor';
+import { GenerateTable } from './PickOfView';
 
 import { columns, mobileColumns } from './../Book/components/TableRow';
 
@@ -32,7 +32,7 @@ export class BookTable extends React.PureComponent {
         return (
             <React.Fragment>
                 <GenerateTable removeFromTable={this.removeFromTable} rows={books} mobileColumns={mobileColumns} columns={columns} />
-                <FeedbackForm></FeedbackForm>
+                <FeedbackForm />
             </React.Fragment>
         );
     }
