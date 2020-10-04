@@ -6,21 +6,21 @@ import styles from "./../../../shared/styles/style.module.css"
 import { Link } from 'react-router-dom';
 import { Royalty } from "./Royalty";
 
-const CoverCell = ({ column, row }) => {
+export const CoverCell = ({ column, row }) => {
     return (
         <React.Fragment>
             <Span>{column.Header}</Span>{row[column.accessor] && <img src={row[column.accessor]} width="40" height="40"></img>}
         </React.Fragment>
     );
 };
-const LinkCell = ({ column, row }) => {
+export const LinkCell = ({ column, row }) => {
     return (
         <React.Fragment>
             <Span>{column.Header}</Span><Link to={`/book/${row.Id}`}>{row[column.accessor]}</Link>
         </React.Fragment>
     );
 };
-const CloseCell = ({ column, row }) => {
+export const CloseCell = ({ column, row }) => {
     let removeFromTable = column.removeFromTable
     if (removeFromTable)
         return (
@@ -34,14 +34,14 @@ const CloseCell = ({ column, row }) => {
         </React.Fragment>
     );
 };
-const ProgressCell = ({ column, row }) => {
+export const ProgressCell = ({ column, row }) => {
     return (
         <React.Fragment>
             <Span>{column.Header}</Span>{percentOfProgress(row.fundedSum, row.neededSum)}
         </React.Fragment>
     );
 };
-const AuthorsCell = ({ column, row }) => {
+export const AuthorsCell = ({ column, row }) => {
     let authors = row.authorsList;
     return (
         <React.Fragment>
@@ -50,14 +50,14 @@ const AuthorsCell = ({ column, row }) => {
         </React.Fragment>
     );
 };
-const RoyaltyCell = ({ column, row }) => {
+export const RoyaltyCell = ({ column, row }) => {
     return (
         <React.Fragment>
             <Span>{column.Header}</Span><Royalty minCost={row.minCost} />
         </React.Fragment>
     );
 };
-const SubscriberCell = ({ column, row }) => {
+export const SubscriberCell = ({ column, row }) => {
     if (row.subscriber > 10)
         return (
             <React.Fragment>
