@@ -8,9 +8,7 @@ export class BookTable extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            books: this.props.books,
-            columns: columns,
-            mobileColumns: mobileColumns
+            books: this.props.books
         };
         this.removeFromTable = this.removeFromTable.bind(this);
     }
@@ -29,7 +27,8 @@ export class BookTable extends React.PureComponent {
 
     render() {
         console.log('render BookTable')
-        const { books, mobileColumns, columns } = this.state;
+        const { books } = this.state;
+
         return (
             <React.Fragment>
                 <GenerateTable removeFromTable={this.removeFromTable} rows={books} mobileColumns={mobileColumns} columns={columns} />
