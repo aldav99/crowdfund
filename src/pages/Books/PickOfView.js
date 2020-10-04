@@ -26,28 +26,6 @@ export const Table = React.memo(({ rows, columns }) => {
         </TableBooks>)
 })
 
-//-----------------------------------------------------------------------
-
-export const MobileTable = React.memo(({ rows, columns }) => {
-    console.log('render MobileTable')
-
-    return (
-        <TableBooks>
-            <TheadBooks />
-            <Tbody>
-                {
-                    rows.map(row => {
-                        return (
-                            <Tr key={row.id} >
-                                <TableRow row={row} columns={columns} key={row.id} />
-                                <Td><SubscribeModal /></Td>
-                            </Tr>
-                        )
-                    })
-                }
-            </Tbody>
-        </TableBooks>)
-})
 
 export const GenerateTable = ({ rows, mobileColumns, columns }) => {
     const isDesktopOrLaptop = useMediaQuery({
@@ -55,5 +33,5 @@ export const GenerateTable = ({ rows, mobileColumns, columns }) => {
     })
     rows = rows.slice(0, 3)
     return (
-        isDesktopOrLaptop ? <Table rows={rows} columns={columns} /> : <MobileTable rows={rows} columns={mobileColumns} />)
+        isDesktopOrLaptop ? <Table rows={rows} columns={columns} /> : <Table rows={rows} columns={mobileColumns} />)
 }
