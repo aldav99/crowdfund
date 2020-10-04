@@ -2,7 +2,7 @@ import React from 'react';
 import { Td, Span } from "./../../../shared/elements/Table"
 import { AuthorTable } from './AuthorTable';
 import { percentOfProgress } from './percentOfProgress';
-import styles from "./../../styles/style.module.css";
+import styles from "./../../../shared/styles/style.module.css"
 import { Link } from 'react-router-dom';
 import { Royalty } from "./Royalty";
 

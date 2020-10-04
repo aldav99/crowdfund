@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 
 import { useMediaQuery } from 'react-responsive'
 
-import styles from "./../../styles/style.module.css";;
+import styles from "./../../../shared/styles/style.module.css"
 
 import { TableAuthors, TheadAuthors, Tr, Td, Tbody, Span } from "./../../../shared/elements/Table";
 
