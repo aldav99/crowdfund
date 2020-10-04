@@ -5,7 +5,7 @@ import { SubscribeModal } from './SubscribeModal';
 
 import { TableRow } from '../Book/components/TableRow';
 
-export const Table = React.memo(({ rows, removeFromTable, columns }) => {
+export const Table = React.memo(({ rows, columns }) => {
     console.log('render Table')
 
     return (
@@ -16,7 +16,7 @@ export const Table = React.memo(({ rows, removeFromTable, columns }) => {
                     rows.map(row => {
                         return (
                             <Tr key={row.id} >
-                                <TableRow removeFromTable={removeFromTable} row={row} columns={columns} key={row.id} />
+                                <TableRow row={row} columns={columns} key={row.id} />
                                 <Td><SubscribeModal /></Td>
                             </Tr>
                         )
@@ -28,7 +28,7 @@ export const Table = React.memo(({ rows, removeFromTable, columns }) => {
 
 //-----------------------------------------------------------------------
 
-export const MobileTable = React.memo(({ rows, removeFromTable, columns }) => {
+export const MobileTable = React.memo(({ rows, columns }) => {
     console.log('render MobileTable')
 
     return (
@@ -39,7 +39,7 @@ export const MobileTable = React.memo(({ rows, removeFromTable, columns }) => {
                     rows.map(row => {
                         return (
                             <Tr key={row.id} >
-                                <TableRow removeFromTable={removeFromTable} row={row} columns={columns} key={row.id} />
+                                <TableRow row={row} columns={columns} key={row.id} />
                                 <Td><SubscribeModal /></Td>
                             </Tr>
                         )
@@ -49,11 +49,11 @@ export const MobileTable = React.memo(({ rows, removeFromTable, columns }) => {
         </TableBooks>)
 })
 
-export const GenerateTable = ({ rows, removeFromTable, mobileColumns, columns }) => {
+export const GenerateTable = ({ rows, mobileColumns, columns }) => {
     const isDesktopOrLaptop = useMediaQuery({
         query: '(min-device-width: 541px)'
     })
     rows = rows.slice(0, 3)
     return (
-        isDesktopOrLaptop ? <Table removeFromTable={removeFromTable} rows={rows} columns={columns} /> : <MobileTable removeFromTable={removeFromTable} rows={rows} columns={mobileColumns} />)
+        isDesktopOrLaptop ? <Table rows={rows} columns={columns} /> : <MobileTable rows={rows} columns={mobileColumns} />)
 }

@@ -28,10 +28,14 @@ export class BookTable extends React.PureComponent {
     render() {
         console.log('render BookTable')
         const { books } = this.state;
+        let elem = columns.find(column => column.accessor == 'close')
+
+        if (elem)
+            elem.removeFromTable = this.removeFromTable
 
         return (
             <React.Fragment>
-                <GenerateTable removeFromTable={this.removeFromTable} rows={books} mobileColumns={mobileColumns} columns={columns} />
+                <GenerateTable rows={books} mobileColumns={mobileColumns} columns={columns} />
                 <FeedbackForm />
             </React.Fragment>
         );

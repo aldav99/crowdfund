@@ -20,7 +20,8 @@ const LinkCell = ({ column, row }) => {
         </React.Fragment>
     );
 };
-const CloseCell = ({ column, row, removeFromTable }) => {
+const CloseCell = ({ column, row }) => {
+    let removeFromTable = column.removeFromTable
     if (removeFromTable)
         return (
             <React.Fragment>
@@ -70,20 +71,22 @@ const SubscriberCell = ({ column, row }) => {
 };
 
 
-export const TableRow = ({ row, columns, removeFromTable }) => {
+export const TableRow = ({ row, columns }) => {
     if (!row)
         return null;
+
     return columns.map(column => {
         const CellComponent = column.cell;
         return (
             <Td key={column.accessor}>
-                {CellComponent ? <CellComponent row={row} column={column} removeFromTable={removeFromTable} authors={row.authorsList} /> : row[column.accessor]}
+                {CellComponent ? <CellComponent row={row} column={column}
+                    authors={row.authorsList} /> : row[column.accessor]}
             </Td>
         );
     });
 };
 
-export const columns = [
+export let columns = [
     { Header: '', accessor: 'title', cell: LinkCell },
     { Header: '', accessor: 'close', cell: CloseCell },
     { Header: '', accessor: 'brief' },
@@ -103,7 +106,7 @@ export const columns = [
     }
 ];
 
-export const mobileColumns = [
+export let mobileColumns = [
     { Header: 'Title', accessor: 'title', cell: LinkCell },
     { Header: 'Close', accessor: 'close', cell: CloseCell },
     { Header: 'Brief', accessor: 'brief' },
