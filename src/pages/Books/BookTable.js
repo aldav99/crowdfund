@@ -78,7 +78,7 @@ export class BookTable extends React.PureComponent {
 
         return (
             <React.Fragment>
-                <GenerateTable TableName={Table} rows={books} mobileColumns={mobileColumns} columns={columns} />
+                <GenerateTable TableName={Table} rows={books} mobileColumns={mobileColumns} columns={columns} limitOfString={3} />
                 <FeedbackForm />
             </React.Fragment>
         );
