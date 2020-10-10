@@ -1,6 +1,8 @@
 import React from 'react';
 import { FeedbackForm } from './FeedbackForm';
-import { GenerateTable, Table } from './PickOfView';
+import { Table } from './PickOfView';
+
+import { GenerateTable } from './../../shared/elements/GenerateTable';
 
 import { LinkCell, CloseCell, ProgressCell, CoverCell, AuthorsCell, RoyaltyCell, SubscriberCell } from './../Book/components/TableRow';
 
