@@ -1,10 +1,8 @@
 import React from 'react';
 import { FeedbackForm } from './FeedbackForm';
-import { GenerateTable } from './PickOfView';
+import { GenerateTable, Table } from './PickOfView';
 
 import { LinkCell, CloseCell, ProgressCell, CoverCell, AuthorsCell, RoyaltyCell, SubscriberCell } from './../Book/components/TableRow';
-
-// import { columns, mobileColumns } from './../Book/components/TableRow';
 
 export let columns = [
     { Header: '', accessor: 'title', cell: LinkCell },
@@ -78,7 +76,7 @@ export class BookTable extends React.PureComponent {
 
         return (
             <React.Fragment>
-                <GenerateTable rows={books} mobileColumns={mobileColumns} columns={columns} />
+                <GenerateTable TableName={Table} rows={books} mobileColumns={mobileColumns} columns={columns} />
                 <FeedbackForm />
             </React.Fragment>
         );
