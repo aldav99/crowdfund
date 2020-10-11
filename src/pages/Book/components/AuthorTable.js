@@ -28,23 +28,23 @@ export const mobileColumns = [
     { Header: 'Brief', accessor: 'brief' }
 ];
 
-const AuthorRow = React.memo((props) => {
-    console.log('render AuthorRow')
+// const AuthorRow = React.memo((props) => {
+//     console.log('render AuthorRow')
 
-    const isDesktopOrLaptop = useMediaQuery({
-        query: '(min-device-width: 541px)'
-    })
+//     const isDesktopOrLaptop = useMediaQuery({
+//         query: '(min-device-width: 541px)'
+//     })
 
-    let author = props.author
+//     let author = props.author
 
 
 
-    return (
-        <Tr>
-            {isDesktopOrLaptop ? <AuthorStr row={author} columns={columns} /> : <AuthorStr row={author} columns={mobileColumns} />}
-        </Tr>
-    );
-})
+//     return (
+//         <Tr>
+//             {isDesktopOrLaptop ? <AuthorStr row={author} columns={columns} /> : <AuthorStr row={author} columns={mobileColumns} />}
+//         </Tr>
+//     );
+// })
 
 // return (
 //     <React.Fragment>
@@ -77,15 +77,39 @@ export class AuthorTable extends React.PureComponent {
                             this.toggleViev()}>More...</button></td></Tr> : null
                     }
 
-                    {authors.map(function (author, key) {
+                    {authors.map(author => {
                         return (
-                            <AuthorRow key={author.id} author={author} />
+                            <Tr key={author.id} >
+                                <AuthorStr row={author} columns={columns} />
+                            </Tr>
                         );
                     })}
                 </Tbody>
             </TableAuthors > : null);
     }
 }
+
+// export const Table = React.memo(({ rows, columns }) => {
+
+//     return (
+//         <TableAuthors>
+//             <TheadAuthors className={styles.theadTable} />
+//             <Tbody>
+//                 {
+//                     (rows.length > 3) ? <Tr><td><button onClick={() =>
+//                         this.toggleViev()}>More...</button></td></Tr> : null
+//                 }
+
+//                 {authors.map(author => {
+//                     return (
+//                         <Tr key={row.id} >
+//                             <AuthorStr row={row} columns={columns} />
+//                         </Tr>
+//                     );
+//                 })}
+//             </Tbody>
+//         </TableAuthors >)
+// })
 
 
 export const AuthorStr = ({ row, columns }) => {
