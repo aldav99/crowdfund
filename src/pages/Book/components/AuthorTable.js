@@ -57,6 +57,7 @@ export class AuthorTable extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = { onlyThree: true };
+        this.toggleViev = this.toggleViev.bind(this);
     }
 
     toggleViev() {
@@ -66,50 +67,36 @@ export class AuthorTable extends React.PureComponent {
     render() {
         console.log('render AuthorTable')
         let authors;
-        (this.props.authors && this.props.authors.length > 3 && this.state.onlyThree) ? authors = this.props.authors.slice(0, 3) : authors = this.props.authors;
+        let numberOfAuthors = this.props.authors.length;
+
+        (this.props.authors && numberOfAuthors > 3 && this.state.onlyThree) ? authors = this.props.authors.slice(0, 3) : authors = this.props.authors;
 
         return (
-            (authors) ? <TableAuthors>
-                <TheadAuthors className={styles.theadTable} />
-                <Tbody>
-                    {
-                        (this.props.authors.length > 3) ? <Tr><td><button onClick={() =>
-                            this.toggleViev()}>More...</button></td></Tr> : null
-                    }
-
-                    {authors.map(author => {
-                        return (
-                            <Tr key={author.id} >
-                                <AuthorStr row={author} columns={columns} />
-                            </Tr>
-                        );
-                    })}
-                </Tbody>
-            </TableAuthors > : null);
+            (authors) ? <Table rows={authors} columns={columns} numberOfAuthors={numberOfAuthors} toggleViev={this.toggleViev} /> : null);
     }
 }
 
-// export const Table = React.memo(({ rows, columns }) => {
+export const Table = React.memo(({ rows, columns, numberOfAuthors, toggleViev }) => {
 
-//     return (
-//         <TableAuthors>
-//             <TheadAuthors className={styles.theadTable} />
-//             <Tbody>
-//                 {
-//                     (rows.length > 3) ? <Tr><td><button onClick={() =>
-//                         this.toggleViev()}>More...</button></td></Tr> : null
-//                 }
+    return (
+        <TableAuthors>
+            <TheadAuthors className={styles.theadTable} />
+            <Tbody>
+                {
+                    (numberOfAuthors > 3) ? <Tr><td><button onClick={() =>
+                        toggleViev()}>More...</button></td></Tr> : null
+                }
 
-//                 {authors.map(author => {
-//                     return (
-//                         <Tr key={row.id} >
-//                             <AuthorStr row={row} columns={columns} />
-//                         </Tr>
-//                     );
-//                 })}
-//             </Tbody>
-//         </TableAuthors >)
-// })
+                {rows.map(row => {
+                    return (
+                        <Tr key={row.id} >
+                            <AuthorStr row={row} columns={columns} />
+                        </Tr>
+                    );
+                })}
+            </Tbody>
+        </TableAuthors >)
+})
 
 
 export const AuthorStr = ({ row, columns }) => {
