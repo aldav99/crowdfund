@@ -6,6 +6,28 @@ import styles from "./../../../shared/styles/style.module.css"
 
 import { TableAuthors, TheadAuthors, Tr, Td, Tbody, Span } from "./../../../shared/elements/Table";
 
+export const AvatarCell = ({ column, row }) => {
+    return (
+        <React.Fragment>
+            <Span>{column.Header}</Span>{row[column.accessor] && <img src={row[column.accessor]} width="40" height="50"></img>}
+        </React.Fragment>
+    );
+};
+
+export const columns = [
+    { Header: '', accessor: 'name' },
+    { Header: '', accessor: 'email' },
+    { Header: '', accessor: 'avatar', cell: AvatarCell },
+    { Header: '', accessor: 'brief' }
+];
+
+export const mobileColumns = [
+    { Header: 'Name', accessor: 'name' },
+    { Header: 'Email', accessor: 'email' },
+    { Header: 'Avatar', accessor: 'avatar', cell: AvatarCell },
+    { Header: 'Brief', accessor: 'brief' }
+];
+
 const AuthorRow = React.memo((props) => {
     console.log('render AuthorRow')
 
@@ -15,26 +37,21 @@ const AuthorRow = React.memo((props) => {
 
     let author = props.author
 
-    let withHeader = {
-        name: 'Name: ',
-        email: 'Email: ',
-        avatar: 'Avatar: ',
-        brief: 'Brief: '
-    }
 
-    let withOutHeader = {
-        name: '',
-        email: '',
-        avatar: '',
-        brief: ''
-    }
 
     return (
         <Tr>
-            {isDesktopOrLaptop ? <AuthorStr author={author} columns={withOutHeader} /> : <AuthorStr author={author} columns={withHeader} />}
+            {isDesktopOrLaptop ? <AuthorStr row={author} columns={columns} /> : <AuthorStr row={author} columns={mobileColumns} />}
         </Tr>
     );
 })
+
+// return (
+//     <React.Fragment>
+//         <GenerateTable TableName={Table} rows={books} mobileColumns={mobileColumns} columns={columns} limitOfString={3} />
+//         <FeedbackForm />
+//     </React.Fragment>
+// );
 
 export class AuthorTable extends React.PureComponent {
     constructor(props) {
@@ -71,15 +88,18 @@ export class AuthorTable extends React.PureComponent {
 }
 
 
-const AuthorStr = (props) => {
-    let author = props.author
-    let columns = props.columns
-    return (
-        <React.Fragment>
-            <Td><Span>{columns.name}</Span>{author.name}</Td>
-            <Td><Span>{columns.email}</Span>{author.email}</Td>
-            <Td><Span>{columns.avatar}</Span><img src={author.avatar} width="40" height="50"></img></Td>
-            <Td><Span>{columns.brief}</Span>{author.brief}</Td>
-        </React.Fragment>
-    );
-}
+export const AuthorStr = ({ row, columns }) => {
+    if (!row)
+        return null;
+
+    return columns.map(column => {
+        const CellComponent = column.cell;
+        return (
+            <Td key={column.accessor}>
+                {CellComponent ? <CellComponent row={row} column={column}
+                /> : row[column.accessor]}
+            </Td>
+        );
+    });
+};
+
