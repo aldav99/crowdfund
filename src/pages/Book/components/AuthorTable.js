@@ -3,6 +3,7 @@ import React, { Fragment } from 'react';
 import { useMediaQuery } from 'react-responsive'
 
 import styles from "./../../../shared/styles/style.module.css"
+import { GenerateTable } from './../../../shared/elements/GenerateTable';
 
 import { TableAuthors, TheadAuthors, Tr, Td, Tbody, Span } from "./../../../shared/elements/Table";
 
@@ -23,45 +24,6 @@ export const ToggleViewCell = ({ toggleView }) => {
     );
 };
 
-// export const columns = [
-//     { Header: '', accessor: 'name' },
-//     { Header: '', accessor: 'email' },
-//     { Header: '', accessor: 'avatar', cell: AvatarCell },
-//     { Header: '', accessor: 'brief' }
-// ];
-
-// export const mobileColumns = [
-//     { Header: 'Name', accessor: 'name' },
-//     { Header: 'Email', accessor: 'email' },
-//     { Header: 'Avatar', accessor: 'avatar', cell: AvatarCell },
-//     { Header: 'Brief', accessor: 'brief' }
-// ];
-
-// const AuthorRow = React.memo((props) => {
-//     console.log('render AuthorRow')
-
-//     const isDesktopOrLaptop = useMediaQuery({
-//         query: '(min-device-width: 541px)'
-//     })
-
-//     let author = props.author
-
-
-
-//     return (
-//         <Tr>
-//             {isDesktopOrLaptop ? <AuthorStr row={author} columns={columns} /> : <AuthorStr row={author} columns={mobileColumns} />}
-//         </Tr>
-//     );
-// })
-
-// return (
-//     <React.Fragment>
-//         <GenerateTable TableName={Table} rows={books} mobileColumns={mobileColumns} columns={columns} limitOfString={3} />
-//         <FeedbackForm />
-//     </React.Fragment>
-// );
-
 export class AuthorTable extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -69,7 +31,7 @@ export class AuthorTable extends React.PureComponent {
         this.toggleView = this.toggleView.bind(this);
 
         this.columns = [
-            { Header: '', accessor: 'more', cell: ToggleViewCell},
+            { Header: '', accessor: 'more', cell: ToggleViewCell },
             { Header: '', accessor: 'name' },
             { Header: '', accessor: 'email' },
             { Header: '', accessor: 'avatar', cell: AvatarCell },
@@ -77,7 +39,7 @@ export class AuthorTable extends React.PureComponent {
         ];
 
         this.mobileColumns = [
-            { Header: '', accessor: 'more', cell: ToggleViewCell},
+            { Header: '', accessor: 'more', cell: ToggleViewCell },
             { Header: 'Name', accessor: 'name' },
             { Header: 'Email', accessor: 'email' },
             { Header: 'Avatar', accessor: 'avatar', cell: AvatarCell },
@@ -105,7 +67,9 @@ export class AuthorTable extends React.PureComponent {
         }
 
         return (
-            (authors) ? <Table rows={authors} columns={this.columns} /> : null);
+            (authors) ? <React.Fragment>
+                <GenerateTable TableName={Table} rows={authors} mobileColumns={this.mobileColumns} columns={this.columns} />
+            </React.Fragment> : null);
     }
 }
 
@@ -147,9 +111,4 @@ export const AuthorStr = ({ row, columns }) => {
         );
     });
 };
-
-function deleteElement(arr, elem, strProp) {
-    if (arr[0][strProp] == elem)
-        return arr.slice(1)
-}
 
