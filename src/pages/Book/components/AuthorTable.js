@@ -14,6 +14,15 @@ export const AvatarCell = ({ column, row }) => {
     );
 };
 
+export const ToggleViewCell = ({ toggleView }) => {
+    return (
+        <React.Fragment>
+            {(toggleView) ? <td><button onClick={() =>
+                toggleView()}>More...</button></td> : null}
+        </React.Fragment>
+    );
+};
+
 // export const columns = [
 //     { Header: '', accessor: 'name' },
 //     { Header: '', accessor: 'email' },
@@ -57,25 +66,27 @@ export class AuthorTable extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = { onlyThree: true };
-        this.toggleViev = this.toggleViev.bind(this);
+        this.toggleView = this.toggleView.bind(this);
 
         this.columns = [
+            { Header: '', accessor: 'more', cell: ToggleViewCell},
             { Header: '', accessor: 'name' },
             { Header: '', accessor: 'email' },
             { Header: '', accessor: 'avatar', cell: AvatarCell },
             { Header: '', accessor: 'brief' }
         ];
-        
+
         this.mobileColumns = [
+            { Header: '', accessor: 'more', cell: ToggleViewCell},
             { Header: 'Name', accessor: 'name' },
             { Header: 'Email', accessor: 'email' },
             { Header: 'Avatar', accessor: 'avatar', cell: AvatarCell },
             { Header: 'Brief', accessor: 'brief' }
         ];
-        
+
     }
 
-    toggleViev() {
+    toggleView() {
         this.setState({ onlyThree: !this.state.onlyThree })
     }
 
@@ -86,25 +97,29 @@ export class AuthorTable extends React.PureComponent {
 
         if (this.props.authors && numberOfAuthors > 3 && this.state.onlyThree) {
             authors = this.props.authors.slice(0, 3)
+
+            this.columns[0].toggleView = this.toggleView
+            this.mobileColumns[0].toggleView = this.toggleView
         } else {
             authors = this.props.authors
         }
 
         return (
-            (authors) ? <Table rows={authors} columns={this.columns} numberOfAuthors={numberOfAuthors} toggleViev={this.toggleViev} /> : null);
+            (authors) ? <Table rows={authors} columns={this.columns} /> : null);
     }
 }
 
-export const Table = React.memo(({ rows, columns, numberOfAuthors, toggleViev }) => {
-
+export const Table = React.memo(({ rows, columns }) => {
+    const buttonColumn = columns[0]
+    console.log('buttonColumn', buttonColumn)
+    const ButtonComponent = buttonColumn.cell
+    console.log('buttonColumn.toggleView', buttonColumn.toggleView)
+    columns = columns.slice(1)
     return (
         <TableAuthors>
             <TheadAuthors className={styles.theadTable} />
             <Tbody>
-                {
-                    (numberOfAuthors > 3) ? <Tr><td><button onClick={() =>
-                        toggleViev()}>More...</button></td></Tr> : null
-                }
+                <Tr><ButtonComponent toggleView={buttonColumn.toggleView} /></Tr>
 
                 {rows.map(row => {
                     return (
@@ -132,4 +147,9 @@ export const AuthorStr = ({ row, columns }) => {
         );
     });
 };
+
+function deleteElement(arr, elem, strProp) {
+    if (arr[0][strProp] == elem)
+        return arr.slice(1)
+}
 
