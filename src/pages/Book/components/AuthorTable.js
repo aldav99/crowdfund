@@ -69,7 +69,11 @@ export class AuthorTable extends React.PureComponent {
         let authors;
         let numberOfAuthors = this.props.authors.length;
 
-        (this.props.authors && numberOfAuthors > 3 && this.state.onlyThree) ? authors = this.props.authors.slice(0, 3) : authors = this.props.authors;
+        if (this.props.authors && numberOfAuthors > 3 && this.state.onlyThree) {
+            authors = this.props.authors.slice(0, 3)
+        } else {
+            authors = this.props.authors
+        }
 
         return (
             (authors) ? <Table rows={authors} columns={columns} numberOfAuthors={numberOfAuthors} toggleViev={this.toggleViev} /> : null);
