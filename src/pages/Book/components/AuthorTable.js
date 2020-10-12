@@ -14,19 +14,19 @@ export const AvatarCell = ({ column, row }) => {
     );
 };
 
-export const columns = [
-    { Header: '', accessor: 'name' },
-    { Header: '', accessor: 'email' },
-    { Header: '', accessor: 'avatar', cell: AvatarCell },
-    { Header: '', accessor: 'brief' }
-];
+// export const columns = [
+//     { Header: '', accessor: 'name' },
+//     { Header: '', accessor: 'email' },
+//     { Header: '', accessor: 'avatar', cell: AvatarCell },
+//     { Header: '', accessor: 'brief' }
+// ];
 
-export const mobileColumns = [
-    { Header: 'Name', accessor: 'name' },
-    { Header: 'Email', accessor: 'email' },
-    { Header: 'Avatar', accessor: 'avatar', cell: AvatarCell },
-    { Header: 'Brief', accessor: 'brief' }
-];
+// export const mobileColumns = [
+//     { Header: 'Name', accessor: 'name' },
+//     { Header: 'Email', accessor: 'email' },
+//     { Header: 'Avatar', accessor: 'avatar', cell: AvatarCell },
+//     { Header: 'Brief', accessor: 'brief' }
+// ];
 
 // const AuthorRow = React.memo((props) => {
 //     console.log('render AuthorRow')
@@ -58,6 +58,21 @@ export class AuthorTable extends React.PureComponent {
         super(props);
         this.state = { onlyThree: true };
         this.toggleViev = this.toggleViev.bind(this);
+
+        this.columns = [
+            { Header: '', accessor: 'name' },
+            { Header: '', accessor: 'email' },
+            { Header: '', accessor: 'avatar', cell: AvatarCell },
+            { Header: '', accessor: 'brief' }
+        ];
+        
+        this.mobileColumns = [
+            { Header: 'Name', accessor: 'name' },
+            { Header: 'Email', accessor: 'email' },
+            { Header: 'Avatar', accessor: 'avatar', cell: AvatarCell },
+            { Header: 'Brief', accessor: 'brief' }
+        ];
+        
     }
 
     toggleViev() {
@@ -76,7 +91,7 @@ export class AuthorTable extends React.PureComponent {
         }
 
         return (
-            (authors) ? <Table rows={authors} columns={columns} numberOfAuthors={numberOfAuthors} toggleViev={this.toggleViev} /> : null);
+            (authors) ? <Table rows={authors} columns={this.columns} numberOfAuthors={numberOfAuthors} toggleViev={this.toggleViev} /> : null);
     }
 }
 
