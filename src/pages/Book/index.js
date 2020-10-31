@@ -4,45 +4,45 @@ import Layout from '../../shared/Layout/Layout.js'
 
 import useBooks from '../../shared/hooks/useBooks'
 
-import { columns, mobileColumns, TableRow } from "./components/TableRow";
-
 import { Helmet } from 'react-helmet';
 
-import { TableBooks, TheadBooks, Tbody } from "./../../shared/elements/Table"
-
 import { useHistory } from "react-router";
+
+import BookTable from '../../shared/components/BookTable/index.js';
 
 function Book({ match: { params } }) {
 
     let [books, authors] = useBooks();
     const history = useHistory();
 
-    return (
-        <Layout>
-            <button onClick={() => {
-                if (history.action === 'PUSH')
-                    history.goBack();
-                else
-                    history.push('/');
-            }}>
-                Go home
-            </button>
-            <TableBooks>
-                <TheadBooks />
-                <Tbody>
-                    {(books && authors) ?
-                        <tr><TableRow row={books.filter(book => book.Id == params.Id)[0]} columns={columns} /></tr>
-                        : <tr><td>Loading...</td></tr>}
-                </Tbody>
-            </TableBooks>
+    console.log(books, authors);
 
-            {(books) ?
-                <Helmet>
-                    <title>{books.filter(book => book.Id == params.Id)[0].title}</title>
-                </Helmet> : null
-            }
-        </Layout>
-    )
+    return (
+      <Layout>
+        <button
+          onClick={() => {
+            if (history.action === 'PUSH') history.goBack();
+            else history.push('/');
+          }}
+        >
+          Go home
+        </button>
+        
+        <BookTable
+          authors={authors}
+          books={books && books.filter((book) => book.Id == params.Id)}
+          isLoading={!(books && authors)}
+        />
+
+        {books ? (
+          <Helmet>
+            <title>
+              {books.filter((book) => book.Id == params.Id)[0].title}
+            </title>
+          </Helmet>
+        ) : null}
+      </Layout>
+    );
 }
 
 export default Book;

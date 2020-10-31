@@ -1,19 +1,48 @@
 import React from 'react';
 import styles from "./../styles/style.module.css";
 
-export function TableBooks(props) {
+export function Table(props) {
     return (
-        <table className={styles.tableTableBooks}>
-            {props.children}
-        </table>)
+        <table>
+            <Thead>
+                <Tr>
+                    {
+                        props.columns.map((column, idx) => (
+                            <Th key={idx}>{column.Header}</Th>
+                        ))
+                    }
+                </Tr>
+            </Thead>
+            <Tbody>
+                {
+                    props.rows.map((row, idx) => (
+                        <Tr key={idx}>
+                            {
+                                props.columns.map((column, idx) => (
+                                    <Td key={idx}>
+                                        {
+                                            column.cell
+                                                ? <column.cell row={row} column={column} />
+                                                : row[column.accessor]
+                                        }
+                                    </Td>
+                                ))
+                            }
+                        </Tr>
+                    ))
+                }
+            </Tbody>
+        </table>
+    );
 };
 
-export function TableAuthors(props) {
+function Thead(props) {
     return (
-        <table className={styles.tableTableAuthors}>
+        <thead>
             {props.children}
-        </table>)
-};
+        </thead>
+    );
+}
 
 export function Tbody(props) {
     return (
@@ -49,42 +78,4 @@ export function Tr(props) {
             {props.children}
         </tr>)
 };
-
-export class TheadBooks extends React.Component {
-    render() {
-        return (
-            <thead className={styles.theadTable}>
-                <tr className={[styles.theadTr, styles.Tr].join(' ')}>
-                    <Th>Title</Th>
-                    <Th>Close</Th>
-                    <Th>Brief</Th>
-                    <Th>Page</Th>
-                    <Th>Lang</Th>
-                    <Th>Progress</Th>
-                    <Th>Cover</Th>
-                    <Th>Author</Th>
-                    <Th>minCost</Th>
-                    <Th>royalty</Th>
-                    <Th>neededCost</Th>
-                    <Th>fundedSum</Th>
-                    <Th>neededSum</Th>
-                    <Th>subscriber</Th>
-                </tr>
-            </thead>);
-    }
-}
-
-export class TheadAuthors extends React.Component {
-    render() {
-        return (
-            <thead className={styles.theadTable}>
-                <tr className={[styles.theadTr, styles.Tr].join(' ')}>
-                    <Th>Name</Th>
-                    <Th>Email</Th>
-                    <Th>Avatar</Th>
-                    <Th>Brief</Th>
-                </tr>
-            </thead>);
-    }
-}
 

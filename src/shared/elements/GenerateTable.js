@@ -1,11 +1,11 @@
 import React from 'react';
 import { useMediaQuery } from 'react-responsive'
+import { Table } from './Table';
 
-export const GenerateTable = ({ TableName, rows, mobileColumns, columns, limitOfString = 10 }) => {
+export const GenerateTable = ({ rows, mobileColumns, columns }) => {
     const isDesktopOrLaptop = useMediaQuery({
         query: '(min-device-width: 541px)'
     })
-    rows = rows.slice(0, limitOfString)
-    return (
-        isDesktopOrLaptop ? <TableName rows={rows} columns={columns} /> : <TableName rows={rows} columns={mobileColumns} />)
+
+    return <Table rows={rows} columns={ isDesktopOrLaptop ? columns : mobileColumns }  />
 }

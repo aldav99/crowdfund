@@ -3,8 +3,6 @@ import React from 'react';
 
 import styles from "./../../shared/styles/style.module.css"
 
-
-
 export class SubscribeModal extends React.Component {
     constructor(props) {
         super(props);

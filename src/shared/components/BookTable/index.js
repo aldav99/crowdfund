@@ -1,12 +1,14 @@
 import React from 'react';
+
+import withLoading from '../../HOC/withLoading';
+
 import { FeedbackForm } from './FeedbackForm';
-import { Table } from './PickOfView';
 
-import { GenerateTable } from './../../shared/elements/GenerateTable';
+import { GenerateTable } from '../../elements/GenerateTable';
 
-import { LinkCell, CloseCell, ProgressCell, CoverCell, AuthorsCell, RoyaltyCell, SubscriberCell } from './../Book/components/TableRow';
+import { LinkCell, CloseCell, ProgressCell, CoverCell, AuthorsCell, RoyaltyCell, SubscriberCell } from '../TableRow';
 
-export let columns = [
+export let mobileColumns = [
     { Header: '', accessor: 'title', cell: LinkCell },
     { Header: '', accessor: 'close', cell: CloseCell },
     { Header: '', accessor: 'brief' },
@@ -26,28 +28,28 @@ export let columns = [
     }
 ];
 
-export let mobileColumns = [
+export let columns = [
     { Header: 'Title', accessor: 'title', cell: LinkCell },
-    { Header: 'Close', accessor: 'close', cell: CloseCell },
+    // { Header: 'Close', accessor: 'close', cell: CloseCell },
     { Header: 'Brief', accessor: 'brief' },
-    { Header: 'Page', accessor: 'page' },
-    { Header: 'Lang', accessor: 'lang' },
-    { Header: 'Progress', accessor: 'progress', cell: ProgressCell },
-    { Header: 'Cover', accessor: 'cover', cell: CoverCell },
+    // { Header: 'Page', accessor: 'page' },
+    // { Header: 'Lang', accessor: 'lang' },
+    // { Header: 'Progress', accessor: 'progress', cell: ProgressCell },
+    // { Header: 'Cover', accessor: 'cover', cell: CoverCell },
     { Header: 'Authors', accessor: 'authors', cell: AuthorsCell },
-    { Header: 'minCost', accessor: 'minCost' },
+    // { Header: 'minCost', accessor: 'minCost' },
     { Header: 'royalty', accessor: 'royalty', cell: RoyaltyCell },
     { Header: 'neededCost', accessor: 'neededCost' },
     { Header: 'fundedSum', accessor: 'fundedSum' },
     { Header: 'neededSum', accessor: 'neededSum' },
-    {
-        Header: 'subscriber', accessor: 'subscriber',
-        cell: SubscriberCell
-    }
+    // {
+    //     Header: 'subscriber', accessor: 'subscriber',
+    //     cell: SubscriberCell
+    // }
 ];
 
 
-export class BookTable extends React.PureComponent {
+class BookTable extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
@@ -58,9 +60,9 @@ export class BookTable extends React.PureComponent {
 
     removeFromTable(bookId) {
         this.setState(function (state) {
-            let elem = state.books.find(book => book.id == bookId)
+            const elem = state.books.find(book => book.id == bookId)
 
-            let newState = [...state.books.filter(book => book.id != bookId), elem]
+            const newState = [...state.books.filter(book => book.id != bookId), elem]
 
             return {
                 books: newState
@@ -78,13 +80,11 @@ export class BookTable extends React.PureComponent {
 
         return (
             <React.Fragment>
-                <GenerateTable TableName={Table} rows={books} mobileColumns={mobileColumns} columns={columns} limitOfString={3} />
+                <GenerateTable rows={books} mobileColumns={mobileColumns} columns={columns} />
                 <FeedbackForm />
             </React.Fragment>
         );
     }
 }
 
-
-
-
+export default withLoading(BookTable);
