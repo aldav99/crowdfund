@@ -14,14 +14,10 @@ export { RoyaltyCell, AuthorsCell, CoverCell, LinkCell, CloseCell, ProgressCell 
 export const SubscriberCell = ({ column, row }) => {
     if (row.subscriber > 10)
         return (
-            <React.Fragment>
-                <Span>{column.Header}</Span><b className={styles.letter}>{row.subscriber}</b>
-            </React.Fragment>
+            <b className={styles.letter}>{row.subscriber}</b>
         );
     return (
-        <React.Fragment>
-            <Span>{column.Header}</Span>{row.subscriber}
-        </React.Fragment>);
+        row.subscriber)
 };
 
 
