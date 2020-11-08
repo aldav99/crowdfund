@@ -5,18 +5,9 @@ import styles from "./TableRow.module.css"
 import { Link } from 'react-router-dom';
 import RoyaltyCell from "./cells/RoyaltyCell";
 import { AuthorsCell } from './cells/AuthorTableCell';
-export const CoverCell = ({ column, row }) => {
-    return (
-        <React.Fragment>
-            <Span>{column.Header}</Span>{row[column.accessor] && <img src={row[column.accessor]} width="40" height="40"></img>}
-        </React.Fragment>
-    );
-};
-export const LinkCell = ({ column, row }) => {
-    return (
-        <Link to={`/book/${row.Id}`}>{row[column.accessor]}</Link>
-    );
-};
+import { LinkCell } from './cells/LinkCell';
+import { CoverCell } from './cells/CoverCell';
+
 export const CloseCell = ({ column, row }) => {
     let removeFromTable = column.removeFromTable
     if (removeFromTable)
@@ -39,7 +30,7 @@ export const ProgressCell = ({ column, row }) => {
     );
 };
 
-export { RoyaltyCell, AuthorsCell };
+export { RoyaltyCell, AuthorsCell, CoverCell, LinkCell };
 
 export const SubscriberCell = ({ column, row }) => {
     if (row.subscriber > 10)
@@ -71,43 +62,44 @@ export const TableRow = ({ row, columns }) => {
 };
 
 export let columns = [
-  { Header: '', accessor: 'title', cell: LinkCell },
-  { Header: '', accessor: 'close', cell: CloseCell },
-  { Header: '', accessor: 'brief' },
-  { Header: '', accessor: 'page' },
-  { Header: '', accessor: 'lang' },
-  { Header: '', accessor: 'progress', cell: ProgressCell },
-  { Header: '', accessor: 'cover', cell: CoverCell },
-  { Header: '', accessor: 'authors', cell: AuthorsCell },
-  { Header: '', accessor: 'minCost' },
-  { Header: '', accessor: 'royalty', cell: RoyaltyCell },
-  { Header: '', accessor: 'neededCost' },
-  { Header: '', accessor: 'fundedSum' },
-  { Header: '', accessor: 'neededSum' },
-  {
-    Header: '',
-    accessor: 'subscriber',
-    cell: SubscriberCell,
-  },
+    { Header: '', accessor: 'title', cell: LinkCell },
+    { Header: '', accessor: 'close', cell: CloseCell },
+    { Header: '', accessor: 'brief' },
+    { Header: '', accessor: 'page' },
+    { Header: '', accessor: 'lang' },
+    { Header: '', accessor: 'progress', cell: ProgressCell },
+    { Header: '', accessor: 'cover', cell: CoverCell },
+    { Header: '', accessor: 'authors', cell: AuthorsCell },
+    { Header: '', accessor: 'minCost' },
+    { Header: '', accessor: 'royalty', cell: RoyaltyCell },
+    { Header: '', accessor: 'neededCost' },
+    { Header: '', accessor: 'fundedSum' },
+    { Header: '', accessor: 'neededSum' },
+    {
+        Header: '',
+        accessor: 'subscriber',
+        cell: SubscriberCell,
+    },
 ];
 
 export let mobileColumns = [
-  { Header: 'Title', accessor: 'title', cell: LinkCell },
-  { Header: 'Close', accessor: 'close', cell: CloseCell },
-  { Header: 'Brief', accessor: 'brief' },
-  { Header: 'Page', accessor: 'page' },
-  { Header: 'Lang', accessor: 'lang' },
-  { Header: 'Progress', accessor: 'progress', cell: ProgressCell },
-  { Header: 'Cover', accessor: 'cover', cell: CoverCell },
-  { Header: 'Authors', accessor: 'authors', cell: AuthorsCell },
-  { Header: 'minCost', accessor: 'minCost' },
-  { Header: 'royalty', accessor: 'royalty', cell: RoyaltyCell },
-  { Header: 'neededCost', accessor: 'neededCost' },
-  { Header: 'fundedSum', accessor: 'fundedSum' },
-  { Header: 'neededSum', accessor: 'neededSum' },
-  {
-    Header: 'subscriber',
-    accessor: 'subscriber',
-    cell: SubscriberCell,
-  },
+    { Header: 'Title', accessor: 'title', cell: LinkCell },
+    { Header: 'Close', accessor: 'close', cell: CloseCell },
+    { Header: 'Brief', accessor: 'brief' },
+    { Header: 'Page', accessor: 'page' },
+    { Header: 'Lang', accessor: 'lang' },
+    { Header: 'Progress', accessor: 'progress', cell: ProgressCell },
+    { Header: 'Cover', accessor: 'cover', cell: CoverCell },
+    { Header: 'Authors', accessor: 'authors', cell: AuthorsCell },
+    { Header: 'minCost', accessor: 'minCost' },
+    { Header: 'royalty', accessor: 'royalty', cell: RoyaltyCell },
+    { Header: 'neededCost', accessor: 'neededCost' },
+    { Header: 'fundedSum', accessor: 'fundedSum' },
+    { Header: 'neededSum', accessor: 'neededSum' },
+    {
+        Header: 'subscriber',
+        accessor: 'subscriber',
+        cell: SubscriberCell,
+    },
 ];
+
