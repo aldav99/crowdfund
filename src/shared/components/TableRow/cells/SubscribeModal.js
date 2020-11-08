@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 
-import styles from "./../../shared/styles/style.module.css"
+import styles from "../TableRow.module.css"
 
 export class SubscribeModal extends React.Component {
     constructor(props) {

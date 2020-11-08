@@ -1,25 +1,14 @@
 import React from 'react';
 import { Td, Span } from "../../elements/Table"
-import styles from "./TableRow.module.css"
-import { Link } from 'react-router-dom';
 import RoyaltyCell from "./cells/RoyaltyCell";
 import { AuthorsCell } from './cells/AuthorTableCell';
 import { LinkCell } from './cells/LinkCell';
 import { CoverCell } from './cells/CoverCell';
 import { CloseCell } from './cells/CloseCell';
 import { ProgressCell } from './cells/ProgressCell'
+import { SubscriberCell } from './cells/SubscriberCell'
 
-export { RoyaltyCell, AuthorsCell, CoverCell, LinkCell, CloseCell, ProgressCell };
-
-export const SubscriberCell = ({ column, row }) => {
-    if (row.subscriber > 10)
-        return (
-            <b className={styles.letter}>{row.subscriber}</b>
-        );
-    return (
-        row.subscriber)
-};
-
+export { RoyaltyCell, AuthorsCell, CoverCell, LinkCell, CloseCell, ProgressCell, SubscriberCell };
 
 export const TableRow = ({ row, columns }) => {
     if (!row)
@@ -53,7 +42,7 @@ export let columns = [
     {
         Header: '',
         accessor: 'subscriber',
-        cell: SubscriberCell,
+        cell: SubscriberCell
     },
 ];
 
@@ -74,7 +63,7 @@ export let mobileColumns = [
     {
         Header: 'subscriber',
         accessor: 'subscriber',
-        cell: SubscriberCell,
+        cell: SubscriberCell
     },
 ];
 
