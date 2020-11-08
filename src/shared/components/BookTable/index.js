@@ -30,7 +30,7 @@ export let mobileColumns = [
 
 export let columns = [
     { Header: 'Title', accessor: 'title', cell: LinkCell },
-    // { Header: 'Close', accessor: 'close', cell: CloseCell },
+    { Header: 'Close', accessor: 'close', cell: CloseCell },
     { Header: 'Brief', accessor: 'brief' },
     // { Header: 'Page', accessor: 'page' },
     // { Header: 'Lang', accessor: 'lang' },

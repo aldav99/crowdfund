@@ -7,21 +7,8 @@ import RoyaltyCell from "./cells/RoyaltyCell";
 import { AuthorsCell } from './cells/AuthorTableCell';
 import { LinkCell } from './cells/LinkCell';
 import { CoverCell } from './cells/CoverCell';
+import { CloseCell } from './cells/CloseCell';
 
-export const CloseCell = ({ column, row }) => {
-    let removeFromTable = column.removeFromTable
-    if (removeFromTable)
-        return (
-            <React.Fragment>
-                <Span>{column.Header}</Span><button onClick={() => removeFromTable(row.id)} className={styles.letter}>*</button>
-            </React.Fragment>
-        );
-    return (
-        <React.Fragment>
-            <Span>{column.Header}</Span>Unaccessible
-        </React.Fragment>
-    );
-};
 export const ProgressCell = ({ column, row }) => {
     return (
         <React.Fragment>
@@ -30,7 +17,7 @@ export const ProgressCell = ({ column, row }) => {
     );
 };
 
-export { RoyaltyCell, AuthorsCell, CoverCell, LinkCell };
+export { RoyaltyCell, AuthorsCell, CoverCell, LinkCell, CloseCell };
 
 export const SubscriberCell = ({ column, row }) => {
     if (row.subscriber > 10)
