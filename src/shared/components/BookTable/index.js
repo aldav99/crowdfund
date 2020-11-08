@@ -6,7 +6,7 @@ import { FeedbackForm } from './FeedbackForm';
 
 import { GenerateTable } from '../../elements/GenerateTable';
 
-import { LinkCell, CloseCell, ProgressCell, CoverCell, AuthorsCell, RoyaltyCell, SubscriberCell } from '../TableRow';
+import { LinkCell, CloseCell, ProgressCell, CoverCell, AuthorsCell, RoyaltyCell, SubscriberCell, SubscribeModal } from '../TableRow';
 
 export let mobileColumns = [
     { Header: '', accessor: 'title', cell: LinkCell },
@@ -25,6 +25,11 @@ export let mobileColumns = [
     {
         Header: '', accessor: 'subscriber',
         cell: SubscriberCell
+    },
+    {
+        Header: 'subscriberWindow',
+        accessor: 'subscriberWindow',
+        cell: SubscribeModal
     }
 ];
 
@@ -45,6 +50,11 @@ export let columns = [
     {
         Header: 'subscriber', accessor: 'subscriber',
         cell: SubscriberCell
+    },
+    {
+        Header: 'subscriberWindow',
+        accessor: 'subscriberWindow',
+        cell: SubscribeModal
     }
 ];
 
