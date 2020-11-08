@@ -1,6 +1,5 @@
 import React from 'react';
 import { Td, Span } from "../../elements/Table"
-import { percentOfProgress } from './helpers/percentOfProgress';
 import styles from "./TableRow.module.css"
 import { Link } from 'react-router-dom';
 import RoyaltyCell from "./cells/RoyaltyCell";
@@ -8,16 +7,9 @@ import { AuthorsCell } from './cells/AuthorTableCell';
 import { LinkCell } from './cells/LinkCell';
 import { CoverCell } from './cells/CoverCell';
 import { CloseCell } from './cells/CloseCell';
+import { ProgressCell } from './cells/ProgressCell'
 
-export const ProgressCell = ({ column, row }) => {
-    return (
-        <React.Fragment>
-            <Span>{column.Header}</Span>{percentOfProgress(row.fundedSum, row.neededSum)}
-        </React.Fragment>
-    );
-};
-
-export { RoyaltyCell, AuthorsCell, CoverCell, LinkCell, CloseCell };
+export { RoyaltyCell, AuthorsCell, CoverCell, LinkCell, CloseCell, ProgressCell };
 
 export const SubscriberCell = ({ column, row }) => {
     if (row.subscriber > 10)

@@ -34,7 +34,7 @@ export let columns = [
     { Header: 'Brief', accessor: 'brief' },
     // { Header: 'Page', accessor: 'page' },
     // { Header: 'Lang', accessor: 'lang' },
-    // { Header: 'Progress', accessor: 'progress', cell: ProgressCell },
+    { Header: 'Progress', accessor: 'progress', cell: ProgressCell },
     { Header: 'Cover', accessor: 'cover', cell: CoverCell },
     { Header: 'Authors', accessor: 'authors', cell: AuthorsCell },
     // { Header: 'minCost', accessor: 'minCost' },
