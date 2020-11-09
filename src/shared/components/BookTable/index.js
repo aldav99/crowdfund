@@ -27,7 +27,7 @@ export let mobileColumns = [
         cell: SubscriberCell
     },
     {
-        Header: 'subscriberWindow',
+        Header: '',
         accessor: 'subscriberWindow',
         cell: SubscribeModal
     }
