@@ -12,6 +12,6 @@ export function uploadFile(file) {
                 key: 'ABUGkkqrDRTO5iPbtrZfcz'
             }
         })
-            .then(result => { console.log('---------FILESTACK-----------', result); return result.data })
+            .then(result => { console.log(result); return result.data })
     );
 }
