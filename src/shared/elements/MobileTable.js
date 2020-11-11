@@ -1,4 +1,5 @@
 import React from 'react';
+import { TableCell } from './TableCell';
 
 export function MobileTable(props) {
     return (
@@ -14,11 +15,7 @@ export function MobileTable(props) {
                                     }
                                 </td>
                                 <td key={row}>
-                                    {
-                                        column.cell
-                                            ? <column.cell row={row} column={column} />
-                                            : row[column.accessor]
-                                    }
+                                    <TableCell column={column} row={row} />
                                 </td>
                             </tr>)
                         )

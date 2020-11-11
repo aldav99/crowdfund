@@ -15,8 +15,6 @@ import { ProgressCell } from '../TableRow/cells/ProgressCell'
 import { SubscriberCell } from '../TableRow/cells/SubscriberCell'
 import { SubscribeModal } from '../TableRow/cells/SubscribeModal'
 
-// import { LinkCell, CloseCell, ProgressCell, CoverCell, AuthorsCell, RoyaltyCell, SubscriberCell, SubscribeModal } from '../TableRow';
-
 export let columns = [
     { Header: 'Title', accessor: 'title', cell: LinkCell },
     { Header: 'Close', accessor: 'close', cell: CloseCell },

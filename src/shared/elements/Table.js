@@ -1,4 +1,5 @@
 import React from 'react';
+import { TableCell } from './TableCell';
 
 export function Table(props) {
     return (
@@ -19,11 +20,7 @@ export function Table(props) {
                             {
                                 props.columns.map((column, idx) => (
                                     <td key={idx}>
-                                        {
-                                            column.cell
-                                                ? <column.cell row={row} column={column} />
-                                                : row[column.accessor]
-                                        }
+                                        <TableCell column={column} row={row} />
                                     </td>
                                 ))
                             }
@@ -34,5 +31,6 @@ export function Table(props) {
         </table>
     );
 };
+
 
 
