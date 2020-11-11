@@ -14,13 +14,6 @@ class AuthorTable extends React.PureComponent {
         this.state = { onlyThree: true };
         this.toggleView = this.toggleView.bind(this);
 
-        this.mobileColumns = [
-            { Header: '', accessor: 'name' },
-            { Header: '', accessor: 'email' },
-            { Header: '', accessor: 'avatar', cell: AvatarCell },
-            { Header: '', accessor: 'brief' }
-        ];
-
         this.columns = [
             { Header: 'Name', accessor: 'name' },
             { Header: 'Email', accessor: 'email' },
@@ -44,7 +37,7 @@ class AuthorTable extends React.PureComponent {
             authors
                 ? (
                     <div>
-                        <GenerateTable rows={authors} mobileColumns={this.mobileColumns} columns={this.columns} />
+                        <GenerateTable rows={authors} columns={this.columns} />
                         {this.props.authors.length > 3 && <button onClick={this.toggleView}>{onlyThree ? 'Show all' : 'Hide'}</button>}
                     </div>
                 )

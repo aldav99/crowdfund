@@ -8,31 +8,6 @@ import { GenerateTable } from '../../elements/GenerateTable';
 
 import { LinkCell, CloseCell, ProgressCell, CoverCell, AuthorsCell, RoyaltyCell, SubscriberCell, SubscribeModal } from '../TableRow';
 
-export let mobileColumns = [
-    { Header: '', accessor: 'title', cell: LinkCell },
-    { Header: '', accessor: 'close', cell: CloseCell },
-    { Header: '', accessor: 'brief' },
-    { Header: '', accessor: 'page' },
-    { Header: '', accessor: 'lang' },
-    { Header: '', accessor: 'progress', cell: ProgressCell },
-    { Header: '', accessor: 'cover', cell: CoverCell },
-    { Header: '', accessor: 'authors', cell: AuthorsCell },
-    { Header: '', accessor: 'minCost' },
-    { Header: '', accessor: 'royalty', cell: RoyaltyCell },
-    { Header: '', accessor: 'neededCost' },
-    { Header: '', accessor: 'fundedSum' },
-    { Header: '', accessor: 'neededSum' },
-    {
-        Header: '', accessor: 'subscriber',
-        cell: SubscriberCell
-    },
-    {
-        Header: '',
-        accessor: 'subscriberWindow',
-        cell: SubscribeModal
-    }
-];
-
 export let columns = [
     { Header: 'Title', accessor: 'title', cell: LinkCell },
     { Header: 'Close', accessor: 'close', cell: CloseCell },
@@ -90,7 +65,7 @@ class BookTable extends React.PureComponent {
 
         return (
             <React.Fragment>
-                <GenerateTable rows={books} mobileColumns={mobileColumns} columns={columns} />
+                <GenerateTable rows={books} columns={columns} />
                 <FeedbackForm />
             </React.Fragment>
         );
