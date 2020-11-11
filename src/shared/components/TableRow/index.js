@@ -1,5 +1,4 @@
 import React from 'react';
-import { Td } from "../../elements/Table"
 import RoyaltyCell from "./cells/RoyaltyCell";
 import { AuthorsCell } from './cells/AuthorTableCell';
 import { LinkCell } from './cells/LinkCell';
@@ -18,10 +17,10 @@ export const TableRow = ({ row, columns }) => {
     return columns.map(column => {
         const CellComponent = column.cell;
         return (
-            <Td key={column.accessor}>
+            <td key={column.accessor}>
                 {CellComponent ? <CellComponent row={row} column={column}
                     authors={row.authorsList} /> : row[column.accessor]}
-            </Td>
+            </td>
         );
     });
 };
