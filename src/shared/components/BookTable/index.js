@@ -6,7 +6,16 @@ import { FeedbackForm } from './FeedbackForm';
 
 import { GenerateTable } from '../../elements/GenerateTable';
 
-import { LinkCell, CloseCell, ProgressCell, CoverCell, AuthorsCell, RoyaltyCell, SubscriberCell, SubscribeModal } from '../TableRow';
+import RoyaltyCell from "../TableRow/cells/RoyaltyCell";
+import { AuthorsCell } from '../TableRow/cells/AuthorTableCell';
+import { LinkCell } from '../TableRow/cells/LinkCell';
+import { CoverCell } from '../TableRow/cells/CoverCell';
+import { CloseCell } from '../TableRow/cells/CloseCell';
+import { ProgressCell } from '../TableRow/cells/ProgressCell'
+import { SubscriberCell } from '../TableRow/cells/SubscriberCell'
+import { SubscribeModal } from '../TableRow/cells/SubscribeModal'
+
+// import { LinkCell, CloseCell, ProgressCell, CoverCell, AuthorsCell, RoyaltyCell, SubscriberCell, SubscribeModal } from '../TableRow';
 
 export let columns = [
     { Header: 'Title', accessor: 'title', cell: LinkCell },
