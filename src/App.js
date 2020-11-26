@@ -4,21 +4,29 @@ import { Helmet } from 'react-helmet';
 
 import NotFound from './pages/NotFound/index.js'
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Router, Switch, Route } from "react-router-dom";
+
+import { createBrowserHistory } from "history";
+
+
 import Book from './pages/Book';
 import Main from './pages/Main';
 import NewBook from './pages/NewBook';
 
 import { bookPath, newBookPath } from './helpers/routes';
 
+const browserHistory = createBrowserHistory()
+
 export const App = (props) => {
+    const history = props.history || browserHistory;
+
     return (
         <React.Fragment>
             <Helmet>
                 <title>Crowdfunding App With Helmet</title>
             </Helmet>
 
-            <Router>
+            <Router history={history}>
                 <Switch>
                     <Route component={Main} path='/' exact />
                     <Route component={NewBook} path={newBookPath()} strict exact />
