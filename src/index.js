@@ -16,6 +16,7 @@ if (process.env.NODE_ENV === 'development') {
     worker.start()
 }
 
+
 const user = {
     email: 'vova@mail.com',
     firstName: 'Vova',

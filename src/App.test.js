@@ -37,7 +37,7 @@ describe('Routing', () => {
 
         // await waitFor(() => {
         //     expect(getByText(/home/i)).toBeInTheDocument()
-        // }, { timeout: 50000 })
+        // })
 
         // const { location: { pathname } } = history;
         // expect(pathname).toBe('/book/recGJ0fHsdidP0Ebs')
