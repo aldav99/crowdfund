@@ -10,10 +10,23 @@ import userEvent from "@testing-library/user-event"
 
 import { createMemoryHistory } from 'history';
 
+import { rest } from 'msw';
+import { setupServer } from 'msw/node';
+
+import { handlers } from './mocks/handlers'
+
 describe('Routing', () => {
-    // beforeEach(() => {
-    //     jest.setTimeout(60000);
-    // });
+    const server = setupServer(...handlers);
+    
+    beforeAll(() => {
+        server.listen();
+    });
+    
+    afterEach(() => server.resetHandlers());
+    
+    afterAll(() => {
+        server.close();
+    });
 
     it('It renders Main page correctly', () => {
         const result = render(<App />)
@@ -32,50 +45,56 @@ describe('Routing', () => {
             expect(getByText(/Ruby/i)).toBeInTheDocument()
         })
 
+        // act(() => render(<App history={history} />));
 
-        // userEvent.click(getByText(/Ruby/i));
 
-        // await waitFor(() => {
-        //     expect(getByText(/home/i)).toBeInTheDocument()
-        // })
+        userEvent.click(getByText(/Ruby/i));
 
-        // const { location: { pathname } } = history;
-        // expect(pathname).toBe('/book/recGJ0fHsdidP0Ebs')
+        await waitFor(() => {
+            expect(getByText(/home/i)).toBeInTheDocument()
+        })
 
-        // userEvent.click(getByText(/home/i));
+        const { location: { pathname } } = history;
+        expect(pathname).toBe('/book/recGJ0fHsdidP0Ebs')
 
-        // await waitFor(() => {
-        //     expect(getByText(/Erlang/i)).toBeInTheDocument()
-        // }, { timeout: 50000 })
+        userEvent.click(getByText(/home/i));
 
-        // userEvent.click(getByText(/Ruby/i));
+        await waitFor(() => {
+            expect(getByText(/Erlang/i)).toBeInTheDocument()
+        })
 
-        // await waitFor(() => {
-        //     expect(getByText(/crowdfunding/i)).toBeInTheDocument()
-        // }, { timeout: 50000 })
+        userEvent.click(getByText(/Ruby/i));
 
-        // userEvent.click(getByText(/crowdfunding/i));
+        await waitFor(() => {
+            expect(getByText(/crowdfunding/i)).toBeInTheDocument()
+        })
 
-        // await waitFor(() => {
-        //     expect(getByText(/Erlang/i)).toBeInTheDocument()
-        // }, { timeout: 50000 })
+        userEvent.click(getByText(/crowdfunding/i));
+
+        await waitFor(() => {
+            expect(getByText(/Erlang/i)).toBeInTheDocument()
+        })
+
+        // act(() => getByText);
     })
 
-    // it('It renders NewBook page correctly', () => {
-    //     const history = createMemoryHistory()
-    //     history.push('/book/new')
+    it('It renders NewBook page correctly',  () => {
+        const history = createMemoryHistory()
+        history.push('/book/new')
 
-    //     const { getByText } = render(<App history={history} />);
+        const { getByText } = render(<App history={history} />);
 
-    //     expect(getByText(/Add Book/i)).toBeInTheDocument()
-    // })
+        expect(getByText(/Add Book/i)).toBeInTheDocument()
 
-    // it('landing on a bad page', () => {
-    //     const history = createMemoryHistory()
-    //     history.push('/bad/page')
+        // act(() => render(<App history={history} />));
+    })
 
-    //     const { getByText } = render(<App history={history} />);
+    it('landing on a bad page', () => {
+        const history = createMemoryHistory()
+        history.push('/bad/page')
 
-    //     expect(getByText(/Oops, Nothing was Found/i)).toBeInTheDocument()
-    // })
+        const { getByText } = render(<App history={history} />);
+
+        expect(getByText(/Oops, Nothing was Found/i)).toBeInTheDocument()
+    })
 });
