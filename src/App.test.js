@@ -34,6 +34,8 @@ describe('Routing', () => {
         const headerEl = result.getByText('Crowdfunding')
 
         expect(headerEl).toBeTruthy()
+
+        act(() => render(<App />))
     })
 
     it('Navigating to Ruby in debt page and back to homepage work correctly', async () => {
@@ -74,8 +76,7 @@ describe('Routing', () => {
         await waitFor(() => {
             expect(getByText(/Erlang/i)).toBeInTheDocument()
         })
-
-        // act(() => getByText);
+        act(() => render(<App history={history} />));
     })
 
     it('It renders NewBook page correctly',  () => {
@@ -86,7 +87,7 @@ describe('Routing', () => {
 
         expect(getByText(/Add Book/i)).toBeInTheDocument()
 
-        // act(() => render(<App history={history} />));
+        act(() => render(<App history={history} />));
     })
 
     it('landing on a bad page', () => {
@@ -96,5 +97,7 @@ describe('Routing', () => {
         const { getByText } = render(<App history={history} />);
 
         expect(getByText(/Oops, Nothing was Found/i)).toBeInTheDocument()
+
+        act(() => render(<App history={history} />));
     })
 });
