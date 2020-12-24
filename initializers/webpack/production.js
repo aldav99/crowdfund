@@ -13,6 +13,7 @@ module.exports = {
         filename: '[name].[chunkhash].js',
         path: path.resolve(process.cwd(), 'dist/assets')
     },
+    devtool: "source-map",
 
     resolve: {
         modules: [path.resolve(process.cwd(), 'src'), 'node_modules']

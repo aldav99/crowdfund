@@ -16,7 +16,6 @@ module.exports = {
     output: {
         filename: '[name].js'
     },
-
     resolve: {
         modules: [path.resolve(process.cwd(), 'src'), 'node_modules']
     },
